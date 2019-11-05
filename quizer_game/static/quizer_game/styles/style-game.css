@@ -1,0 +1,129 @@
+html, body {
+  background: #eaece5;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* .top-text {
+  border: 2px solid #25274d;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.top-text h3, h5 {
+  display: block;
+}
+
+.top-text span {
+  display: block;
+  float: right;
+} */
+
+.top-text {
+  display: block;
+  margin-top: 20px;
+  margin-right: 25px;
+  margin-left: 25px;
+  margin-bottom: 0px;
+}
+
+.top-text span {
+  display: block;
+  float: right;
+
+}
+
+#player-name {
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.racing-track-box {
+  border: 2px solid #25274d;
+  /* box-sizing: border-box;  */
+  margin: auto;
+  margin-top: 10px;
+  padding-top: 75px;
+  padding-bottom: 100px;
+  padding-right: 10px;
+  padding-left: 10px;
+  /* height: 250px; */
+  width: 1200px;
+  position: relative;
+}
+
+#racing-track-img {
+  /* display: block;
+  width: 1200px;
+  height: auto;
+  margin: auto; */
+  position: absolute;
+  vertical-align: middle;
+  width: 1200px;
+}
+
+#race-car-img {
+  position: absolute;
+  /*left: 0px;  /* car run here finish = 850  move 57*/
+  bottom: 20px;
+  width: 200px;
+  height: auto;
+}
+
+.question-body {
+  border: 2px solid #25274d;
+  margin: 25px;
+  height: 400px;
+  position: relative;
+  text-align: center;
+}
+
+.question-body p {
+  font-size: 25px;
+  font-weight: bold;
+  /* text-align: center; */
+}
+
+.navbar a {
+  /* position: absolute;
+  /* top: 90%;
+  left: 95%; */
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: black;
+  background-color: #eaece5;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  border: solid black;
+  border-radius: 19px;
+}
+
+.navbar a:hover {
+  background: #25274d;
+  color: white;
+  border: solid black;
+  border-radius: 19px;
+}
+
+#c1 {
+  position: relative;
+  margin-top: 50px;
+}
+
+#c2 {
+position: relative;
+  margin-top: 50px;
+}
+
+#c3 {
+position: relative;
+  margin-top: 50px;
+}
+
+#c4 {
+position: relative;
+  margin-top: 50px;
+}
