@@ -12,11 +12,13 @@ body {
   font-weight: 100;
 }
 .container {
+
   position: absolute;
-  top: 54.5%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  top:70px;
+  margin-right:-50px;
+  margin-left:-50px;
+  left:25%;
+
 }
 
 #masthead {
@@ -55,6 +57,7 @@ h2 {
   overflow: auto;
   height: 390px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
+
 }
 
 .fixed_header thead tr {
@@ -75,6 +78,7 @@ td {
   color: black;
   word-wrap: break-word;
   max-width: 150px;
+
 }
 th {
   text-align: center;
@@ -156,9 +160,9 @@ tbody td {
 }
 
 .bottom a{
-  position: absolute;
-  top: 93%;
-  left: 92%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: black;
