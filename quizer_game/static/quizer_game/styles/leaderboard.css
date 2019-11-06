@@ -13,7 +13,7 @@ body {
 }
 .container {
   position: absolute;
-  top: 53%;
+  top: 54.5%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -37,7 +37,7 @@ h1 {
 h2 {
   color: black;
   text-align: center;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 
@@ -51,9 +51,9 @@ h2 {
 
 .fixed_header tbody{
   display:block;
-  width: 100%;
+  width: 95.5%;
   overflow: auto;
-  height: 430px;
+  height: 390px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
@@ -63,7 +63,7 @@ h2 {
 
 
 .fixed_header th, .fixed_header td {
-  padding: 18px;
+  padding: 35px;
   text-align: center;
   width: 200px;
 }
@@ -73,6 +73,8 @@ td {
   text-align: center;
   padding: 18px;
   color: black;
+  word-wrap: break-word;
+  max-width: 150px;
 }
 th {
   text-align: center;
@@ -133,11 +135,10 @@ tbody td {
 
 .email {
   position: absolute;
-  top: 52%;
-  right: 8.5%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  top: 44%;
+  right: 14%;
   color: white;
+
 }
 .email a:visited  {
   color: white;
