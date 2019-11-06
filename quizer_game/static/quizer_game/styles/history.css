@@ -1,4 +1,3 @@
-
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
 
@@ -48,6 +47,7 @@ h1 {
   overflow: auto;
   height: 430px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    border-collapse: collapse;
 }
 
 .fixed_header thead tr {
@@ -63,9 +63,12 @@ h1 {
 
 th,
 td {
+
   text-align: center;
   padding: 18px;
-  color: black;
+  word-wrap: break-word;
+  max-width: 150px;
+  color:black;
 }
 th {
   text-align: center;
@@ -126,11 +129,11 @@ tbody td {
 
 .email {
   position: absolute;
-  top: 52%;
-  right: 8.5%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  top: 44%;
+  right: 14%;
   color: white;
+
+
 }
 .email a:visited  {
   color: white;
@@ -167,4 +170,3 @@ tbody td {
   color: white;
   border: solid black;
 }
-
