@@ -4,6 +4,8 @@ from . import views
 
 
 urlpatterns = [
+    # /quizer/
     path('', views.test_index, name='test_index'),
-    # path('game/', views)
+    # /quizer/game/1/
+    path('game/<int:quiz_id>', views.game, name='game'),
 ]
