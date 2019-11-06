@@ -14,12 +14,24 @@ html, body {
 #time {
   display: block;
   float: right;
-
+  /* margin-right: 50px; */
 }
 
 #player-name {
   font-size: 18px;
   margin-top: 5px;
+}
+
+#quit {
+  float: right;
+  /* margin-left: 25px; */
+  margin-top: 10px;
+  padding: 10px;
+}
+
+#quiz-name {
+  margin-top: 5px;
+  margin-left: 25px;
 }
 
 .racing-track-box {
@@ -112,10 +124,4 @@ html, body {
 #c4 {
   position: relative;
   margin-top: 50px;
-}
-
-#quit {
-  margin-left: 25px;
-  margin-top: 10px;
-  padding: 10px;
 }

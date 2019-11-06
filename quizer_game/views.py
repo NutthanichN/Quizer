@@ -1,5 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views import generic
+
+from .models import Quiz
 
 # Create your views here.
 
@@ -9,8 +12,13 @@ def test_index(request):
 
 
 def game(request, quiz_id):
-    response = "Game of Quiz %s."
-    return HttpResponse(response % quiz_id)
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    return render(request, 'quizer_game/game.html',
+                  {'quiz': quiz})
+    # response = "Game of Quiz %s."
+    # return HttpResponse(response % quiz_id)
+
+# class GameView()
 
 
 def answer(request):

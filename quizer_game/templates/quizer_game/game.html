@@ -8,12 +8,16 @@
 </head>
 <body>
     <h2 class="top-text">Player's name
-        <span class="navbar">
-            <a id="quit" href="">Quit</a>
-        </span>
+        <span id="quiz-name">Quiz topic : {{ quiz.topic }}</span>
+<!--        <span class="navbar">-->
+<!--            <a id="quit" href="">Quit</a>-->
+<!--        </span>-->
         <span id="time">Time: 00:00</span>
     </h2>
     <p class="top-text" id="player-name">Admin 1234</p>
+    <span class="navbar">
+            <a id="quit" href="">Quit</a>
+    </span>
 
     <div class="racing-track-box">
         <img id="racing-track-img" src="../../static/quizer_game/images/race-track.png" alt="Racing Track">
