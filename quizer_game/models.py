@@ -8,10 +8,10 @@ from django.db import models
 
 
 class Quiz(models.Model):
-    text = models.CharField(max_length=200)
+    topic = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.text
+        return self.topic
 
 
 class Question(models.Model):
