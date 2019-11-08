@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Quizer Game</title>
-    <link rel="stylesheet" href="../../static/quizer_game/styles/style-game.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quizer_game/styles/style-game.css' %}">
+<!--    <link rel="stylesheet" href="../../static/quizer_game/styles/style-game.css">-->
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,34 +16,39 @@
 <!--        </span>-->
         <span id="time">Time: 00:00</span>
     </h2>
-    <p class="top-text" id="player-name">Admin 1234</p>
+    <p class="top-text" id="player-name">{{ player.name }}</p>
     <span class="navbar">
             <a id="quit" href="">Quit</a>
     </span>
 
     <div class="racing-track-box">
-        <img id="racing-track-img" src="../../static/quizer_game/images/race-track.png" alt="Racing Track">
-        <img id="race-car-img" style="left:0px;" src="../../static/quizer_game/images/race-car-200.png" alt="race car">
+        <img id="racing-track-img" src="{% static 'quizer_game/images/race-track.png' %}" alt="Racing Track">
+        <img id="race-car-img" style="left:0px;" src="{% static 'quizer_game/images/race-car-200.png' %}" alt="race car">
+<!--        <img id="racing-track-img" src="../../static/quizer_game/images/race-track.png" alt="Racing Track">-->
+<!--        <img id="race-car-img" style="left:0px;" src="../../static/quizer_game/images/race-car-200.png" alt="race car">-->
     </div>
 
     <div class="question-body">
-        <p>Q1. What is a real traditional "Hello world" in The C programming language by Kernighan?</p>
+        <p>{{ question.text }}</p>
+<!--        <p>Q1. What is a real traditional "Hello world" in The C programming language by Kernighan?</p>-->
 <!--        <p>Q1. This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg question</p>-->
 <!--        <p>with multiple lines</p>-->
-
-        <div class="navbar" id="c1">
-            <a href="">Choice 1</a>
+        {% for choice in question.choice_set.all %}
+        <div class="navbar" id="c{{ forloop.counter }}">
+            <a href="">{{ choice.text }}</a>
+<!--            <a href="">Choice 1</a>-->
 <!--            <a href="">Q1. This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg choice</a>-->
         </div>
-        <div class="navbar" id="c2">
-            <a href="">Choice 2</a>
-        </div>
-        <div class="navbar" id="c3">
-            <a href="">Choice 3</a>
-        </div>
-        <div class="navbar" id="c4">
-            <a href="">Choice 4</a>
-        </div>
+        {% endfor %}
+<!--        <div class="navbar" id="c2">-->
+<!--            <a href="">Choice 2</a>-->
+<!--        </div>-->
+<!--        <div class="navbar" id="c3">-->
+<!--            <a href="">Choice 3</a>-->
+<!--        </div>-->
+<!--        <div class="navbar" id="c4">-->
+<!--            <a href="">Choice 4</a>-->
+<!--        </div>-->
     </div>
 </body>
 </html>
