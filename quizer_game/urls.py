@@ -26,5 +26,6 @@ urlpatterns = [
          views.update_game, name='update'),
 
     # /quizer/game/test-result/
-    path('game/test-result', views.render_test_result, name='test-result')
+    path('game/test-result-achieve', views.render_test_result_achieve, name='test-result-achieve'),
+    path('game/test-result-fail', views.render_test_result_fail, name='test-result-fail'),
 ]
