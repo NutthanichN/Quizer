@@ -21,7 +21,7 @@
 </header>
  <h1>Quiz</h1>
 <div class="container">
-
+    <div id="piechart" class="chart"></div>
     <p id="easy">Easy</p>
     <a href="#" class="button" id ="detail1" onclick="easy()">detail</a>
     <br>
@@ -31,7 +31,7 @@
     <table id="table_easy" class="fixed_header w3-hide" >
   		<thead>
     		<tr>
-      			<th>Number</th>
+      			<th>Question number</th>
       			<th>Choice1</th>
       			<th>Choice2</th>
       			<th>Choice3</th>
@@ -122,7 +122,7 @@
     <table id="table_medium" class="fixed_header w3-hide" >
   		<thead>
     		<tr>
-      			<th>Number</th>
+      			<th>Question number</th>
       			<th>Choice1</th>
       			<th>Choice2</th>
       			<th>Choice3</th>
@@ -213,7 +213,7 @@
     <table id="table_hard" class="fixed_header w3-hide" >
   		<thead>
     		<tr>
-      			<th>Number</th>
+      			<th>Question number</th>
       			<th>Choice1</th>
       			<th>Choice2</th>
       			<th>Choice3</th>
@@ -295,7 +295,11 @@
     <a href=>Back</a>
 </div>
 
-<script  src="../../static/quizer_game/scripts/question-set-detail.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script  type="text/javascript" src="../../static/quizer_game/scripts/question-set-detail.js"></script>
+
 
 </body>
 </html>
