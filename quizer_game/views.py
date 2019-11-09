@@ -50,6 +50,10 @@ POSITION = {'max': 15, 'min': 0}
 QUESTION_NUM = {'max': 20}
 
 
+# TODO edit redirect to the real template
+# TODO manage player time spent and set limit time for the hard level
+# TODO provide upvote-downvote feature
+# TODO manage admit page (so we don't have to create quiz by API)
 # /quizer/game/player_id/quiz_id/difficulty/update/
 def update_game(request, player_id, quiz_id, selected_difficulty, choice_value):
     quiz = get_object_or_404(Quiz, pk=quiz_id)

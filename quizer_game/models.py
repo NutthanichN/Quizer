@@ -3,27 +3,18 @@ from django.db import models
 # Create your models here.
 
 
-# class GameManager(models.Manager):
-#     pass
-
-
 class Quiz(models.Model):
     topic = models.CharField(max_length=200)
 
     def __str__(self):
         return self.topic
 
-    def active_player(self):
-        pass
-
-    def find_active_player(self):
-        pass
-
     def create_player(self, name, selected_difficulty):
         player = self.player_set.create(name=name, selected_difficulty=selected_difficulty, is_playing=True)
         return player
 
 
+# TODO question can contain image (and maybe audio file too)
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
@@ -61,7 +52,3 @@ class Player(models.Model):
 
     def move_backward(self):
         self.position -= 1
-
-    def finish_playing(self):
-        self.is_playing = False
-        self.save()
