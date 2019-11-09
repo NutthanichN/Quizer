@@ -4,6 +4,7 @@
 html,
 
 body {
+
   margin: 0;
   background: #eaece5;
   font-family: 'Nunito', serif;
@@ -13,7 +14,7 @@ body {
 
 .container {
   position: absolute;
-  top:90px;
+  top:220px;
   margin-right:-50px;
   margin-left:-50px;
   left:25%;
@@ -28,9 +29,14 @@ body {
 }
 
 h1 {
+    position: absolute;
+  top:100px;
+  left:50%;
   color: black;
   text-align: center;
   font-size: 30px;
+  top: 100 px;
+
 }
 
 td {
@@ -41,6 +47,7 @@ td {
   word-wrap: break-word;
   max-width: 300px;
   font-size: 20px;
+  left:25%;
 }
 
 
@@ -110,10 +117,10 @@ td {
   left: 94%;
 }
 
-.bottom a{
+#back a{
    position: fixed;
-    bottom: 0;
-    right: 0;
+    top: 150px;
+    left: 55px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: black;
@@ -126,7 +133,7 @@ td {
   border: solid black;
 
 }
-.bottom a:hover {
+#back a:hover {
   background: #25274d;
   color: white;
   border: solid black;
@@ -169,11 +176,10 @@ td {
 
 #edit {
   position: relative;
-  margin-left: 600px;
+  margin-left: 650px;
 
 
 }
-
 #delete {
   position: relative;
   margin-left: 50px;
@@ -181,29 +187,6 @@ td {
 }
 
 
-.modal {
-  text-align: left;
-}
-.modal .modal-content {
-  border-radius: 0;
-  box-shadow: none;
-}
-
-
-.modal .modal-content .modal-footer {
-  background: #eaece5;
-
-  border-top: 1px solid #ccc;
-  padding: 8px;
-}
-
-.modal .modal-content .modal-body{
-    background: #eaece5;
-    color: black;
-    font-size: 18px;
-    padding: 20px;
-    font-family: 'Nunito', serif;
-}
 
 #yes{
   background-color: #4CAF50;
@@ -221,3 +204,41 @@ td {
   border-radius: 19px;
 }
 
+
+
+.fade{
+    opacity:0;
+    -webkit-transition:opacity .15s linear;
+    -o-transition:opacity .15s linear;
+    transition:opacity .15s linear}
+
+.td {
+
+}
+
+th,
+td {
+  text-align: center;
+  padding: 10099px;
+  color: black;
+  word-wrap: break-word;
+  max-width: 150px;
+
+}
+th {
+  text-align: center;
+}
+thead th {
+  background-color: #25274d;
+  color: white;
+}
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+tbody td {
+  position: relative;
+}
+
+#test {
+
+}
