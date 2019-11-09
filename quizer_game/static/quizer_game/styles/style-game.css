@@ -61,7 +61,7 @@ html, body {
 
 #race-car-img {
   position: absolute;
-  /*left: 0px;  /* car run here finish = 850  move 57*/
+  /*left: 0px;  /* car run here finish = 850  move 850/14 61*/
   bottom: 20px;
   width: 200px;
   height: auto;

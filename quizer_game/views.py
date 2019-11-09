@@ -19,6 +19,7 @@ def start_game(request, player_name, quiz_id, selected_difficulty):
     # test with player 1
     player = quiz.player_set.get(pk=1)
     player.current_question = quiz.question_set.get(number=1)
+    player.position = 0
     # player.selected_difficulty = selected_difficulty
     player.save()
     # create new player
@@ -43,32 +44,49 @@ def game(request, player_id, quiz_id, selected_difficulty):
     return render(request, 'quizer_game/game.html', context)
 
 
+DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
+CHOICE_VALUE = {'wrong': 0, 'correct': 1}
+POSITION = {'max': 15, 'min': 0}
+
+
 # /quizer/game/player_id/quiz_id/difficulty/update/
 def update_game(request, player_id, quiz_id, selected_difficulty, choice_value):
     # game difficulty: easy(0) medium(1) hard(2)
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=1)
 
-    if selected_difficulty == 0:
-        if choice_value > 0:
+    if choice_value == CHOICE_VALUE['correct']:
+        if player.position < POSITION['max']:
             player.move_forward()
     else:
-        if choice_value > 0:
-            player.move_forward()
-        else:
-            player.move_backward()
+        if selected_difficulty > DIFFICULTY['easy']:
+            if player.position >= POSITION['min']:
+                player.move_backward()
     player.save()
+
+    if player.position == POSITION['max']:
+        player.is_achieved = True
+        player.is_playing = False
+        player.save()
+        return redirect(reverse('quizer_game:test-result'))
+
+    # TODO change to next question
+    # TODO check when question num = 20 but player doesn't reach the finish line
 
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': 1, 'quiz_id': quiz_id,
                                     'selected_difficulty': selected_difficulty}))
 
 
-def run_test_select_quiz_template(request, player_name):
+def render_test_result(request):
+    return render(request, 'quizer_game/test-result.html')
+
+
+def render_test_select_quiz_template(request, player_name):
     context = {'player_name': player_name}
     return render(request, 'quizer_game/test-select-quiz.html', context)
 
 
-def run_test_player_name_template(request):
+def render_test_player_name_template(request):
     return render(request, 'quizer_game/test-player-name.html')
 
