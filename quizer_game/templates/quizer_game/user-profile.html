@@ -2,9 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+    <link rel="stylesheet" href="../../static/quizer_game/styles/user-profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+
+
 <body>
+<header id="masthead">
+	<!--login version-->
+     <!--<div class="email">-->
+     <!--<a href="">Email: hello55@gmail.com</a>-->
+	<!--</div>-->
+	 <!--<div class="top">-->
+	  <!--<a class="create" href="">Create quiz</a>-->
+	  <!--<a class="history" href="">History</a>-->
+	  <!--<a class="logout" href="">Logout</a>-->
+	<div class="top">
+	  	 <a class="login" href="">Login</a>
+	</div>
+</header>
+
+<div class="container">
+	<h1>Quiz</h1>
+
+    <p id="num">1.</p>
+    <a id="question" href=>C+</a>
+    <div class="navbar">
+         <a id="edit" href=><i class="fa fa-edit"></i>edit</a>
+         <a data-toggle="modal" data-target="#myModal" id="delete" href=><i class="fa fa-trash"></i>delete</a>
+
+    </div>
+
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-body">
+              <p>Do you want to delete this quiz?</p>
+
+            </div>
+            <div class="modal-footer">
+              <button id = "yes">Yes</button>
+              <button id = "no" data-dismiss="modal">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div class="bottom">
+    <a href=>Back</a>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script></script>
 
 </body>
 </html>
