@@ -49,7 +49,7 @@ h1 {
 
 .fixed_header tbody{
   display:block;
-  width: 383.5%;
+  width: 389.5%;
   overflow: auto;
   height: 250px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -269,5 +269,13 @@ display:block!important}
   margin-top:180px;
   margin-left: 70px;
   font-size: 24px;
+}
+
+.chart {
+
+  position: absolute;
+  margin-top:-40px;
+  margin-left: 380px;
+
 }
 
