@@ -21,13 +21,13 @@ class Quiz(models.Model):
 
     def create_player(self, name, selected_difficulty):
         player = self.player_set.create(name=name, selected_difficulty=selected_difficulty, is_playing=True)
-        player.save()
         return player
 
 
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
     text = models.CharField(max_length=200)
+    number = models.IntegerField(default=0)
 
     def __str__(self):
         return self.text
@@ -43,8 +43,8 @@ class Choice(models.Model):
 
 
 class Player(models.Model):
-    # game difficulty: easy(0) medium(1) hard(2)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True)
+    current_question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200)
     time = models.TimeField(null=True, blank=True)
     selected_difficulty = models.IntegerField(default=0)
@@ -58,11 +58,9 @@ class Player(models.Model):
 
     def move_forward(self):
         self.position += 1
-        self.save()
 
     def move_backward(self):
         self.position -= 1
-        self.save()
 
     def finish_playing(self):
         self.is_playing = False
