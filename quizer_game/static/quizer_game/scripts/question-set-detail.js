@@ -25,3 +25,23 @@ function hard() {
   }
 }
 
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Task', 'Number per difficulty'],
+  ['Easy', 6],
+  ['Medium', 4],
+  ['Hard', 2],
+]);
+
+    var options = {backgroundColor: 'transparent',
+                   'width':750,
+                   'height':550,
+                   'title' : 'Difficulty'};
+
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
