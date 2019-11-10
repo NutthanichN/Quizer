@@ -330,12 +330,17 @@ label input {
 
 }
 
-.choose{
+.choose_choice{
   margin-left: -2em;
   font-size: 18px;
   font-weight: bold;
-
 }
+
+.choose_num{
+  margin-left: -6em;
+  font-size: 18px;
+  font-weight: bold;
+ }
 
 select{
     margin:20px;
