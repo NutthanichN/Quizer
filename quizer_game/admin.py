@@ -4,21 +4,26 @@ from .models import Quiz, Question, Choice, Player
 
 # Register your models here.
 
-# admin.site.register(Quiz)
-# admin.site.register(Question)
-# admin.site.register(Choice)
-# admin.site.register(Player)
+
+class QuestionInline(admin.TabularInline):
+    model = Question
+
+
+class ChoiceInline(admin.TabularInline):
+    model = Choice
 
 
 @admin.register(Quiz)
 class QuizAdmin(admin.ModelAdmin):
     list_display = ('topic', )
+    inlines = [QuestionInline]
 
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('text', 'number', 'quiz')
     list_filter = ('quiz',)
+    inlines = [ChoiceInline]
 
 
 @admin.register(Choice)
@@ -31,3 +36,5 @@ class ChoiceAdmin(admin.ModelAdmin):
 class PlayerAdmin(admin.ModelAdmin):
     list_display = ('name', 'quiz', 'is_achieved', 'is_failed', 'time')
     list_filter = ('name', 'quiz', 'is_achieved', 'is_failed')
+    fields = ['name', ('quiz', 'selected_difficulty'), ('current_question', 'position'),
+              ('is_playing', 'is_achieved', 'is_failed')]
