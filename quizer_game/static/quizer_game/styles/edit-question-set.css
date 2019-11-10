@@ -26,7 +26,7 @@ body {
   z-index: 10;
   position: fixed;
   width: 100%;
-  height: 90px;
+  height: 70px;
   background: #25274d;
 }
 
@@ -160,8 +160,8 @@ tbody td {
 
 #back a{
    position: fixed;
-    top: 150px;
-    left: 55px;
+   top: 120px;
+   left: 55px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: black;
@@ -199,6 +199,7 @@ lable{
 .field {
   margin-bottom: 1.5em;
 }
+
 .field label {
   display: block;
   line-height: 1em;
@@ -209,6 +210,7 @@ lable{
 .form__footer {
   margin-top: 1em;
 }
+
 .form__footer input {
   display: block;
   color: black;
@@ -230,7 +232,6 @@ lable{
   border-radius: 19px;
 
 }
-
 
 
 .block-list {
