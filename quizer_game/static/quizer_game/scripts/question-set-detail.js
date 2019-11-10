@@ -31,7 +31,7 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
-  ['Task', 'Number per difficulty'],
+  ['Task', 'Person per difficulty'],
   ['Easy', 6],
   ['Medium', 4],
   ['Hard', 2],
