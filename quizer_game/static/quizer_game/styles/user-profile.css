@@ -24,19 +24,18 @@ body {
   z-index: 10;
   position: fixed;
   width: 100%;
-  height: 90px;
+  height: 70px;
   background: #25274d;
 }
 
 h1 {
-    position: absolute;
-  top:100px;
+  position: absolute;
+  top:80px;
   left:50%;
   color: black;
   text-align: center;
   font-size: 30px;
   top: 100 px;
-
 }
 
 td {
@@ -119,8 +118,8 @@ td {
 
 #back a{
    position: fixed;
-    top: 150px;
-    left: 55px;
+   top: 120px;
+   left: 55px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: black;
@@ -182,7 +181,6 @@ td {
 #delete {
   position: relative;
   margin-left: 50px;
-
 }
 
 #yes{
