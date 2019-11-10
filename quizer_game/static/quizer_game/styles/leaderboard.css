@@ -26,7 +26,7 @@ body {
   z-index: 10;
   position: fixed;
   width: 100%;
-  height: 90px;
+  height: 70px;
   background: #25274d;
 }
 
@@ -34,23 +34,28 @@ h1 {
   color: black;
   text-align: center;
   font-size: 30px;
+  margin-left: -100px;
+
 }
 
 h2 {
   color: black;
   text-align: center;
   font-size: 17px;
+  margin-left: -100px;
+
 }
 
 .fixed_header{
   width: 920px;
   table-layout: fixed;
   border-collapse: collapse;
+  margin-left: 70px;
 }
 
 .fixed_header tbody{
   display:block;
-  width: 95.5%;
+  width: 78.5%;
   overflow: auto;
   height: 390px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -59,10 +64,14 @@ h2 {
 .fixed_header thead tr {
    display: block;
 }
+.fixed_header th{
+  padding: 15px;
+  text-align: center;
+  width: 200px;
+}
 
-
-.fixed_header th, .fixed_header td {
-  padding: 35px;
+.fixed_header td {
+  padding: 25px;
   text-align: center;
   width: 200px;
 }
@@ -160,8 +169,8 @@ tbody td {
 
 #quit a{
    position: fixed;
-    top: 150px;
-    left: 55px;
+   top: 120px;
+   left: 55px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: black;
