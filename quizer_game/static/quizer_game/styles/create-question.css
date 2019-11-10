@@ -179,28 +179,6 @@ tbody td {
   border: solid black;
 }
 
-
-.navbar a {
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: black;
-  background-color: #eaece5;
-  text-align: center;
-  padding: 10px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  border: solid black;
-  border-radius: 19px;
-  margin-left: 20em;
-}
-
-.navbar a:hover {
-  background: #25274d;
-  color: white;
-  border: solid black;
-  border-radius: 19px;
-}
-
 form {
   margin-bottom: 2em;
    font-family: 'Nunito', serif;
@@ -226,6 +204,33 @@ lable{
   padding: 0.2em 0;
   font-weight: bold;
 }
+
+.form__footer {
+  margin-top: 1em;
+}
+.form__footer input {
+  display: block;
+  color: black;
+  background-color: #eaece5;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  border: solid black;
+  border-radius: 19px;
+  margin-left: 20em;
+
+}
+
+.form__footer input:hover {
+  background: #25274d;
+  color: white;
+  border: solid black;
+  border-radius: 19px;
+
+}
+
+
 
 .block-list {
   display: block;
@@ -254,7 +259,7 @@ label input {
   background: #FFFAF0;
   border: 1px solid #191970;
   border: 1px solid #272727;
-  color: black;
+  color: #555;
   border-radius: 19px;
   margin-left: -12em;
   font-size: 14px;
@@ -271,7 +276,7 @@ label input {
   background: #FFFAF0;
   border: 1px solid #191970;
   border: 1px solid #272727;
-  color: black;
+  color: #555;
   border-radius: 19px;
   margin-left: -8em;
   font-size: 14px;
@@ -322,6 +327,31 @@ label input {
   color: black;
   background-color: #eaece5;
   font-size: 18px;
+
 }
 
+.choose{
+  margin-left: -2em;
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+select{
+    margin:20px;
+    background: #FFFAF0;
+    color:black;
+    border-radius: 19px;
+    padding: 0.5em;
+    foint-size: 18px;
+
+}
+
+select option {
+    margin: 60px;
+    background: rgba(1, 3, 0, 0.3);
+    color: white;
+    foint-size: 18px;
+
+}
 
