@@ -150,10 +150,10 @@ tbody td {
   left: 94%;
 }
 
-.bottom a{
-  position: fixed;
-  bottom: 0;
-  right: 0;
+#quit a{
+   position: fixed;
+    top: 150px;
+    left: 55px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: black;
@@ -164,9 +164,9 @@ tbody td {
   font-size: 20px;
   border-radius: 19px;
   border: solid black;
-
 }
-.bottom a:hover {
+
+#quit a:hover {
   background: #25274d;
   color: white;
   border: solid black;
