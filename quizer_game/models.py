@@ -10,7 +10,10 @@ class Quiz(models.Model):
         return self.topic
 
     def create_player(self, name, selected_difficulty):
-        player = self.player_set.create(name=name, selected_difficulty=selected_difficulty, is_playing=True)
+        player = self.player_set.create(name=name)
+        player.selected_difficulty = selected_difficulty
+        player.is_playing = True
+        player.save()
         return player
 
 
