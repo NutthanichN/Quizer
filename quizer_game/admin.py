@@ -7,6 +7,7 @@ from .models import Quiz, Question, Choice, Player
 
 class QuestionInline(admin.TabularInline):
     model = Question
+    show_change_link = True
 
 
 class ChoiceInline(admin.TabularInline):
@@ -21,8 +22,9 @@ class QuizAdmin(admin.ModelAdmin):
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('text', 'number', 'quiz')
+    list_display = ('number', 'text', 'quiz')
     list_filter = ('quiz',)
+    list_display_links = ('text', )
     inlines = [ChoiceInline]
 
 
