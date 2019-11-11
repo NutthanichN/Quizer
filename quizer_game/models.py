@@ -9,13 +9,6 @@ class Quiz(models.Model):
     def __str__(self):
         return self.topic
 
-    def create_player(self, name, selected_difficulty):
-        player = self.player_set.create(name=name)
-        player.selected_difficulty = selected_difficulty
-        player.is_playing = True
-        player.save()
-        return player
-
 
 # TODO question can contain image (and maybe audio file too)
 class Question(models.Model):
