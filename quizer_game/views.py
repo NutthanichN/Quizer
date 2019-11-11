@@ -19,21 +19,21 @@ def test_index(request):
 def start_game(request, player_name, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     # test with player 1
-    player = setup_player_for_testing(quiz, 1, DIFFICULTY['easy'], POSITION['min'])
+    player = setup_player_for_testing(quiz, player_name, DIFFICULTY['easy'], POSITION['min'])
 
     # (real) create new player
     # player = quiz.create_player(player_name, selected_difficulty)
 
     return redirect(reverse('quizer_game:game',
-                            kwargs={'player_id': player.id, 'quiz_id': quiz_id,
+                            kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': player.selected_difficulty,
                                     }
                             )
                     )
 
 
-def setup_player_for_testing(quiz, player_id, selected_difficulty, position):
-    player = quiz.player_set.get(pk=player_id)
+def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
+    player = quiz.player_set.get(name=player_name)
     player.current_question = quiz.question_set.get(number=1)
     player.position = position
     player.selected_difficulty = selected_difficulty
@@ -44,7 +44,7 @@ def setup_player_for_testing(quiz, player_id, selected_difficulty, position):
 # /quizer/game/player_id/quiz_id/difficulty/
 def game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
-    player = quiz.player_set.get(pk=1)
+    player = quiz.player_set.get(pk=player_id)
     question = player.current_question
     # question = quiz.question_set.get(pk=1)
     context = {'quiz': quiz,
@@ -60,7 +60,7 @@ def game(request, player_id, quiz_id, selected_difficulty):
 # /quizer/game/player_id/quiz_id/difficulty/update/
 def update_game(request, player_id, quiz_id, selected_difficulty, choice_value):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
-    player = quiz.player_set.get(pk=1)
+    player = quiz.player_set.get(pk=player_id)
 
     # update position
     if choice_value == CHOICE_VALUE['correct']:
@@ -90,7 +90,7 @@ def update_game(request, player_id, quiz_id, selected_difficulty, choice_value):
 
     player.save()
     return redirect(reverse('quizer_game:game',
-                            kwargs={'player_id': 1, 'quiz_id': quiz_id,
+                            kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': selected_difficulty}))
 
 
