@@ -2,7 +2,7 @@ from django.test import TestCase
 from quizer_game.models import Quiz, Question, Choice, Player
 
 
-class PlayerModelTests(TestCase):
+class PlayerModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         quiz = Quiz.objects.create(topic='Python Programming')

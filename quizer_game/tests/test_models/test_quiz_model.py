@@ -4,7 +4,7 @@ from quizer_game.models import Quiz, Question, Choice, Player
 # Create your tests here.
 
 
-class QuizModelTests(TestCase):
+class QuizModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         Quiz.objects.create(topic='Python Programming')
