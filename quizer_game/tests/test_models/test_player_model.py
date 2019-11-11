@@ -10,7 +10,7 @@ class PlayerModelTest(TestCase):
         Player.objects.create(quiz=quiz, current_question=question,
                               name='Player1', selected_difficulty=0)
 
-    def setUp(self) -> None:
+    def setUp(self):
         quiz = Quiz.objects.create(topic='Python Programming')
         question = Question.objects.create(quiz=quiz, text='What is str?', number=1)
         self.player = Player.objects.create(quiz=quiz, current_question=question,
