@@ -45,14 +45,16 @@ h1 {
     table-layout: fixed;
     border-collapse: collapse;
 
+
 }
 
 .fixed_header tbody{
   display:block;
-  width: 468%;
+  width: 548.5%;
   overflow: auto;
-  height: 250px;
+  height: 1075px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
 }
 
 .fixed_header thead tr {
@@ -64,8 +66,12 @@ h1 {
   padding: 16px;
   text-align: center;
   width: 300px;
+
 }
 
+table{
+    margin-left: -150px;
+}
 
 td {
   text-align: center;
@@ -77,14 +83,17 @@ td {
 }
 th {
   text-align: center;
+
 }
 thead th {
   background-color: #25274d;
   color: white;
 }
+
 tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.7);
 }
+
 tbody td {
   position: relative;
 }
@@ -203,21 +212,21 @@ tbody td {
 #easy {
   position: absolute;
   margin-top:34px;
-  margin-left: -120px;
+  margin-left: -240px;
   font-size: 24px;
 }
 
 #medium{
   position: absolute;
   margin-top:150px;
-  margin-left: -120px;
+  margin-left: -240px;
   font-size: 24px;
 }
 
 #hard{
   position: absolute;
   margin-top:170px;
-  margin-left: -120px;
+  margin-left: -240px;
   font-size: 24px;
 }
 
@@ -250,25 +259,24 @@ display:block!important}
   border-radius: 19px;
 }
 
-
 #detail1 {
   position: absolute;
   margin-top:42px;
-  margin-left: 70px;
+  margin-left: -65px;
   font-size: 22px;
 }
 
 #detail2 {
   position: absolute;
   margin-top:170px;
-  margin-left: 70px;
+  margin-left: -65px;
   font-size: 24px;
 }
 
 #detail3 {
   position: absolute;
   margin-top:180px;
-  margin-left: 70px;
+  margin-left: -65px;
   font-size: 24px;
 }
 
