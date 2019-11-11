@@ -1,0 +1,924 @@
+[
+{
+  "model": "quizer_game.quiz",
+  "pk": 1,
+  "fields": {
+    "topic": "General Knowledge"
+  }
+},
+{
+  "model": "quizer_game.quiz",
+  "pk": 2,
+  "fields": {
+    "topic": "Programming"
+  }
+},
+{
+  "model": "quizer_game.quiz",
+  "pk": 3,
+  "fields": {
+    "topic": "Test Quiz contains 5 questions"
+  }
+},
+{
+  "model": "quizer_game.quiz",
+  "pk": 4,
+  "fields": {
+    "topic": "Test  Quiz contains 20 questions"
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 1,
+  "fields": {
+    "quiz": 1,
+    "text": "Which animal lives in water?",
+    "number": 1
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 2,
+  "fields": {
+    "quiz": 1,
+    "text": "Which one is the largest lake in the world?",
+    "number": 2
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 3,
+  "fields": {
+    "quiz": 2,
+    "text": "What is the real traditional \"Hello world\" in The C programming language by Kernighan?",
+    "number": 1
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 4,
+  "fields": {
+    "quiz": 1,
+    "text": "Test question 1",
+    "number": 3
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 5,
+  "fields": {
+    "quiz": 1,
+    "text": "Test question 2",
+    "number": 4
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 6,
+  "fields": {
+    "quiz": 3,
+    "text": "Question 1",
+    "number": 1
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 7,
+  "fields": {
+    "quiz": 3,
+    "text": "Question 2",
+    "number": 2
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 8,
+  "fields": {
+    "quiz": 3,
+    "text": "Question 3",
+    "number": 3
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 9,
+  "fields": {
+    "quiz": 3,
+    "text": "Question 4",
+    "number": 4
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 10,
+  "fields": {
+    "quiz": 3,
+    "text": "Question 5",
+    "number": 5
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 11,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 1_20",
+    "number": 1
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 12,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 2_20",
+    "number": 2
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 13,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 3_20",
+    "number": 3
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 14,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 4_20",
+    "number": 4
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 15,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 5_20",
+    "number": 5
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 16,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 6_20",
+    "number": 6
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 17,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 7_20",
+    "number": 7
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 18,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 8_20",
+    "number": 8
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 19,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 9_20",
+    "number": 9
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 20,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 10_20",
+    "number": 10
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 21,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 11_20",
+    "number": 11
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 22,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 12_20",
+    "number": 12
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 23,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 13_20",
+    "number": 13
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 24,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 14_20",
+    "number": 14
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 25,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 15_20",
+    "number": 15
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 26,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 16_20",
+    "number": 16
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 27,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 17_20",
+    "number": 17
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 28,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 18_20",
+    "number": 18
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 29,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 19_20",
+    "number": 19
+  }
+},
+{
+  "model": "quizer_game.question",
+  "pk": 30,
+  "fields": {
+    "quiz": 4,
+    "text": "Question 20_20",
+    "number": 20
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 1,
+  "fields": {
+    "question": 1,
+    "text": "Fish",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 2,
+  "fields": {
+    "question": 1,
+    "text": "Cat",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 3,
+  "fields": {
+    "question": 1,
+    "text": "Dog",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 4,
+  "fields": {
+    "question": 1,
+    "text": "Cow",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 5,
+  "fields": {
+    "question": 2,
+    "text": "Lake Michigan",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 6,
+  "fields": {
+    "question": 2,
+    "text": "Lake Victoria",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 8,
+  "fields": {
+    "question": 2,
+    "text": "Lake Huron",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 9,
+  "fields": {
+    "question": 2,
+    "text": "Caspian Sea",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 10,
+  "fields": {
+    "question": 3,
+    "text": "\"hello, world\"",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 11,
+  "fields": {
+    "question": 3,
+    "text": "\"hello world\"",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 12,
+  "fields": {
+    "question": 3,
+    "text": "\"Hello World\"",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 13,
+  "fields": {
+    "question": 3,
+    "text": "\"Hello, World\"",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 14,
+  "fields": {
+    "question": 4,
+    "text": "Choice 1",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 15,
+  "fields": {
+    "question": 4,
+    "text": "Choice 2",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 16,
+  "fields": {
+    "question": 5,
+    "text": "Choice 1 for q 2",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 17,
+  "fields": {
+    "question": 5,
+    "text": "Choice 2 for q 2",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 18,
+  "fields": {
+    "question": 6,
+    "text": "Correct",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 19,
+  "fields": {
+    "question": 6,
+    "text": "Wrong",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 20,
+  "fields": {
+    "question": 7,
+    "text": "Correct_2",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 21,
+  "fields": {
+    "question": 7,
+    "text": "Wrong_2",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 22,
+  "fields": {
+    "question": 8,
+    "text": "Correct_3",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 23,
+  "fields": {
+    "question": 8,
+    "text": "Wrong_3",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 24,
+  "fields": {
+    "question": 9,
+    "text": "Correct_4",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 25,
+  "fields": {
+    "question": 9,
+    "text": "Wrong_4",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 26,
+  "fields": {
+    "question": 10,
+    "text": "Correct_5",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 27,
+  "fields": {
+    "question": 10,
+    "text": "Wrong_5",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 28,
+  "fields": {
+    "question": 11,
+    "text": "Correct_1_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 29,
+  "fields": {
+    "question": 11,
+    "text": "Wrong_1_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 30,
+  "fields": {
+    "question": 12,
+    "text": "Correct_2_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 31,
+  "fields": {
+    "question": 12,
+    "text": "Wrong_2_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 32,
+  "fields": {
+    "question": 13,
+    "text": "Correct_3_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 33,
+  "fields": {
+    "question": 13,
+    "text": "Wrong_3_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 34,
+  "fields": {
+    "question": 14,
+    "text": "Correct_4_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 35,
+  "fields": {
+    "question": 14,
+    "text": "Wrong_4_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 36,
+  "fields": {
+    "question": 15,
+    "text": "Correct_5_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 37,
+  "fields": {
+    "question": 15,
+    "text": "Wrong_5_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 38,
+  "fields": {
+    "question": 16,
+    "text": "Correct_6_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 39,
+  "fields": {
+    "question": 16,
+    "text": "Wrong_6_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 40,
+  "fields": {
+    "question": 17,
+    "text": "Correct_7_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 41,
+  "fields": {
+    "question": 17,
+    "text": "Wrong_7_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 42,
+  "fields": {
+    "question": 18,
+    "text": "Correct_8_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 43,
+  "fields": {
+    "question": 18,
+    "text": "Wrong_8_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 44,
+  "fields": {
+    "question": 19,
+    "text": "Correct_9_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 45,
+  "fields": {
+    "question": 19,
+    "text": "Wrong_9_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 46,
+  "fields": {
+    "question": 20,
+    "text": "Correct_10_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 47,
+  "fields": {
+    "question": 20,
+    "text": "Wrong_10_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 48,
+  "fields": {
+    "question": 21,
+    "text": "Correct_11_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 49,
+  "fields": {
+    "question": 21,
+    "text": "Wrong_11_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 50,
+  "fields": {
+    "question": 22,
+    "text": "Correct_12_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 51,
+  "fields": {
+    "question": 22,
+    "text": "Wrong_12_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 52,
+  "fields": {
+    "question": 23,
+    "text": "Correct_13_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 53,
+  "fields": {
+    "question": 23,
+    "text": "Wrong_13_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 54,
+  "fields": {
+    "question": 24,
+    "text": "Correct_14_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 55,
+  "fields": {
+    "question": 24,
+    "text": "Wrong_14_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 56,
+  "fields": {
+    "question": 25,
+    "text": "Correct_15_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 57,
+  "fields": {
+    "question": 25,
+    "text": "Wrong_15_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 58,
+  "fields": {
+    "question": 26,
+    "text": "Correct_16_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 59,
+  "fields": {
+    "question": 26,
+    "text": "Wrong_16_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 60,
+  "fields": {
+    "question": 27,
+    "text": "Correct_17_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 61,
+  "fields": {
+    "question": 27,
+    "text": "Wrong_17_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 62,
+  "fields": {
+    "question": 28,
+    "text": "Correct_18_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 63,
+  "fields": {
+    "question": 28,
+    "text": "Wrong_18_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 64,
+  "fields": {
+    "question": 29,
+    "text": "Correct_19_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 65,
+  "fields": {
+    "question": 29,
+    "text": "Wrong_19_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 66,
+  "fields": {
+    "question": 30,
+    "text": "Correct_20_20",
+    "value": 1
+  }
+},
+{
+  "model": "quizer_game.choice",
+  "pk": 67,
+  "fields": {
+    "question": 30,
+    "text": "Wrong_20_20",
+    "value": 0
+  }
+},
+{
+  "model": "quizer_game.player",
+  "pk": 1,
+  "fields": {
+    "quiz": 3,
+    "current_question": 10,
+    "name": "player_test_5_q",
+    "time": null,
+    "selected_difficulty": 0,
+    "position": 5,
+    "is_playing": false,
+    "is_failed": true,
+    "is_achieved": false
+  }
+},
+{
+  "model": "quizer_game.player",
+  "pk": 5,
+  "fields": {
+    "quiz": 4,
+    "current_question": 11,
+    "name": "player_test_20_q",
+    "time": null,
+    "selected_difficulty": 0,
+    "position": 0,
+    "is_playing": false,
+    "is_failed": true,
+    "is_achieved": true
+  }
+}
+]
