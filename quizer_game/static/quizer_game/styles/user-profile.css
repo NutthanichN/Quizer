@@ -2,24 +2,22 @@
 
 
 html,
-body {
-  height: 100%;
-}
 
 body {
+
   margin: 0;
   background: #eaece5;
   font-family: 'Nunito', serif;
   font-weight: 100;
+  overflow: scroll;
 }
 
 .container {
   position: absolute;
-  top:70px;
+  top:220px;
   margin-right:-50px;
   margin-left:-50px;
   left:25%;
-
 }
 
 #masthead {
@@ -31,77 +29,26 @@ body {
 }
 
 h1 {
+  position: absolute;
+  top:80px;
+  left:50%;
   color: black;
   text-align: center;
   font-size: 30px;
-  margin-left: -100px;
-
+  top: 100 px;
 }
 
-h2 {
-  color: black;
-  text-align: center;
-  font-size: 17px;
-  margin-left: -100px;
-
-}
-
-.fixed_header{
-  width: 920px;
-  table-layout: fixed;
-  border-collapse: collapse;
-  margin-left: 70px;
-}
-
-.fixed_header tbody{
-  display:block;
-  width: 78.5%;
-  overflow: auto;
-  height: 390px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
-}
-
-.fixed_header thead tr {
-   display: block;
-}
-.fixed_header th{
-  padding: 15px;
-  text-align: center;
-  width: 200px;
-}
-
-.fixed_header td {
-  padding: 25px;
-  text-align: center;
-  width: 200px;
-}
-
-th,
 td {
   text-align: center;
-  padding: 18px;
+  padding:0 200px 0 15px;
   color: black;
+  font-sixe
   word-wrap: break-word;
-  max-width: 150px;
-
+  max-width: 300px;
+  font-size: 20px;
+  left:25%;
 }
 
-th {
-  text-align: center;
-}
-
-thead th {
-  background-color: #25274d;
-  color: white;
-}
-
-tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-}
-
-tbody td {
-  position: relative;
-}
 
 .top a{
   -webkit-transform: translate(-50%, -50%);
@@ -148,11 +95,12 @@ tbody td {
 
 .email {
   position: absolute;
-  top: 44%;
-  right: 14%;
+  top: 52%;
+  right: 8.5%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   color: white;
 }
-
 .email a:visited  {
   color: white;
 }
@@ -161,13 +109,14 @@ tbody td {
   color: #00FFFF;
 }
 
+
 .login {
   position: absolute;
   top: 55%;
   left: 94%;
 }
 
-#quit a{
+#back a{
    position: fixed;
    top: 120px;
    left: 55px;
@@ -181,10 +130,73 @@ tbody td {
   font-size: 20px;
   border-radius: 19px;
   border: solid black;
-}
 
-#quit a:hover {
+}
+#back a:hover {
   background: #25274d;
   color: white;
   border: solid black;
 }
+
+
+.navbar a {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: black;
+  background-color: #eaece5;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  border: solid black;
+  border-radius: 19px;
+}
+
+.navbar a:hover {
+  background: #25274d;
+  color: white;
+  border: solid black;
+  border-radius: 19px;
+}
+
+#num {
+  position: absolute;
+  margin-top:4px;
+  margin-left: -120px;
+  font-size: 24px;
+}
+
+#question {
+  position: absolute;
+  margin-top:4px;
+  margin-left: -90px;
+  font-size: 24px;
+}
+
+#edit {
+  position: relative;
+  margin-left: 650px;
+}
+
+#delete {
+  position: relative;
+  margin-left: 50px;
+}
+
+#yes{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 19px;
+}
+
+#no{
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 19px;
+}
+
+
