@@ -11,10 +11,6 @@ CHOICE_VALUE = {'wrong': 0, 'correct': 1}
 POSITION = {'max': 15, 'min': 0}
 
 
-def test_index(request):
-    return HttpResponse("Hello, world. You're at the Quizer game test index.")
-
-
 def create_player(quiz, player_name, selected_difficulty):
     player = quiz.player_set.create(name=player_name)
     player.current_question = quiz.question_set.get(number=1)
@@ -33,6 +29,20 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     return player
 
 
+def index(request):
+    return HttpResponse("Hello, world. You're at the Quizer game test index.")
+
+
+def player_name(request):
+    return render(request, 'quizer_game/player-name.html')
+
+
+# <str:player_name>/quiz-level/
+def quiz_level(request, player_name):
+    context = {'player_name': player_name}
+    return render(request, 'quizer_game/question-level.html', context)
+
+
 # /quizer/start-game/player_name/quiz_id/difficulty/
 def start_game(request, player_name, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
@@ -44,8 +54,7 @@ def start_game(request, player_name, quiz_id, selected_difficulty):
 
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
-                                    'selected_difficulty': player.selected_difficulty,
-                                    }
+                                    'selected_difficulty': player.selected_difficulty, }
                             )
                     )
 
@@ -55,7 +64,6 @@ def game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
     question = player.current_question
-    # question = quiz.question_set.get(pk=1)
     context = {'quiz': quiz,
                'player': player,
                'question': question,
@@ -84,7 +92,11 @@ def update_game(request, player_id, quiz_id, selected_difficulty, choice_value):
         player.is_achieved = True
         player.is_playing = False
         player.save()
-        return redirect(reverse('quizer_game:test-result-achieve'))
+        return redirect(reverse('quizer_game:result',
+                                kwargs={'player_id': player.id, 'quiz_id': quiz.id,
+                                        'selected_difficulty': player.selected_difficulty, }
+                                )
+                        )
     elif player.position < POSITION['max']:
         # change to next question
         try:
@@ -95,27 +107,23 @@ def update_game(request, player_id, quiz_id, selected_difficulty, choice_value):
             player.is_failed = True
             player.is_playing = False
             player.save()
-            return redirect(reverse('quizer_game:test-result-fail'))
+            return redirect(reverse('quizer_game:result',
+                                    kwargs={'player_id': player.id, 'quiz_id': quiz.id,
+                                            'selected_difficulty': player.selected_difficulty, }
+                                    )
+                            )
 
     player.save()
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
-                                    'selected_difficulty': selected_difficulty}))
+                                    'selected_difficulty': selected_difficulty}
+                            )
+                    )
 
 
-def render_test_result_achieve(request):
-    return render(request, 'quizer_game/test-result-achieve.html')
-
-
-def render_test_result_fail(request):
-    return render(request, 'quizer_game/test-result-fail.html')
-
-
-def render_test_select_quiz_template(request, player_name):
-    context = {'player_name': player_name}
-    return render(request, 'quizer_game/test-select-quiz.html', context)
-
-
-def render_test_player_name_template(request):
-    return render(request, 'quizer_game/test-player-name.html')
-
+# game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/
+def result(request, player_id, quiz_id, selected_difficulty):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    player = quiz.player_set.get(pk=player_id)
+    context = {'quiz': quiz, 'player': player}
+    return render(request, 'quizer_game/result.html', context)

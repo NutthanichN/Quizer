@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	{% load static %}
 	<title>Player Name</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,9 +20,12 @@
 <!--===============================================================================================-->
 	<!-- <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css"> -->
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/fonts/font-awesome-4.7.0/css/font-awesome.min.css">-->
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+
+<!--	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/fonts/iconic/css/material-design-iconic-font.min.css">-->
 <!--===============================================================================================-->
 	<!-- <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css"> -->
 <!--===============================================================================================-->	
@@ -33,11 +37,21 @@
 <!--===============================================================================================-->	
 	<!-- <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"> -->
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/styles/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/styles/css/main.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/main.css' %}">
+<!--	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/styles/css/util.css">-->
+<!--	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/styles/css/main.css">-->
 <!--===============================================================================================-->
 </head>
 <body>
+	{# For Test Quiz contains 5 questions #}
+	<h3>For manual testing</h3>
+    <p>choose 'player_test_5_q'</p>
+<!--    <a href="/quizer/test-select-quiz/player_test_5_q/">Select Quiz</a>-->
+	<a href="{% url 'quizer_game:quiz-level' player_name='player_test_5_q' %}">Select Quiz and Difficulty</a>
+<!--    {# For Test Quiz contains 20 questions #}-->
+<!--    <p>choose 'player_test_20_q'</p>-->
+<!--    <a href="/quizer/test-select-quiz/player_test_20_q/">Select Quiz</a>-->
 	
 	<div class="limiter">
 		<div class="container-login100" style="background: #eaece5;">
@@ -106,7 +120,8 @@
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
-	<script src="../../static/quizer_game/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="{% static 'quizer_game/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--	<script src="../../static/quizer_game/vendor/jquery/jquery-3.2.1.min.js"></script>-->
 <!--===============================================================================================-->
 	<!-- <script src="vendor/animsition/js/animsition.min.js"></script> -->
 <!--===============================================================================================-->
@@ -120,7 +135,8 @@
 <!--===============================================================================================-->
 	<!-- <script src="vendor/countdowntime/countdowntime.js"></script> -->
 <!--===============================================================================================-->
-	<script src="../../static/quizer_game/scripts/js/main.js"></script>
+	<script src="{% static 'quizer_game/scripts/js/main.js' %}"></script>
+<!--	<script src="../../static/quizer_game/scripts/js/main.js"></script>-->
 
 </body>
 </html>

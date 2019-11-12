@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+    <h3>For manual testing</h3>
+    <p>{{ player_name }}</p>
+    <p>Select: Test Quiz contains 5 questions </p>
+    <p>Difficulty: 0 (easy)</p>
+    {# For Test Quiz contains 5 questions #}
+<!--    <a href="/quizer/start-game/{{ player_name }}/3/0/">Start Game</a>-->
+    <a href="{% url 'quizer_game:start-game' player_name=player_name quiz_id=3 selected_difficulty=0 %}">Start Game</a>
+<!--    {# For Test Quiz contains 20 questions#}-->
+<!--    <a href="/quizer/start-game/{{ player_name }}/4/0/">Start Game</a>-->
 
 </body>
 </html>
