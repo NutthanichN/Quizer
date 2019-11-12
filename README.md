@@ -1,7 +1,7 @@
 # Quizer
 A single-player quiz game in a form of a racing competition.
 
-**Team Members**
+## Team Members
 
 | Name                   | Roles                    | GitHub                                        |
 |------------------------|--------------------------|-----------------------------------------------|
@@ -10,6 +10,9 @@ A single-player quiz game in a form of a racing competition.
 | Wijantra Cojamnong     | Developer                | [Wijantra](https://github.com/Wijantra)       |
 
 
-**Task board**: [Trello](https://trello.com/b/bC1PT5ie/quizer)
-
-**Iteration plans**: [Google Doc](https://docs.google.com/document/d/1qXjiMyJXYrUlxXa1A0mnS-17RBDQj_wXAGLwbt_dZOQ/edit?usp=sharing)
+## Documents
+- **Project Proposal**: [Project Proposal](https://docs.google.com/document/d/1GN5qD9_AURtWY-XBIucL_acIl1-8UlSZknWD3rw1eYg/edit)
+- **Iteration Plans**: [Iteration plans on Google Doc](https://docs.google.com/document/d/1qXjiMyJXYrUlxXa1A0mnS-17RBDQj_wXAGLwbt_dZOQ/edit?usp=sharing)
+- **Task Board**: [Task board on Trello](https://trello.com/b/bC1PT5ie/quizer)
+- **Code Review Script**:
+- **Code Review Checklist**:
