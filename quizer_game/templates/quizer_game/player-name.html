@@ -44,15 +44,16 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	{# For Test Quiz contains 5 questions #}
 	<h3>For manual testing</h3>
-    <p>choose 'player_test_5_q'</p>
-<!--    <a href="/quizer/test-select-quiz/player_test_5_q/">Select Quiz</a>-->
-	<a href="{% url 'quizer_game:quiz-level' player_name='player_test_5_q' %}">Select Quiz and Difficulty</a>
-<!--    {# For Test Quiz contains 20 questions #}-->
-<!--    <p>choose 'player_test_20_q'</p>-->
-<!--    <a href="/quizer/test-select-quiz/player_test_20_q/">Select Quiz</a>-->
-	
+
+	{# For Test Quiz contains 5 questions #}
+<!--    <p>choose 'player_test_5_q'</p>-->
+<!--	<a href="{% url 'quizer_game:quiz-level' player_name='player_test_5_q' %}">Select Quiz and Difficulty</a>-->
+
+	{# For Test Quiz contains 20 questions #}
+    <p>choose 'player_test_20_q'</p>
+	<a href="{% url 'quizer_game:quiz-level' player_name='player_test_20_q' %}">Select Quiz and Difficulty</a>
+
 	<div class="limiter">
 		<div class="container-login100" style="background: #eaece5;">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
