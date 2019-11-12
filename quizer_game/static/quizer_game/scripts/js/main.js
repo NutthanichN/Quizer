@@ -65,9 +65,6 @@
         $(thisAlert).removeClass('alert-validate');
     }
     
-    
-
-
 })(jQuery);
 
  AOS.init({

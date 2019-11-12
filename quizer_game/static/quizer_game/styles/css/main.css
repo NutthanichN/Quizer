@@ -437,6 +437,7 @@ iframe {
     padding-left: 15px;
     padding-right: 15px;
   }
+
 }
 
 @import url(https://fonts.googleapis.com/css?family=Nunito);
@@ -663,3 +664,4 @@ tbody td {
     .show > .btn-primary.dropdown-toggle:focus {
       -webkit-box-shadow: 0 0 0 0.2rem rgba(120, 213, 239, 0.5);
       box-shadow: 0 0 0 0.2rem rgba(120, 213, 239, 0.5); }
+
