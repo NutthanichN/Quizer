@@ -620,9 +620,9 @@ tbody td {
 }
 
 .bottom a{
-  position: absolute;
-  top: 93%;
-  left: 92%;
+   position: fixed;
+   top: 120px;
+   left: 55px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: black;
