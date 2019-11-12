@@ -439,7 +439,6 @@ iframe {
     padding-left: 15px;
     padding-right: 15px;
   }
-
 }
 
 html,
@@ -594,7 +593,6 @@ tbody td {
   right: 8.5%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-
   color: white;
 
 }
