@@ -67,6 +67,7 @@
     
     
 
+
 })(jQuery);
 
  AOS.init({
@@ -521,7 +522,4 @@
         document.body.appendChild(css);
     };
 	
-
-
-
 })(jQuery);
