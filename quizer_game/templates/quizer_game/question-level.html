@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	{% load static %}
 	<title>Question Level</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,35 +30,18 @@
 	<!-- <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css"> -->
 <!--===============================================================================================-->
 	<!-- <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css"> -->
-<!--===============================================================================================-->
+<!--===============================================================================================-->	
 	<!-- <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css"> -->
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/main.css' %}">
-	<link rel="stylesheet" href="{% static 'quizer_game/styles/css/style.css' %}">
-<!--	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/styles/css/util.css">-->
-<!--	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/styles/css/main.css">-->
-<!--	<link rel="stylesheet" href="../../static/quizer_game/styles/css/style.css">-->
+	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/styles/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../../static/quizer_game/styles/css/main.css">
+	<link rel="stylesheet" href="../../static/quizer_game/styles/css/style.css">
 <!--===============================================================================================-->
 </head>
 <body>
-	<h3>For manual testing</h3>
-		<p>{{ player_name }}</p>
-
-		{# For Test Quiz contains 5 questions #}
-<!--		<p>Select: Test Quiz contains 5 questions </p>-->
-<!--		<p>Difficulty: 0 (easy)</p>-->
-<!--		<a href="{% url 'quizer_game:start-game' player_name=player_name quiz_id=3 selected_difficulty=0 %}">Start Game</a>-->
-
-		{# For Test Quiz contains 20 questions#}
-		<p>Select: Test Quiz contains 20 questions </p>
-		<p>Difficulty: 0 (easy)</p>
-		<a href="{% url 'quizer_game:start-game' player_name=player_name quiz_id=4 selected_difficulty=0 %}">Start Game</a>
-
-
+	
 	<div class="limiter">
 		<div class="container-login100" style="background: #eaece5;">
-
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form">
 					<span class="login100-form-title p-b-7">
@@ -163,8 +145,7 @@
 <!--===============================================================================================-->
 	<!-- <script src="vendor/countdowntime/countdowntime.js"></script> -->
 <!--===============================================================================================-->
-	<script src="{% static 'quizer_game/scripts/js/main.js' %}"></script>
-<!--	<script src="../../static/quizer_game/scripts/js/main.js"></script>-->
+	<script src="../../static/quizer_game/scripts/js/main.js"></script>
 
 </body>
 </html>
