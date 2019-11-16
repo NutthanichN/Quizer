@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Quiz
+from .models import Quiz, Choice
 
 # Create your views here.
 DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
@@ -41,10 +41,6 @@ def player_name(request):
 
 
 # <str:player_name>/quiz-level/
-# def quiz_level(request, player_name):
-#     context = {'player_name': player_name}
-#     return render(request, 'quizer_game/question-level.html', context)
-
 def quiz_level(request):
     input_player_name = request.POST['player_name']
     quizzes = Quiz.objects.all()
@@ -54,20 +50,6 @@ def quiz_level(request):
 
 
 # /quizer/start-game/player_name/quiz_id/difficulty/
-# def start_game(request, player_name, quiz_id, selected_difficulty):
-#     quiz = get_object_or_404(Quiz, pk=quiz_id)
-#     # test with existing player
-#     player = setup_player_for_testing(quiz, player_name, DIFFICULTY['easy'], POSITION['min'])
-#
-#     # (real) create new player
-#     # player = create_player(quiz, player_name, selected_difficulty)
-#
-#     return redirect(reverse('quizer_game:game',
-#                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
-#                                     'selected_difficulty': player.selected_difficulty, }
-#                             )
-#                     )
-
 def start_game(request, player_name):
     quiz_id = request.POST['quiz_id']
     difficulty = request.POST['difficulty']
@@ -97,16 +79,16 @@ def game(request, player_id, quiz_id, selected_difficulty):
     return render(request, 'quizer_game/game.html', context)
 
 
-# TODO edit redirect to the real template
 # TODO manage player time spent and set limit time for the hard level
 # TODO provide upvote-downvote feature
 # /quizer/game/player_id/quiz_id/difficulty/update/
-def update_game(request, player_id, quiz_id, selected_difficulty, choice_value):
+def update_game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
-
+    choice_id = request.POST['choice_id']
+    choice = Choice.objects.get(pk=choice_id)
     # update position
-    if choice_value == CHOICE_VALUE['correct']:
+    if choice.value == CHOICE_VALUE['correct']:
         if player.position < POSITION['max']:
             player.move_forward()
     else:

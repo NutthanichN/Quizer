@@ -31,18 +31,11 @@
         <div id="question-text">
           <p>Q.{{ question.number }} {{ question.text }}</p>
         </div>
-        
-        <!--        <p>Q1. What is a real traditional "Hello world" in The C programming language by Kernighan?</p>-->
         <!--        <p>Q1. This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg question</p>-->
-        <!--        <p>with multiple lines</p>-->
         {% for choice in question.choice_set.all %}
           {# /quizer/game/player_id/quiz_id/difficulty/choice_value/update/ #}
           <div class="navbar" id="c{{ forloop.counter }}">
-            {# still use manual difficulty #}
-<!--            {# <a href="{% url 'quizer_game:update' player_id=player.id quiz_id=quiz.id selected_difficulty=0 choice_value=choice.value%}"> #}-->
-<!--            {#  {{ choice.text }} #}-->
-<!--            {# </a> #}-->
-            <button type="submit" value="{{ choice.id }}">{{ choice.text }}</button>
+            <button type="submit" name="choice_id" value="{{ choice.id }}">{{ choice.text }}</button>
             <!--            <a href="">Choice 1</a>-->
 <!--              <button>This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg choice</button>-->
           </div>
