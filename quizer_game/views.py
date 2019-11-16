@@ -127,3 +127,7 @@ def result(request, player_id, quiz_id, selected_difficulty):
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
+
+
+def leaderboard_index(request):
+    pass
