@@ -25,6 +25,9 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     player.current_question = quiz.question_set.get(number=1)
     player.position = position
     player.selected_difficulty = selected_difficulty
+    player.is_playing = True
+    player.is_failed = False
+    player.is_achieved = False
     player.save()
     return player
 
@@ -38,16 +41,39 @@ def player_name(request):
 
 
 # <str:player_name>/quiz-level/
-def quiz_level(request, player_name):
-    context = {'player_name': player_name}
+# def quiz_level(request, player_name):
+#     context = {'player_name': player_name}
+#     return render(request, 'quizer_game/question-level.html', context)
+
+def quiz_level(request):
+    input_player_name = request.POST['player_name']
+    quizzes = Quiz.objects.all()
+    context = {'player_name': input_player_name,
+               'quizzes': quizzes}
     return render(request, 'quizer_game/question-level.html', context)
 
 
 # /quizer/start-game/player_name/quiz_id/difficulty/
-def start_game(request, player_name, quiz_id, selected_difficulty):
+# def start_game(request, player_name, quiz_id, selected_difficulty):
+#     quiz = get_object_or_404(Quiz, pk=quiz_id)
+#     # test with existing player
+#     player = setup_player_for_testing(quiz, player_name, DIFFICULTY['easy'], POSITION['min'])
+#
+#     # (real) create new player
+#     # player = create_player(quiz, player_name, selected_difficulty)
+#
+#     return redirect(reverse('quizer_game:game',
+#                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
+#                                     'selected_difficulty': player.selected_difficulty, }
+#                             )
+#                     )
+
+def start_game(request, player_name):
+    quiz_id = request.POST['quiz_id']
+    difficulty = request.POST['difficulty']
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     # test with existing player
-    player = setup_player_for_testing(quiz, player_name, DIFFICULTY['easy'], POSITION['min'])
+    player = setup_player_for_testing(quiz, player_name, DIFFICULTY[difficulty], POSITION['min'])
 
     # (real) create new player
     # player = create_player(quiz, player_name, selected_difficulty)

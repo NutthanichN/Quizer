@@ -6,7 +6,6 @@
     <title>Quizer Game</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'quizer_game/styles/style-game.css' %}">
-<!--    <link rel="stylesheet" href="../../static/quizer_game/styles/style-game.css">-->
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -23,7 +22,8 @@
         <img id="racing-track-img" src="{% static 'quizer_game/images/race-track.png' %}" alt="Racing Track">
         <img id="race-car-img" style="left:{{ player.position|mul:61 }}px;" src="{% static 'quizer_game/images/race-car-200.png' %}" alt="race car">
     </div>
-
+    
+    <p>Difficulty: {{ player.selected_difficulty }}</p>
     <div class="question-body">
         <p>Q.{{ question.number }} {{ question.text }}</p>
 <!--        <p>Q1. What is a real traditional "Hello world" in The C programming language by Kernighan?</p>-->
