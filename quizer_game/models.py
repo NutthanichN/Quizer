@@ -1,4 +1,6 @@
 from django.db import models
+import time
+from datetime import timedelta
 
 # Create your models here.
 
@@ -33,7 +35,7 @@ class Player(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True, verbose_name='Quiz')
     current_question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=200, verbose_name='Name')
-    time = models.TimeField(null=True, blank=True, verbose_name='Time spent')
+    time = models.DurationField(null=True, blank=True, verbose_name='Time spent')
     selected_difficulty = models.IntegerField(default=0, verbose_name='Difficulty')
     position = models.IntegerField(default=0)
     is_playing = models.BooleanField(default=False)
@@ -45,6 +47,37 @@ class Player(models.Model):
 
     def move_forward(self):
         self.position += 1
+        self.save()
 
     def move_backward(self):
         self.position -= 1
+        self.save()
+
+    def save_time_duration(self):
+        timer = Timer.objects.get(player=self)
+        self.time = timer.time_duration
+        self.save()
+
+
+class Timer(models.Model):
+    start_point = models.DurationField(default=timedelta(seconds=0), verbose_name='Start point')
+    end_point = models.DurationField(default=timedelta(seconds=0), blank=True, verbose_name='Stop point')
+    player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='Player')
+
+    def __str__(self):
+        return f"A timer of {self.player}"
+
+    def start(self):
+        seconds = int(time.time())
+        self.start_point = timedelta(seconds=seconds)
+        self.save()
+
+    def stop(self):
+        seconds = int(time.time())
+        self.end_point = timedelta(seconds=seconds)
+        self.save()
+
+    @property
+    def time_duration(self):
+        time_duration = abs(self.end_point - self.start_point)
+        return time_duration

@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Quiz, Choice
+from .models import Quiz, Choice, Timer
+
+from datetime import timedelta
 
 # Create your views here.
 DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
@@ -13,6 +15,7 @@ POSITION = {'max': 15, 'min': 0}
 
 def create_player(quiz, player_name, selected_difficulty):
     player = quiz.player_set.create(name=player_name)
+    player.timer_set.create()
     player.current_question = quiz.question_set.get(number=1)
     player.selected_difficulty = selected_difficulty
     player.is_playing = True
@@ -21,6 +24,7 @@ def create_player(quiz, player_name, selected_difficulty):
 
 
 def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
+    # setup default values to player
     player = quiz.player_set.get(name=player_name)
     player.current_question = quiz.question_set.get(number=1)
     player.position = position
@@ -29,6 +33,11 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     player.is_failed = False
     player.is_achieved = False
     player.save()
+    # setup default values to timer
+    timer = Timer.objects.get(player=player)
+    timer.start_point = timedelta(seconds=0)
+    timer.end_point = timedelta(seconds=0)
+    timer.save()
     return player
 
 
@@ -57,9 +66,11 @@ def start_game(request, player_name):
     # test with existing player
     player = setup_player_for_testing(quiz, player_name, DIFFICULTY[difficulty], POSITION['min'])
 
-    # (real) create new player
+    # uncomment this as a real use
     # player = create_player(quiz, player_name, selected_difficulty)
 
+    timer = Timer.objects.get(player=player)
+    timer.start()
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': player.selected_difficulty, }
@@ -72,9 +83,11 @@ def game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
     question = player.current_question
+    timer = Timer.objects.get(player=player)
     context = {'quiz': quiz,
                'player': player,
                'question': question,
+               'timer': timer,
                }
     return render(request, 'quizer_game/game.html', context)
 
@@ -87,6 +100,9 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     player = quiz.player_set.get(pk=player_id)
     choice_id = request.POST['choice_id']
     choice = Choice.objects.get(pk=choice_id)
+    timer = Timer.objects.get(player=player)
+    timer.stop()
+
     # update position
     if choice.value == CHOICE_VALUE['correct']:
         if player.position < POSITION['max']:
@@ -96,10 +112,12 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
             if player.position > POSITION['min']:
                 player.move_backward()
 
+    # check if player reaches the finish line or not
     if player.position == POSITION['max']:
         player.is_achieved = True
         player.is_playing = False
         player.save()
+        player.save_time_duration()
         return redirect(reverse('quizer_game:result',
                                 kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                         'selected_difficulty': player.selected_difficulty, }
@@ -115,6 +133,7 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
             player.is_failed = True
             player.is_playing = False
             player.save()
+            player.save_time_duration()
             return redirect(reverse('quizer_game:result',
                                     kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                             'selected_difficulty': player.selected_difficulty, }
