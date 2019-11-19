@@ -125,3 +125,15 @@ class PlayerModelTest(TestCase):
         time_duration = self.timer.time_duration
         self.player.save_time_duration()
         self.assertEqual(self.player.time, time_duration)
+
+    def test_total_answer_property(self):
+        self.player.correct_answer = 5
+        self.player.wrong_answer = 4
+        self.assertEqual(self.player.total_answer, 9)
+
+    def test_difficulty_property(self):
+        difficulty = {0: 'Easy', 1: 'Medium', 2: 'Hard'}
+        for difficulty_code in range(3):
+            self.player.selected_difficulty = difficulty_code
+            with self.subTest(difficulty_code=difficulty_code):
+                self.assertEqual(self.player.difficulty, difficulty[difficulty_code])

@@ -30,6 +30,8 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     player.current_question = quiz.question_set.get(number=1)
     player.position = position
     player.selected_difficulty = selected_difficulty
+    player.correct_answer = 0
+    player.wrong_answer = 0
     player.is_playing = True
     player.is_failed = False
     player.is_achieved = False
@@ -106,9 +108,11 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
 
     # update position
     if choice.value == CHOICE_VALUE['correct']:
+        player.correct_answer += 1
         if player.position < POSITION['max']:
             player.move_forward()
     else:
+        player.wrong_answer += 1
         if selected_difficulty > DIFFICULTY['easy']:
             if player.position > POSITION['min']:
                 player.move_backward()

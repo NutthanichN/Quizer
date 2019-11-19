@@ -45,7 +45,11 @@
       <img id="race-car-img" style="left:{{ player.position|mul:61 }}px;" src="{% static 'quizer_game/images/race-car-200.png' %}" alt="Race car">
     </div>
     
-    <p>Difficulty: {{ player.selected_difficulty }}</p>
+    <div class="status">
+      <span>Difficulty: {{ player.difficulty }} | </span>
+      <span>Correct answer: {{ player.correct_answer }} | </span>
+      <span>Wrong answer: {{ player.wrong_answer }}</span>
+    </div>
     <div class="question-body">
       <form action="{% url 'quizer_game:update' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}"
             method="post">

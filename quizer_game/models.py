@@ -3,6 +3,7 @@ import time
 from datetime import timedelta
 
 # Create your models here.
+DIFFICULTY = {0: 'Easy', 1: 'Medium', 2: 'Hard'}
 
 
 class Quiz(models.Model):
@@ -41,6 +42,8 @@ class Player(models.Model):
     is_playing = models.BooleanField(default=False)
     is_failed = models.BooleanField(default=False, verbose_name='Fail status')
     is_achieved = models.BooleanField(default=False, verbose_name='Achieve status')
+    correct_answer = models.IntegerField(default=0, verbose_name='Number of correct answers')
+    wrong_answer = models.IntegerField(default=0, verbose_name='Number of wrong answers')
 
     def __str__(self):
         return self.name
@@ -57,6 +60,14 @@ class Player(models.Model):
         timer = Timer.objects.get(player=self)
         self.time = timer.time_duration
         self.save()
+
+    @property
+    def total_answer(self):
+        return self.correct_answer + self.wrong_answer
+
+    @property
+    def difficulty(self):
+        return DIFFICULTY[self.selected_difficulty]
 
 
 class Timer(models.Model):
