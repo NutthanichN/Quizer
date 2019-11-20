@@ -1,4 +1,6 @@
 # Quizer
+[![Build Status](https://travis-ci.com/NutthanichN/Quizer.svg?branch=master)](https://travis-ci.com/NutthanichN/Quizer)
+
 A single-player quiz game in a form of a racing competition.
 
 ## Description
