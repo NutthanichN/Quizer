@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Quiz
+from .models import Quiz, Player
 
 # Create your views here.
 DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
@@ -30,7 +30,8 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the Quizer game test index.")
+    # return HttpResponse("Hello, world. You're at the Quizer game test index.")
+    return render(request, 'quizer_game/index.html')
 
 
 def player_name(request):
@@ -95,8 +96,9 @@ def update_game(request, player_id, quiz_id, selected_difficulty, choice_value):
         return redirect(reverse('quizer_game:result',
                                 kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                         'selected_difficulty': player.selected_difficulty, }
-                                )
+                                ),
                         )
+
     elif player.position < POSITION['max']:
         # change to next question
         try:
@@ -110,7 +112,7 @@ def update_game(request, player_id, quiz_id, selected_difficulty, choice_value):
             return redirect(reverse('quizer_game:result',
                                     kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                             'selected_difficulty': player.selected_difficulty, }
-                                    )
+                                    ),
                             )
 
     player.save()
@@ -130,4 +132,18 @@ def result(request, player_id, quiz_id, selected_difficulty):
 
 
 def leaderboard_index(request):
-    pass
+    quiz = Quiz.objects.all()
+    context = {'quizzes': quiz}
+    return render(request, 'quizer_game/leaderboard-index.html', context)
+
+
+def login(request):
+    return render(request, 'quizer_game/login.html')
+
+
+def leaderboard(request, quiz_id, selected_difficulty):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    player = quiz.player_set.get()
+    number = range(1, player.id+1)
+    context = {'quizzes': quiz, 'player': player, 'number': number}
+    return render(request, 'quizer_game/leaderboard.html', context)
