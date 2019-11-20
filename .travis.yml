@@ -10,6 +10,9 @@ git:
 install:
  - pip install -r requirements.txt
 
+before_script:
+  - ren .env-example .env
+  - python manage.py migrate
 # script to run tests. Script can have many commands, one per line.
 script:
  - python manage.py test
