@@ -11,7 +11,7 @@ install:
  - pip install -r requirements.txt
 
 before_script:
-  - rename .env-example .env
+  - cp .env-example .env
   - python manage.py migrate
 # script to run tests. Script can have many commands, one per line.
 script:
