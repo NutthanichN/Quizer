@@ -8,28 +8,6 @@
     <link rel="stylesheet" href="{% static 'quizer_game/styles/style-game.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
   </head>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-    function reloadTimer(){
-      $.ajax({
-        type: "post",
-        url: "{% url 'quizer_game:timer' player_id=player.id quiz_id=quiz.id %}",
-        data: {
-          'timer': {{ timer }}
-        },
-        dataType: 'json',
-        success: function(data){
-         console.log(data);
-         setTimeout(function(){
-           reloadTimer();
-         }, 10000);
-        }
-        
-      });
-    }
-    reloadTimer();
-  </script>
-  
   <body>
     <h2 class="top-text">Player's name
       <span id="quiz-name">Quiz topic : {{ quiz.topic }}</span>
