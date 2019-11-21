@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .views import Createquestion
+from .views import Createquiz
 
 
 app_name = 'quizer_game'
@@ -20,10 +20,8 @@ urlpatterns = [
          views.update_game, name='update'),
     path('game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/',
          views.result, name='result'),
-    # path('create-question-set/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/',
-    #      views.create_question_set, name='create-question-set'),
     path('create-question-set/<int:player_id>/<int:quiz_id>/',
-         Createquestion.as_view(), name='create-question-set'),
+         Createquiz.as_view(), name='create-question-set'),
 
 
 ]
