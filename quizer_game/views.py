@@ -2,8 +2,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic import TemplateView
+from django.views import View
+
+
 
 from .models import Quiz
+from .forms import QuizModelForm, QuestionModelForm
+
 
 # Create your views here.
 DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
@@ -127,3 +133,48 @@ def result(request, player_id, quiz_id, selected_difficulty):
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
+
+
+class Createquiz(View):
+    template_name = 'quizer_game/create-question.html'
+
+    def get(self, request, player_id, quiz_id,*args, **kwargs):
+        form_quiz = QuizModelForm()
+        # form_question = QuestionModelForm()
+        # form_choice = ChoiceModelForm()
+        quiz = get_object_or_404(Quiz, pk=quiz_id)
+        # player.current_question =  quiz.question_set.get(number=new_question_number)
+        player = quiz.player_set.get(pk=player_id)
+        old_question = player.current_question
+        new_question_number = old_question.number + 1
+        player.current_question = quiz.question_set.get(number=new_question_number)
+        form_question = QuestionModelForm(instance=player.current_question)
+        context = {'form_quiz': form_quiz,'form_question': form_question, 'quiz': quiz, 'player': player}
+        return render(request, self.template_name, context)
+
+    def post(self, request,player_id, quiz_id, *args, **kwargs):
+        form_quiz = QuizModelForm(request.POST)
+        # form_question = QuestionModelForm(request.POST)
+
+        # form_choice = ChoiceModelForm()
+        quiz = get_object_or_404(Quiz, pk=quiz_id)
+        player = quiz.player_set.get(pk=player_id)
+        old_question = player.current_question
+        new_question_number = old_question.number + 1
+        player.current_question = quiz.question_set.get(number=new_question_number)
+        form_question = QuestionModelForm(request.POST, instance = player.current_question)
+        if form_quiz.is_valid():
+            form_quiz.save()
+
+        if form_question.is_valid():
+            form_question.save()
+
+        context = {'form_quiz': form_quiz, 'form_question': form_question, 'quiz': quiz, 'player': player}
+        return render(request, self.template_name, context)
+
+
+
+
+
+
+
