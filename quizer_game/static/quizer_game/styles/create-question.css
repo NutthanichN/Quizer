@@ -136,10 +136,8 @@ tbody td {
 
 .email {
   position: absolute;
-  top: 52%;
-  right: 8.5%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  top: 44%;
+  right: 14%;
   color: white;
 }
 .email a:visited  {
@@ -153,6 +151,7 @@ tbody td {
 
 .login {
   position: absolute;
+  font-size: 12px;
   top: 55%;
   left: 94%;
 }
@@ -251,7 +250,7 @@ label input {
      font-size: 20px;
 }
 
-.field input[type='topic']{
+.topic_input{
   width: 180%;
   padding: 1.25em;
   background: #FFFAF0;
@@ -268,7 +267,7 @@ label input {
      font-size: 18px;
 }
 
-.field input[type='question']{
+.question_input{
   width: 180%;
   padding: 1.25em;
   background: #FFFAF0;
@@ -286,7 +285,7 @@ label input {
      font-size: 16px;
 }
 
-.field input[type='choice']{
+.choice_input{
   width: 180%;
   padding: 1.25em;
   background: #FFFAF0;
@@ -356,5 +355,22 @@ select option {
     color: white;
     foint-size: 18px;
 
+}
+
+.navbar input{
+  color: black;
+  background-color: #eaece5;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  border-radius: 19px;
+  border: solid black;
+
+}
+.navbar input:hover, a:hover {
+  background: #25274d;
+  color: white;
+  border: solid black;
 }
 
