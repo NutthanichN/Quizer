@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'quizer_game.apps.QuizerGameConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
