@@ -32,3 +32,17 @@ class GameTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/index.html')
+
+    def test_can_view_leaderboard_index(self):
+        """ Test that anyone can see leaderboard index """
+        url = reverse('quizer_game:leaderboard-index')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'quizer_game/leaderboard-index.html')
+
+    def test_can_view_login(self):
+        """ Test that anyone can see login page """
+        url = reverse('quizer_game:login')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'quizer_game/login.html')
