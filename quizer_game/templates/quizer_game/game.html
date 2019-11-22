@@ -65,11 +65,18 @@
       return strH + ":" + strM + ":" + strS;
     }
     
+    var timeLimitMsec = {{ time_limit }} * 1000;
     function timer() {
       var currentTime = new Date().getTime();
       var timeDuration = currentTime - parseInt(sessionStorage.getItem("initTime"));
       var timeDurationStr = convertToTimeFormat(timeDuration);
       sessionStorage.setItem("previousTimeDuration", timeDurationStr);
+      
+      {% if player.selected_difficulty == 2 %}
+        if(timeDuration >= timeLimitMsec) {
+          document.getElementById("time").style.color = "red";
+        }
+      {% endif %}
       document.getElementById("time").innerHTML = timeDurationStr;
     }
     

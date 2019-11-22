@@ -107,6 +107,7 @@ def game(request, player_id, quiz_id, selected_difficulty):
     context = {'quiz': quiz,
                'player': player,
                'question': question,
+               'time_limit': HARD_LVL_TIME_LIMIT,
                }
     return render(request, 'quizer_game/game.html', context)
 
