@@ -30,11 +30,21 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the Quizer game test index.")
+    return render(request, 'quizer_game/index.html')
+
+
+def login(request):
+    return render(request, 'quizer_game/login.html')
 
 
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
+
+
+def leaderboard_index(request):
+    quiz = Quiz.objects.all()
+    context = {'quizzes': quiz}
+    return render(request, 'quizer_game/leaderboard-index.html', context)
 
 
 # <str:player_name>/quiz-level/
