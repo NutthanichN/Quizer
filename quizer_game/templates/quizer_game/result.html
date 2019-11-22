@@ -30,6 +30,11 @@
                           data-type='[ "Congratulations ^^", "Congratulations ^^" ]'>
                     <span class="wrap"></span>
                   </strong>
+                {% elif player.is_timeout %}
+                  <strong class="typewrite" data-period="4000"
+                          data-type='[ "Time is up! Please try again", "Time is up! Please try again" ]'>
+                    <span class="wrap"></span>
+                  </strong>
                 {% else %}
                   <strong class="typewrite" data-period="4000"
                           data-type='[ "Too Bad! Please try again", "Too Bad! Please try again" ]'>

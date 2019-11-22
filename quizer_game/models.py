@@ -42,6 +42,7 @@ class Player(models.Model):
     is_playing = models.BooleanField(default=False)
     is_failed = models.BooleanField(default=False, verbose_name='Fail status')
     is_achieved = models.BooleanField(default=False, verbose_name='Achieve status')
+    is_timeout = models.BooleanField(default=False, verbose_name='Timeout')
     correct_answer = models.IntegerField(default=0, verbose_name='Number of correct answers')
     wrong_answer = models.IntegerField(default=0, verbose_name='Number of wrong answers')
 
@@ -73,6 +74,7 @@ class Player(models.Model):
 class Timer(models.Model):
     start_point = models.DurationField(default=timedelta(seconds=0), verbose_name='Start point')
     end_point = models.DurationField(default=timedelta(seconds=0), blank=True, verbose_name='Stop point')
+    time_limit = models.DurationField(default=timedelta(seconds=0), blank=True, verbose_name='Time limit')
     player = models.ForeignKey(Player, on_delete=models.CASCADE, verbose_name='Player')
 
     def __str__(self):
@@ -92,3 +94,7 @@ class Timer(models.Model):
     def time_duration(self):
         time_duration = abs(self.end_point - self.start_point)
         return time_duration
+
+    def set_time_limit(self, seconds, minutes=0, hours=0):
+        self.time_limit = timedelta(hours=hours, minutes=minutes, seconds=seconds)
+        self.save()

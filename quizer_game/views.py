@@ -12,6 +12,7 @@ import time
 DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
 CHOICE_VALUE = {'wrong': 0, 'correct': 1}
 POSITION = {'max': 15, 'min': 0}
+HARD_LVL_TIME_LIMIT = 60            # seconds
 
 
 def create_player(quiz, player_name, selected_difficulty):
@@ -22,6 +23,17 @@ def create_player(quiz, player_name, selected_difficulty):
     player.is_playing = True
     player.save()
     return player
+
+
+def setup_timer(player):
+    # setup default values to timer
+    timer = Timer.objects.get(player=player)
+    if player.selected_difficulty == DIFFICULTY['hard']:
+        timer.set_time_limit(seconds=HARD_LVL_TIME_LIMIT)
+    timer.start_point = timedelta(seconds=int(time.time()))
+    timer.end_point = timedelta(seconds=int(time.time()))
+    timer.save()
+    return timer
 
 
 def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
@@ -35,12 +47,15 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     player.is_playing = True
     player.is_failed = False
     player.is_achieved = False
+    player.is_timeout = False
     player.save()
     # setup default values to timer
-    timer = Timer.objects.get(player=player)
-    timer.start_point = timedelta(seconds=int(time.time()))
-    timer.end_point = timedelta(seconds=int(time.time()))
-    timer.save()
+    # timer = Timer.objects.get(player=player)
+    # if player.selected_difficulty == DIFFICULTY['hard']:
+    #     timer.set_time_limit(seconds=300)
+    # timer.start_point = timedelta(seconds=int(time.time()))
+    # timer.end_point = timedelta(seconds=int(time.time()))
+    # timer.save()
     return player
 
 
@@ -72,8 +87,10 @@ def start_game(request, player_name):
     # uncomment this as a real use
     # player = create_player(quiz, player_name, selected_difficulty)
 
-    timer = Timer.objects.get(player=player)
+    timer = setup_timer(player)
     timer.start()
+    # timer = Timer.objects.get(player=player)
+    # timer.start()
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': player.selected_difficulty, }
@@ -116,9 +133,17 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
             if player.position > POSITION['min']:
                 player.move_backward()
 
+    # check time for hard level
+    # player can still play game but player won't be ranked on leaderboard
+    if selected_difficulty == DIFFICULTY['hard']:
+        if timer.time_duration >= timer.time_limit:
+            player.is_timeout = True
+            player.save()
+
     # check if player reaches the finish line or not
     if player.position == POSITION['max']:
-        player.is_achieved = True
+        if not player.is_timeout:
+            player.is_achieved = True
         player.is_playing = False
         player.save()
         player.save_time_duration()
@@ -134,7 +159,8 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
             new_question_number = old_question.number + 1
             player.current_question = quiz.question_set.get(number=new_question_number)
         except ObjectDoesNotExist:
-            player.is_failed = True
+            if not player.is_timeout:
+                player.is_failed = True
             player.is_playing = False
             player.save()
             player.save_time_duration()
