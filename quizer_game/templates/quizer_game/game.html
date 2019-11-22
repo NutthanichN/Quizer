@@ -65,30 +65,27 @@
       }
       return strH + ":" + strM + ":" + strS;
     }
-
-    // var initMsec = {{ current_msec }};
-    // var initTime = new Date(initMsec);
-    // console.log("here");
     
     if(typeof(Storage) !== "undefined") {
       // console.log("here");
       if(sessionStorage.getItem("initTime") === null) {
+        document.getElementById("time").innerHTML = "0:00:00";
         var initTime = new Date().getTime();
         sessionStorage.setItem("initTime", initTime.toString());
         // console.log(sessionStorage.getItem("initTime"));
       }
+      else {
+        document.getElementById("time").innerHTML = sessionStorage.getItem("previousTimeDuration");
+      }
     }
+
     function timer() {
       var currentTime = new Date().getTime();
       var timeDuration = currentTime - parseInt(sessionStorage.getItem("initTime"));
-      document.getElementById("time").innerHTML = convertToTimeFormat(timeDuration);
+      var timeDurationStr = convertToTimeFormat(timeDuration);
+      sessionStorage.setItem("previousTimeDuration", timeDurationStr);
+      document.getElementById("time").innerHTML = timeDurationStr;
     }
-    // var initTime = new Date().getTime();
-    // function timer() {
-    //   var currentTime = new Date().getTime();
-    //   var timeDuration = currentTime - initTime;
-    //   document.getElementById("time").innerHTML = convertToTimeFormat(timeDuration);
-    // }
 
     setInterval(timer, 1000);
 
