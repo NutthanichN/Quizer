@@ -29,46 +29,46 @@ fifteen units, which means the player has to answer at least fifteen questions t
 ## How to run
 
 
-### Step1: Install virtual enviroment
+Step1: Install virtual enviroment
 ```bash
     pip install virtualenv
 ```
 
-### Step2: Clone this repository and change your current working directory 
+Step2: Clone this repository and change your current working directory 
 ```bash
     git clone https://github.com/NutthanichN/Quizer
     cd Quizer
 ```
 
-### Step3: Create new virtual enviroment
+Step3: Create new virtual enviroment
 ```bash
     virtualenv env
 ```
 
-### Step4: Activate virtualenv
+Step4: Activate virtualenv
 ```bash
     \path\to\env\Scripts\activate
 ```
 
-### Step5: After activate virtualenv, install all required packages
+Step5: After activate virtualenv, install all required packages
 ```bash
     pip install -r requirements.txt
 ```
 
-### Step6: Rename `.env-example` in the root directory of project to `.env`
+Step6: Rename `.env-example` in the root directory of project to `.env`
 
 
-### Step7: Create database tables
+Step7: Create database tables
 ```bash
     python manage.py migrate
 ```
 
-### Step8: Load data dump from `quiz_and_player.json`
+Step8: Load data dump from `quiz_and_player.json`
 ```bash
     python manage.py loaddata quiz_and_player.json
 ```
 
-### Step9: Run server at localhost:8000
+Step9: Run server at localhost:8000
 ```bash
     python manage.py runserver
 ```
