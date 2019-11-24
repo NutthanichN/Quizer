@@ -250,7 +250,7 @@ label input {
      font-size: 20px;
 }
 
-.topic_input{
+.field input[type='topic']{
   width: 180%;
   padding: 1.25em;
   background: #FFFAF0;
@@ -267,7 +267,7 @@ label input {
      font-size: 18px;
 }
 
-.question_input{
+.field input[type='question']{
   width: 180%;
   padding: 1.25em;
   background: #FFFAF0;
