@@ -44,7 +44,7 @@ class Player(models.Model):
     is_achieved = models.BooleanField(default=False, verbose_name='Achieve status')
     correct_answer = models.IntegerField(default=0, verbose_name='Number of correct answers')
     wrong_answer = models.IntegerField(default=0, verbose_name='Number of wrong answers')
-
+    
     def __str__(self):
         return self.name
 
@@ -92,3 +92,4 @@ class Timer(models.Model):
     def time_duration(self):
         time_duration = abs(self.end_point - self.start_point)
         return time_duration
+      
