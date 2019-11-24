@@ -1,23 +1,19 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
+{% load quizer_game_extras %}
 <head>
-    <meta charset="UTF-8">
-	<title>Create question</title>
-	{% load static %}
-    <link rel="stylesheet" href="{% static 'quizer_game/styles/create-question.css' %}">
-
-
+  <meta charset="UTF-8">
+  <title>Create question</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'quizer_game/styles/create-question.css' %}">
 
 <body>
 <header id="masthead">
-	<!--login version-->
-     <div class="email">
-		 <a href="">Email: {{ player.name }}</a>
-	 </div>
-	 <div class="top">
+  <!--login version-->
+    <div class="email">
+	  <a href="">Email: {{ text }}</a>
+	</div>
+	<div class="top">
 	  <a class="create" href="">Create quiz</a>
 	  <a class="history" href="">History</a>
 	  <a class="logout" href="">Logout</a>
@@ -25,250 +21,52 @@
 	  	 <!--<a class="login" href="">Login</a>-->
 	</div>
 </header>
- <h1>Create Quiz</h1>
+  <h1>Create Quiz</h1>
 <div class="container">
-
-
-
-{% load widget_tweaks %}
-
-	<form action="."method="POST">{% csrf_token %}
-		   <article class="field">
-      <label class = "topic">Topic</label>
-        {{ form_quiz.topic|add_class:"topic_input" }}
-    </article>
-	</article>
-    <article class="field">
-
-      <label class = "question">Question</label>
-
-         {{ form_question.text |add_class:"question_input"}}
-
-    </article>
-    <article class="choose_num">
-		Number
-	   <select>
-	    	<option value="one">1</option>
-  			<option value="two">2</option>
-  			<option value="three">3</option>
-  			<option value="four">4</option>
-            <option value="five">5</option>
-            <option value="six">6</option>
-  			<option value="seven">7</option>
-  			<option value="eight">8</option>
-  			<option value="nine">9</option>
-            <option value="ten">10</option>
-            <option value="eleven">11</option>
-  			<option value="twelve">12</option>
-  			<option value="thirteen">13</option>
-  			<option value="fourteen">14</option>
-            <option value="fifteen">15</option>
-            <option value="sixteen">16</option>
-  			<option value="seventeen">17</option>
-  			<option value="eighteen">18</option>
-  			<option value="nineteen">19</option>
-            <option value="twenty">20</option>
-	   </select>
-	</article>
-	<artical class = "file" action="/action_page.php">
-  		Select a file: <input type="file"><br>
-    </artical>
-    <article class="field">
-      <label class = "choice">Choice 1</label>
-	  <input type="choice">
-    </article>
-	 <article class="field">
-      <label class = "choice">Choice 2</label>
-	  <input type="choice">
-    </article>
-	 <article class="field">
-      <label class = "choice">Choice 3</label>
-	  <input type="choice">
-    </article>
-	 <article class="field">
-      <label class = "choice">Choice 4</label>
-	  <input type="choice">
-    </article>
-	<article class="choose_choice">
+  <form id="page-info">
+    {% for i in 20|times %}
+      <article class="field">
+        <label class = "topic">Topic</label>
+      	  <input type="topic">
+	  </article>
+	  <article class="field">
+        <label class = "question">Question {{ forloop.counter }}</label>
+        <input type="question">
+      </article>
+	  <artical class = "file" action="/action_page.php">
+  	    Select a file: <input type="file"><br>
+      </artical>
+      <article class="field">
+        <label class = "choice">Choice 1</label>
+	    <input type="choice">
+      </article>
+	  <article class="field">
+        <label class = "choice">Choice 2</label>
+	    <input type="choice">
+      </article>
+	  <article class="field">
+        <label class = "choice">Choice 3</label>
+	    <input type="choice">
+      </article>
+	  <article class="field">
+        <label class = "choice">Choice 4</label>
+	    <input type="choice">
+	 </article>
+	 <article class="choose_choice">
 		Choose the right choice
 	   <select >
-	    	<option value="choice1">Choice 1</option>
-  			<option value="choice2">Choice 2</option>
-  			<option value="choice3">Choice 3</option>
-  			<option value="choice4">Choice 4</option>
+	     <option value="choice1">Choice 1</option>
+  	     <option value="choice2">Choice 2</option>
+  		 <option value="choice3">Choice 3</option>
+  	     <option value="choice4">Choice 4</option>
 	   </select>
-	<!--</article>-->
-     <!--<article class="field">-->
-      <!--<label class = "question">Question</label>-->
-      <!--
-
-    <!--</article>-->
-	 <!--<article class="choose_num">-->
-		<!--Number-->
-	   <!--<select>-->
-	    	<!--<option value="one">1</option>-->
-  			<!--<option value="two">2</option>-->
-  			<!--<option value="three">3</option>-->
-  			<!--<option value="four">4</option>-->
-            <!--<option value="five">5</option>-->
-            <!--<option value="six">6</option>-->
-  			<!--<option value="seven">7</option>-->
-  			<!--<option value="eight">8</option>-->
-  			<!--<option value="nine">9</option>-->
-            <!--<option value="ten">10</option>-->
-            <!--<option value="eleven">11</option>-->
-  			<!--<option value="twelve">12</option>-->
-  			<!--<option value="thirteen">13</option>-->
-  			<!--<option value="fourteen">14</option>-->
-            <!--<option value="fifteen">15</option>-->
-            <!--<option value="sixteen">16</option>-->
-  			<!--<option value="seventeen">17</option>-->
-  			<!--<option value="eighteen">18</option>-->
-  			<!--<option value="nineteen">19</option>-->
-            <!--<option value="twenty">20</option>-->
-	   <!--</select>-->
-	<!--</article>-->
-	<!--<artical class = "file" action="/action_page.php">-->
-  		<!--Select a file: <input type="file"><br>-->
-    <!--</artical>-->
-    <!--<article class="field">-->
-      <!--<label class = "choice">Choice 1</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-	 <!--<article class="field">-->
-      <!--<label class = "choice">Choice 2</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-	 <!--<article class="field">-->
-      <!--<label class = "choice">Choice 3</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-	 <!--<article class="field">-->
-      <!--<label class = "choice">Choice 4</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-	<!--<article class="choose_choice">-->
-		<!--Choose the right choice-->
-	   <!--<select >-->
-	    	<!--<option value="choice1">Choice 1</option>-->
-  			<!--<option value="choice2">Choice 2</option>-->
-  			<!--<option value="choice3">Choice 3</option>-->
-  			<!--<option value="choice4">Choice 4</option>-->
-	   <!--</select>-->
-	<!--</article>-->
-	<!--<article class="field">-->
-      <!--<label class = "question">Question</label>-->
-      <!--<input type="question">-->
-    <!--</article>-->
-	 <!--<article class="choose_num">-->
-		<!--Number-->
-	   <!--<select>-->
-	    	<!--<option value="one">1</option>-->
-  			<!--<option value="two">2</option>-->
-  			<!--<option value="three">3</option>-->
-  			<!--<option value="four">4</option>-->
-            <!--<option value="five">5</option>-->
-            <!--<option value="six">6</option>-->
-  			<!--<option value="seven">7</option>-->
-  			<!--<option value="eight">8</option>-->
-  			<!--<option value="nine">9</option>-->
-            <!--<option value="ten">10</option>-->
-            <!--<option value="eleven">11</option>-->
-  			<!--<option value="twelve">12</option>-->
-  			<!--<option value="thirteen">13</option>-->
-  			<!--<option value="fourteen">14</option>-->
-            <!--<option value="fifteen">15</option>-->
-            <!--<option value="sixteen">16</option>-->
-  			<!--<option value="seventeen">17</option>-->
-  			<!--<option value="eighteen">18</option>-->
-  			<!--<option value="nineteen">19</option>-->
-            <!--<option value="twenty">20</option>-->
-	   <!--</select>-->
-	<!--</article>-->
-	<!--<artical class = "file" action="/action_page.php">-->
-  		<!--Select a file: <input type="file"><br>-->
-    <!--</artical>-->
-    <!--<article class="field">-->
-      <!--<label class = "choice">Choice 1</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-	 <!--<article class="field">-->
-      <!--<label class = "choice">Choice 2</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-	 <!--<article class="field">-->
-      <!--<label class = "choice">Choice 3</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-	 <!--<article class="field">-->
-      <!--<label class = "choice">Choice 4</label>-->
-	  <!--<input type="choice">-->
-	 <!--</article>-->
-	 <!--<article class="choose_choice">-->
-		<!--Choose the right choice-->
-	   <!--<select >-->
-	    	<!--<option value="choice1">Choice 1</option>-->
-  			<!--<option value="choice2">Choice 2</option>-->
-  			<!--<option value="choice3">Choice 3</option>-->
-  			<!--<option value="choice4">Choice 4</option>-->
-	   <!--</select>-->
-	<!--</article>-->
-	 <!--<article class="field">-->
-      <!--<label class = "question">Question</label>-->
-      <!--<input type="question">-->
-    <!--</article>-->
-    <!--<article class="choose_num">-->
-		<!--Number-->
-	   <!--<select>-->
-	    	<!--<option value="one">1</option>-->
-  			<!--<option value="two">2</option>-->
-  			<!--<option value="three">3</option>-->
-  			<!--<option value="four">4</option>-->
-            <!--<option value="five">5</option>-->
-            <!--<option value="six">6</option>-->
-  			<!--<option value="seven">7</option>-->
-  			<!--<option value="eight">8</option>-->
-  			<!--<option value="nine">9</option>-->
-            <!--<option value="ten">10</option>-->
-            <!--<option value="eleven">11</option>-->
-  			<!--<option value="twelve">12</option>-->
-  			<!--<option value="thirteen">13</option>-->
-  			<!--<option value="fourteen">14</option>-->
-            <!--<option value="fifteen">15</option>-->
-            <!--<option value="sixteen">16</option>-->
-  			<!--<option value="seventeen">17</option>-->
-  			<!--<option value="eighteen">18</option>-->
-  			<!--<option value="nineteen">19</option>-->
-            <!--<option value="twenty">20</option>-->
-	   <!--</select>-->
-	<!--</article>-->
-	<!--<artical class = "file" action="/action_page.php">-->
-  		<!--Select a file: <input type="file"><br>-->
-    <!--</artical>-->
-    <!--<article class="field">-->
-      <!--<label class = "choice">Choice 1</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-	 <!--<article class="field">-->
-      <!--<label class = "choice">Choice 2</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-	 <!--<article class="field">-->
-      <!--<label class = "choice">Choice 3</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-    <!--<article class="field">-->
-      <!--<label class = "choice">Choice 4</label>-->
-	  <!--<input type="choice">-->
-    <!--</article>-->
-  <footer class="form__footer">
-    <input type="submit" value="Submit">
-  </footer>
-
-
-</form>
-
-
+	</article>
+	{% endfor %}
+			
+    <footer class="form__footer">
+      <input type="submit" value="Submit">
+    </footer>
+  </form>
 
 </div>
 
