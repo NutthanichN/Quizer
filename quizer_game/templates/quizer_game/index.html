@@ -26,8 +26,8 @@
       </div> -->
 
       <div class="top">
-        <a href="/quizer/login/" class="signup">Sign Up</a>
-        <a href="/quizer/login/" class="login">Login</a>
+        <a href="{% url 'quizer_game:login' %}" class="signup">Sign Up</a>
+        <a href="{% url 'quizer_game:login' %}" class="login">Login</a>
       </div>
     </header>
     <!-- END nav -->
@@ -43,9 +43,9 @@
                   <span class="wrap"></span>
                 </strong>
               </h1>
-              <p1><a href="/quizer/select-player-name/" class="btn btny px-4 py-3"><span class="ion-ios-play mr-2"></span> Let's play</a></p1>
+              <p1><a href="{% url 'quizer_game:player-name' %}" class="btn btny px-4 py-3"><span class="ion-ios-play mr-2"></span> Let's play</a></p1>
               <p1><a href="#how_to_play" class="btn btny js-scroll-trigger px-4 py-3"><span class="ion-ios-play mr-2"></span> How to play</a></p1>
-              <p1><a href="/quizer/leaderboard-index/" class="btn btny px-4 py-3"><span class="ion-ios-play mr-2"></span> Leaderboard</a></p1>
+              <p1><a href="{% url 'quizer_game:leaderboard-index' %}" class="btn btny px-4 py-3"><span class="ion-ios-play mr-2"></span> Leaderboard</a></p1>
             </div>
           </div>
         </div>
