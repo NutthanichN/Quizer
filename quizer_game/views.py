@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 
 from .models import Quiz, Choice, Timer
@@ -30,8 +30,11 @@ def setup_timer(player):
     timer = Timer.objects.get(player=player)
     if player.selected_difficulty == DIFFICULTY['hard']:
         timer.set_time_limit(seconds=HARD_LVL_TIME_LIMIT)
+
+    # for testing
     timer.start_point = timedelta(seconds=int(time.time()))
     timer.end_point = timedelta(seconds=int(time.time()))
+
     timer.save()
     return timer
 
@@ -49,13 +52,6 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     player.is_achieved = False
     player.is_timeout = False
     player.save()
-    # setup default values to timer
-    # timer = Timer.objects.get(player=player)
-    # if player.selected_difficulty == DIFFICULTY['hard']:
-    #     timer.set_time_limit(seconds=300)
-    # timer.start_point = timedelta(seconds=int(time.time()))
-    # timer.end_point = timedelta(seconds=int(time.time()))
-    # timer.save()
     return player
 
 
@@ -63,6 +59,7 @@ def index(request):
     return HttpResponse("Hello, world. You're at the Quizer game test index.")
 
 
+# TODO handle error (link to 404 not found page)
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
 
@@ -84,13 +81,11 @@ def start_game(request, player_name):
     # test with existing player
     player = setup_player_for_testing(quiz, player_name, DIFFICULTY[difficulty], POSITION['min'])
 
-    # uncomment this as a real use
+    # uncomment this for real use
     # player = create_player(quiz, player_name, selected_difficulty)
 
     timer = setup_timer(player)
     timer.start()
-    # timer = Timer.objects.get(player=player)
-    # timer.start()
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': player.selected_difficulty, }
@@ -99,6 +94,7 @@ def start_game(request, player_name):
 
 
 # /quizer/game/player_id/quiz_id/difficulty/
+# TODO handle error (link to 404 not found page)
 def game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
@@ -112,8 +108,8 @@ def game(request, player_id, quiz_id, selected_difficulty):
     return render(request, 'quizer_game/game.html', context)
 
 
-# TODO manage player time spent and set limit time for the hard level
 # TODO provide upvote-downvote feature
+# TODO handle error (link to 404 not found page)
 # /quizer/game/player_id/quiz_id/difficulty/update/
 def update_game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
@@ -136,6 +132,7 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
 
     # check time for hard level
     # player can still play game but player won't be ranked on leaderboard
+    # TODO prevent player from answering after time's up
     if selected_difficulty == DIFFICULTY['hard']:
         if timer.time_duration >= timer.time_limit:
             player.is_timeout = True
