@@ -23,45 +23,50 @@
 </header>
   <h1>Create Quiz</h1>
 <div class="container">
-  <form id="page-info">
-    {% for i in 20|times %}
-      <article class="field">
-        <label class = "topic">Topic</label>
-      	  <input type="topic">
-	  </article>
+
+  <form id="page-info" action="{% url 'quizer_game:update_data'%}" method="post">
+	{% csrf_token %}  
+	<article class="field">
+      <label class = "topic">Topic</label>
+      <input name="quiz_topic"  class="topic_input">
+	</article>
+    {% for i in 2|times %}
 	  <article class="field">
-        <label class = "question">Question {{ forloop.counter }}</label>
-        <input type="question">
+        <label class = "question">Question </label>
+        <input name="question_text_{{forloop.counter}}"  class="question_input">
       </article>
 	  <artical class = "file" action="/action_page.php">
   	    Select a file: <input type="file"><br>
-      </artical>
+	  </artical>
       <article class="field">
-        <label class = "choice">Choice 1</label>
-	    <input type="choice">
-      </article>
+        <label class = "choice">Choice {{forloop.counter}}</label>
+	    <input  name="{{forloop.counter}}_choice_text_1"   class = "choice_input">
+	  </article>
+
 	  <article class="field">
-        <label class = "choice">Choice 2</label>
-	    <input type="choice">
-      </article>
-	  <article class="field">
-        <label class = "choice">Choice 3</label>
-	    <input type="choice">
-      </article>
-	  <article class="field">
-        <label class = "choice">Choice 4</label>
-	    <input type="choice">
-	 </article>
-	 <article class="choose_choice">
-		Choose the right choice
-	   <select >
-	     <option value="choice1">Choice 1</option>
-  	     <option value="choice2">Choice 2</option>
-  		 <option value="choice3">Choice 3</option>
-  	     <option value="choice4">Choice 4</option>
-	   </select>
-	</article>
-	{% endfor %}
+		<label class = "choice">Choice 2</label>
+			<input  name="{{forloop.counter}}_choice_text_2"   class = "choice_input">
+		  </article>
+		  <article class="field">
+			<label class = "choice">Choice 3</label>
+			<input  name="{{forloop.counter}}_choice_text_3"   class = "choice_input">
+		  </article>
+		  <article class="field">
+			<label class = "choice">Choice 4</label>
+			<input  name="{{forloop.counter}}_choice_text_4"   class = "choice_input">
+		 </article>
+		 <article class="choose_choice">
+			Choose the right choice
+		   <select >
+			 <option value="choice1">Choice 1</option>
+			   <option value="choice2">Choice 2</option>
+			   <option value="choice3">Choice 3</option>
+			   <option value="choice4">Choice 4</option>
+		   </select>
+		</article>
+		{% endfor %}
+
+
 			
     <footer class="form__footer">
       <input type="submit" value="Submit">
