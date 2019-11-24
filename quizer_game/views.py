@@ -146,8 +146,6 @@ def create_quiz(request):
 
 def update_data(request):
     quiz_topic = request.POST.get('quiz_topic')
-    # question_text = request.POST.get('question_text')
-    # choice_text = request.POST.get('choice_text')
     quiz = Quiz(topic=quiz_topic)
     quiz.save()
 
@@ -172,7 +170,10 @@ def update_data(request):
 
             for j in range(1,5):
                 choice_text = request.POST[f'{i}_choice_text_{j}']
+                choice_value= request.POST[f'{i}_choice_value']
                 choice = question.choice_set.create(text=choice_text)
+                if choice_value == f"choice{j}":
+                    choice.value = 1
                 choice.save()
 
 
