@@ -4,11 +4,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView
 from django.views import View
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 
 from .models import Quiz,Player,Question
-from .forms import QuizModelForm,QuestionModelForm
+# from .forms import QuizModelForm,QuestionModelForm
 
 
 
@@ -140,6 +141,47 @@ def result(request, player_id, quiz_id, selected_difficulty):
 def create_quiz(request):
     template_name = 'quizer_game/create-question.html'
     return render(request, template_name)
+
+
+
+def update_data(request):
+    quiz_topic = request.POST.get('quiz_topic')
+    # question_text = request.POST.get('question_text')
+    # choice_text = request.POST.get('choice_text')
+    quiz = Quiz(topic=quiz_topic)
+    quiz.save()
+
+
+
+
+    # question = quiz.question_set.create(text=question_text)
+    # choice = question.choice_set.create(text=choice_text)
+
+
+
+    # question_text = request.POST['question_text']
+
+    try:
+
+
+        for i in range(1, 3):
+            question_text = request.POST[f'question_text_{i}']
+            question = quiz.question_set.create(text=question_text,number=i)
+            question.save()
+
+
+            for j in range(1,5):
+                choice_text = request.POST[f'{i}_choice_text_{j}']
+                choice = question.choice_set.create(text=choice_text)
+                choice.save()
+
+
+
+    except MultiValueDictKeyError:
+        print("add question until 20")
+
+    return redirect(reverse('quizer_game:create-question-set'))
+
 
 #
 #

@@ -2,12 +2,20 @@ from django.db import models
 
 # Create your models here.
 
+# class UserName(models.Model):
+#     name = models.CharField(max_length=200, verbose_name='Name')
+#
+#     def __str__(self):
+#         return self.name
 
 class Quiz(models.Model):
+    # name = models.ForeignKey(UserName, on_delete=models.CASCADE, verbose_name='User')
     topic = models.CharField(max_length=200, verbose_name='Topic')
 
     def __str__(self):
-        return self.topic
+        return str(self.topic)
+
+
 
 
 # TODO question can contain image (and maybe audio file too)
@@ -20,6 +28,8 @@ class Question(models.Model):
         return self.text
 
 
+
+
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Question')
     text = models.CharField(max_length=200)
@@ -27,6 +37,7 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.text
+
 
 
 class Player(models.Model):
