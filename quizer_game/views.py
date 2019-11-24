@@ -86,6 +86,7 @@ def start_game(request, player_name):
 
     timer = setup_timer(player)
     timer.start()
+    
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': player.selected_difficulty, }
