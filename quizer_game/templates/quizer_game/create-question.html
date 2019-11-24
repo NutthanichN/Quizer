@@ -39,7 +39,7 @@
   	    Select a file: <input type="file"><br>
 	  </artical>
       <article class="field">
-        <label class = "choice">Choice {{forloop.counter}}</label>
+        <label class = "choice">Choice 1</label>
 	    <input  name="{{forloop.counter}}_choice_text_1"   class = "choice_input">
 	  </article>
 
@@ -57,7 +57,7 @@
 		 </article>
 		 <article class="choose_choice">
 			Choose the right choice
-		   <select >
+		   <select name="{{forloop.counter}}_choice_value" >
 			 <option value="choice1">Choice 1</option>
 			   <option value="choice2">Choice 2</option>
 			   <option value="choice3">Choice 3</option>
