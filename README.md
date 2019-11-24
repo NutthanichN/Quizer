@@ -26,6 +26,7 @@ fifteen units, which means the player has to answer at least fifteen questions t
 - **Code Review Script**: [Code review script on Google Docs](https://docs.google.com/document/d/1_Wd6kMo92Eimb0DS8xYPQtariomvPAuDKkgVNek5DME/edit?usp=sharing)
 - **Code Review Checklist**:[Code review checklist](https://docs.google.com/document/d/1Bs7BH2KkaYmIrOCsnC2gkpXVVRgEXo-XpJFyf1nWCqA/edit?usp=sharing)
 
+
 ## How to run
 
 
@@ -72,6 +73,3 @@ Step9: Run server at localhost:8000
 ```bash
     python manage.py runserver
 ```
-
-
-
