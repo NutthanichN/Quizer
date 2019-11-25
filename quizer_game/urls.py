@@ -20,5 +20,4 @@ urlpatterns = [
     path('game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/',
          views.result, name='result'),
     # /quizer/game/player_id/quiz_id/difficulty/choice_value/
-
 ]
