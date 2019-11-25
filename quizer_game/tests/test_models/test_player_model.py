@@ -28,6 +28,7 @@ class PlayerModelTest(TestCase):
         """Test verbose name of current question (ForeignKey)"""
         player = Player.objects.get(id=1)
         field_label = player._meta.get_field('current_question').verbose_name
+        field = player._meta.get_field('')
         self.assertEquals(field_label, 'current question')
 
     def test_name_label(self):
@@ -106,6 +107,12 @@ class PlayerModelTest(TestCase):
         """Test default value of is achieved (BooleanField)"""
         player = Player.objects.get(id=1)
         field_default = player._meta.get_field('is_achieved').default
+        self.assertFalse(field_default)
+
+    def test_is_timeout_default(self):
+        """Test default value of is_timeout (BooleanField)"""
+        player = Player.objects.get(id=1)
+        field_default = player._meta.get_field('is_timeout').default
         self.assertFalse(field_default)
 
     def test_move_forward(self):
