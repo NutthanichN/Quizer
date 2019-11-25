@@ -28,7 +28,6 @@ class PlayerModelTest(TestCase):
         """Test verbose name of current question (ForeignKey)"""
         player = Player.objects.get(id=1)
         field_label = player._meta.get_field('current_question').verbose_name
-        field = player._meta.get_field('')
         self.assertEquals(field_label, 'current question')
 
     def test_name_label(self):

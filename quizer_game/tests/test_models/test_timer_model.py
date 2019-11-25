@@ -28,7 +28,7 @@ class TimerModelTest(TestCase):
                                        selected_difficulty=0)
         self.timer = player.timer_set.create()
 
-    def test_str(self):
+    def test_timer_name_should_end_with_its_player_name(self):
         timer = Timer.objects.get(id=1)
         self.assertEqual(str(timer), 'A timer of Player1')
 
