@@ -36,7 +36,7 @@ class Player(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True, verbose_name='Quiz')
     current_question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=200, verbose_name='Name')
-    time = models.DurationField(null=True, blank=True, verbose_name='Time spent')
+    time = models.DurationField(default=timedelta(seconds=0), blank=True, verbose_name='Time spent')
     selected_difficulty = models.IntegerField(default=0, verbose_name='Difficulty')
     position = models.IntegerField(default=0)
     is_playing = models.BooleanField(default=False)
