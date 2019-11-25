@@ -9,6 +9,15 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
   </head>
   <body>
+  
+<!--    <div id="time-up" class="overlay" style="display: none">-->
+<!--      <div class="overlay-content">-->
+<!--        <a class="navbar" href="">Back to home page</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <a onclick="closeOverlay()">Close</a>-->
+<!--    <a onclick="openOverlay()">Open</a>-->
+    
     <h2 class="top-text">Player's name
       <span id="quiz-name">Quiz topic : {{ quiz.topic }}</span>
       <span>Time: <span id="time"></span></span>
@@ -48,6 +57,14 @@
     </div>
     
   <script>
+    function openOverlay() {
+      document.getElementById("time-up").style.display = "block";
+    }
+    
+    function closeOverlay() {
+      document.getElementById("time-up").style.display = "none";
+    }
+    
     function convertToTimeFormat(rawSeconds) {
       rawSeconds = Math.floor(rawSeconds / 1000);
       var hours = Math.floor(rawSeconds / (60 * 60));
