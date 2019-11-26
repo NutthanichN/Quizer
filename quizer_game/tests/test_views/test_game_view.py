@@ -18,6 +18,10 @@ class GameTest(TestCase):
         self.player.is_playing = True
         self.player.save()
 
+        # setup player's timer
+        self.timer = self.player.timer_set.create()
+        self.timer.start()
+
     def test_can_view_game(self):
         """Test that a player can view game"""
         url = reverse('quizer_game:game', kwargs={'player_id': self.player.id, 'quiz_id': self.quiz.id,
@@ -25,33 +29,4 @@ class GameTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/game.html')
-
-    def test_can_view_index(self):
-        """ Test that anyone can see index page """
-        url = reverse('quizer_game:index')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'quizer_game/index.html')
-
-    def test_can_view_leaderboard_index(self):
-        """ Test that anyone can see leaderboard index """
-        url = reverse('quizer_game:leaderboard-index')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'quizer_game/leaderboard-index.html')
-
-    def test_can_view_login(self):
-        """ Test that anyone can see login page """
-        url = reverse('quizer_game:login')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'quizer_game/login.html')
-
-    def test_can_view_leaderboard(self):
-        """ Test that anyone can see leaderboard """
-        url = reverse('quizer_game:leaderboard', kwargs={'quiz_id': self.quiz.id,
-                                                         'selected_difficulty': self.player.selected_difficulty})
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'quizer_game/leaderboard.html')
 

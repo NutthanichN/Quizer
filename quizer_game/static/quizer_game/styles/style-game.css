@@ -3,6 +3,25 @@ html, body {
   font-family: 'Nunito', sans-serif;
 }
 
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
 .top-text {
   display: block;
   margin-top: 20px;
@@ -70,11 +89,11 @@ html, body {
 .question-body {
   border: 2px solid #25274d;
   margin: 25px;
-  height: 400px;
   position: relative;
   text-align: center;
   overflow-wrap: break-word;
   overflow: auto;
+  max-height: 390px;
 }
 
 .question-body p {
@@ -86,12 +105,12 @@ html, body {
 .navbar a {
   /* position: absolute;
   /* top: 90%;
-  left: 95%; */
+  left: 95%;*/
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  text-align: center;
   color: black;
   background-color: #eaece5;
-  text-align: center;
   padding: 18px 16px;
   text-decoration: none;
   font-size: 20px;
@@ -99,7 +118,19 @@ html, body {
   border-radius: 19px;
 }
 
-.navbar a:hover {
+.navbar button {
+  overflow-wrap: break-word;
+  max-width: 500px;
+  color: black;
+  background-color: #eaece5;
+  padding: 18px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  border: solid black;
+  border-radius: 19px;
+}
+
+.navbar button:hover, a:hover {
   background: #25274d;
   color: white;
   border: solid black;
@@ -109,19 +140,23 @@ html, body {
 #c1 {
   position: relative;
   margin-top: 50px;
+  margin-bottom: 25px;
 }
 
 #c2 {
   position: relative;
-  margin-top: 50px;
+  /*margin-top: 25px;*/
+  margin-bottom: 25px;
 }
 
 #c3 {
   position: relative;
-  margin-top: 50px;
+  /*margin-top: 25px;*/
+  margin-bottom: 25px;
 }
 
 #c4 {
   position: relative;
-  margin-top: 50px;
+  /*margin-top: 25px;*/
+  margin-bottom: 25px;
 }
