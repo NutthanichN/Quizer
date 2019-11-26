@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView
 from django.views import View
-from django.utils.datastructures import MultiValueDictKeyError
+from django.contrib import messages
 
 
 
@@ -137,130 +137,62 @@ def result(request, player_id, quiz_id, selected_difficulty):
     return render(request, 'quizer_game/result.html', context)
 
 
-
+# /quizer/create-quiz/
 def create_quiz(request):
     template_name = 'quizer_game/create-question.html'
     return render(request, template_name)
 
 
-
-def update_data(request):
+# /quizer/create-quiz/update/
+def update_create_quiz(request):
     quiz_topic = request.POST.get('quiz_topic')
     quiz = Quiz(topic=quiz_topic)
     quiz.save()
+    count_question = 0
+    count_choice = 0
 
+    # update question text from input
+    for i in range(1, 21):
+        question_text = request.POST.get(f'question_text_{i}')
 
+        # check that user set question text
+        if len(question_text) != 0:
+            count_question = count_question + 1
+        question = quiz.question_set.create(text=question_text, number=i)
 
+        # update choice text from input
+        for j in range(1, 5):
+            choice_text = request.POST[f'{i}_choice_text_{j}']
 
-    # question = quiz.question_set.create(text=question_text)
-    # choice = question.choice_set.create(text=choice_text)
+            # check that user set choice text
+            if len(choice_text) != 0:
+                count_choice = count_choice  + 1
+            choice_value = request.POST[f'{i}_choice_value']
+            choice = question.choice_set.create(text=choice_text)
 
-
-
-    # question_text = request.POST['question_text']
-
-    try:
-
-
-        for i in range(1, 3):
-            question_text = request.POST[f'question_text_{i}']
-            question = quiz.question_set.create(text=question_text,number=i)
-            question.save()
-
-
-            for j in range(1,5):
-                choice_text = request.POST[f'{i}_choice_text_{j}']
-                choice_value= request.POST[f'{i}_choice_value']
-                choice = question.choice_set.create(text=choice_text)
-                if choice_value == f"choice{j}":
-                    choice.value = 1
+            # check the right choice
+            if choice_value == f"choice{j}":
+                choice.value = 1
                 choice.save()
 
+    # check that user set 20 questions and 80 choices
+    if count_question == 20 and count_choice  == 80:
+        messages.success(request, 'Successful saving')
+        return redirect(reverse('quizer_game:create-question-set'))
+    else:
+        messages.error(request, 'Unsuccessful saving!! You must set 20 questions and 4 choices')
+        quiz.delete()
+        return redirect(reverse('quizer_game:create-question-set'))
 
 
-    except MultiValueDictKeyError:
-        print("add question until 20")
-
-    return redirect(reverse('quizer_game:create-question-set'))
 
 
-#
-#
-# class UpadateCreatequiz(View):
-#
-#     def get(self,request,player_id,quiz_id,*args, **kwargs):
-#         form_quiz = QuizModelForm()
-#         quiz = get_object_or_404(Quiz, pk=quiz_id)
-#         player = quiz.player_set.get(pk=player_id)
-#         return redirect(reverse('quizer_game:create-question-set', kwargs={'player_id': player.id,'quiz_id': quiz.id}))
-#
-#     def post(self,request,player_id,quiz_id,*args, **kwargs):
-#         form_quiz = QuizModelForm(request.POST)
-#         quiz = get_object_or_404(Quiz, pk=quiz_id)
-#         player = quiz.player_set.get(pk=player_id)
-#         if form_quiz.is_valid():
-#             form_quiz.save()
-#         return redirect(reverse('quizer_game:create-question-set',kwargs={'player_id': player.id,'quiz_id': quiz.id}))
 
 
-# class Createquiz(View):
-#     template_name = 'quizer_game/create-question.html'
-#
-#     def get(self, request,*args, **kwargs):
-#         form_quiz = QuizModelForm()
-#         text = Question.objects.create(quiz = Quiz)
-#         form_question = QuestionModelForm(instance=text)
-#         # title = self.cleaned_data.get('topic')
-#         #
-#         # form = QuestionForm(request.POST or None)
-#         # if request.method == "POST":
-#         #     if form.is_valid():
-#         #         question = form.cleaned_data.get('question')
-#         #         number_of_answers = form.cleaned_data.get('number_of_answers')
-#         #         create_question = Question.objects.create(question=question, number_of_answers=number_of_answers)
-#         #         create_question.save()
-#         #         return redirect('home:add-answers', id=create_question.id)
-#         # return render(request, 'home/add_question.html', {'form': form})
-#
-#         # form_choice = ChoiceModelForm()
-#         # quiz = get_object_or_404(Quiz, pk=quiz_id)
-#         # quiz = Quiz.objects.create(topic=form_quiz)
-#         # player = quiz.player_set.create(name=player_name)
-#
-#         # player.current_question =  quiz.question_set.get(number=new_question_number)
-#         # player = Player(pk=player_id)
-#         # old_question = player.current_question
-#         # new_question_number = old_question.number + 1
-#         # player.current_question = quiz.question_set.get(number=new_question_number)
-#         # form_question = QuestionModelForm(instance=player.current_question)
-#         context = {'form_quiz': form_quiz,'form_question': form_question}
-#         return render(request, self.template_name, context)
-#
-#     def post(self, request, *args, **kwargs):
-#         form_quiz = QuizModelForm(request.POST)
-#         text = Question.objects.create(quiz= )
-#         form_question = QuestionModelForm(request.POST, instance=text)
-#
-#
-#         # form_question = QuestionModelForm(id=form_quiz.id)
-#
-#         # quiz = get_object_or_404(Quiz, pk=quiz_id)
-#         # player = quiz.player_set.get(pk=player_id)
-#         # old_question = player.current_question
-#         # new_question_number = old_question.number + 1
-#         # player.current_question = quiz.question_set.get(number=new_question_number)
-#         # form_question = QuestionModelForm(request.POST, instance = player.current_question)
-#         if form_quiz.is_valid():
-#             form_quiz.save()
-#
-#         if form_question.is_valid():
-#             form_question.save()
-#
-#         context = {'form_quiz': form_quiz, 'form_question': form_question}
-#         return render(request, self.template_name, context)
-#
-#
-#
+
+
+
+
 
 
 
