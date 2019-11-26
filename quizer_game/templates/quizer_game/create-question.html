@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load quizer_game_extras %}
-<head>
-  <meta charset="UTF-8">
-  <title>Create question</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'quizer_game/styles/create-question.css' %}">
+  <head>
+    <meta charset="UTF-8">
+    <title>Create question</title>
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'quizer_game/styles/create-question.css' %}">
+  </head>
+  <body>
 
-<body>
-<header id="masthead">
-  <!--login version-->
+  <header id="masthead">
+    <!--login version-->
     <div class="email">
 	  <a href="">Email: {{ text }}</a>
 	</div>
@@ -18,66 +19,66 @@
 	  <a class="history" href="">History</a>
 	  <a class="logout" href="">Logout</a>
 	<!--<div class="top">-->
-	  	 <!--<a class="login" href="">Login</a>-->
-	</div>
-</header>
-  <h1>Create Quiz</h1>
-<div class="container">
+	  <!--<a class="login" href="">Login</a>-->
+	</div> 
+  </header>
 
-  <form id="page-info" action="{% url 'quizer_game:update_data'%}" method="post">
-	{% csrf_token %}  
+  <h1>Create Quiz</h1>
+
+  <div class="container">
+    {% if messages %}
+	  <ul class="messages" id="message">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+	  </ul>
+	{% endif %}
+
+  <form id="page-info" action="{% url 'quizer_game:update_create_quiz'%}" method="post">
+    {% csrf_token %}  
 	<article class="field">
       <label class = "topic">Topic</label>
-      <input name="quiz_topic"  class="topic_input">
+      <input  name="quiz_topic" class="topic_input">
 	</article>
-    {% for i in 2|times %}
+
+    {% for i in 20|times %}
 	  <article class="field">
-        <label class = "question">Question </label>
-        <input name="question_text_{{forloop.counter}}"  class="question_input">
-      </article>
+        <label class = "question">Question {{forloop.counter}}</label>
+        <input name="question_text_{{forloop.counter}}" class="question_input">
+	  </article>
+	  
 	  <artical class = "file" action="/action_page.php">
   	    Select a file: <input type="file"><br>
 	  </artical>
-      <article class="field">
-        <label class = "choice">Choice 1</label>
-	    <input  name="{{forloop.counter}}_choice_text_1"   class = "choice_input">
-	  </article>
+	  {% for i in 4|times %}
+        <article class="field">
+          <label class = "choice">Choice {{forloop.counter}}</label>
+	      <input  name="{{forloop.parentloop.counter}}_choice_text_{{forloop.counter}}" class = "choice_input">
+	    </article>
+	   {% endfor %}
 
-	  <article class="field">
-		<label class = "choice">Choice 2</label>
-			<input  name="{{forloop.counter}}_choice_text_2"   class = "choice_input">
-		  </article>
-		  <article class="field">
-			<label class = "choice">Choice 3</label>
-			<input  name="{{forloop.counter}}_choice_text_3"   class = "choice_input">
-		  </article>
-		  <article class="field">
-			<label class = "choice">Choice 4</label>
-			<input  name="{{forloop.counter}}_choice_text_4"   class = "choice_input">
-		 </article>
-		 <article class="choose_choice">
-			Choose the right choice
-		   <select name="{{forloop.counter}}_choice_value" >
+	  <article class="choose_choice">
+		Choose the right choice
+	    <select name="{{forloop.counter}}_choice_value" >
 			 <option value="choice1">Choice 1</option>
-			   <option value="choice2">Choice 2</option>
-			   <option value="choice3">Choice 3</option>
-			   <option value="choice4">Choice 4</option>
-		   </select>
-		</article>
-		{% endfor %}
+			 <option value="choice2">Choice 2</option>
+			 <option value="choice3">Choice 3</option>
+			 <option value="choice4">Choice 4</option>
+		</select>
+	  </article>
+	{% endfor %}
 
+	<footer  class="form__footer">
+      	<input  type="submit"  value="Submit" >
+	</footer>
 
-			
-    <footer class="form__footer">
-      <input type="submit" value="Submit">
-    </footer>
   </form>
 
-</div>
+  </div>
 
-<div id="back">
+  <div id="back">
     <a href=>Back</a>
-</div>
+  </div>
 
 </body>
 </html>
