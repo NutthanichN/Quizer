@@ -7,8 +7,10 @@ app_name = 'quizer_game'
 urlpatterns = [
     # /quizer/
     path('', views.index, name='index'),
-    path('select-player-name/', views.player_name, name='player-name'),
-    path('quiz-level/', views.quiz_level, name='quiz-level'),
+    path('select-player-name/',
+         views.player_name, name='player-name'),
+    path('quiz-level/',
+         views.quiz_level, name='quiz-level'),
     path('start-game/<str:player_name>/',
          views.start_game, name='start-game'),
     # /quizer/game/player_id/quiz_id/difficulty/question_id/

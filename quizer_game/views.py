@@ -13,6 +13,7 @@ DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
 CHOICE_VALUE = {'wrong': 0, 'correct': 1}
 POSITION = {'max': 15, 'min': 0}
 HARD_LVL_TIME_LIMIT = 60            # seconds
+PLAYERS_FOR_TESTING = ['player_test_5_q', 'player_test_20_q']
 
 
 def create_player(quiz, player_name, selected_difficulty):
@@ -57,8 +58,14 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     timer.start_point = timedelta(seconds=int(time.time()))
     timer.end_point = timedelta(seconds=int(time.time()))
     timer.save()
-
     return player
+
+
+def is_player_for_testing(player_name):
+    for name in PLAYERS_FOR_TESTING:
+        if name == player_name:
+            return True
+    return False
 
 
 def index(request):
@@ -70,9 +77,11 @@ def player_name(request):
     return render(request, 'quizer_game/player-name.html')
 
 
+# TODO handle when there is no player_name
 # <str:player_name>/quiz-level/
 def quiz_level(request):
     input_player_name = request.POST['player_name']
+    # input_player_name = request.POST.get('player_name', '')
     quizzes = Quiz.objects.all()
     context = {'player_name': input_player_name,
                'quizzes': quizzes}
@@ -84,11 +93,11 @@ def start_game(request, player_name):
     quiz_id = request.POST['quiz_id']
     difficulty = request.POST['difficulty']
     quiz = get_object_or_404(Quiz, pk=quiz_id)
-    # test with existing player
-    player = setup_player_for_testing(quiz, player_name, DIFFICULTY[difficulty], POSITION['min'])
 
-    # uncomment this for real use
-    # player = create_player(quiz, player_name, selected_difficulty)
+    if is_player_for_testing(player_name):
+        player = setup_player_for_testing(quiz, player_name, DIFFICULTY[difficulty], POSITION['min'])
+    else:
+        player = create_player(quiz, player_name, DIFFICULTY[difficulty])
 
     timer = setup_timer(player)
     timer.start()
