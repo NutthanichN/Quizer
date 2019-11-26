@@ -16,8 +16,6 @@ class Quiz(models.Model):
         return str(self.topic)
 
 
-
-
 # TODO question can contain image (and maybe audio file too)
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE, verbose_name='Quiz')
@@ -27,13 +25,11 @@ class Question(models.Model):
     def __str__(self):
         return self.text
 
-
-
-
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name='Question')
     text = models.CharField(max_length=200)
     value = models.IntegerField(default=0, verbose_name='Value')
+
 
     def __str__(self):
         return self.text
