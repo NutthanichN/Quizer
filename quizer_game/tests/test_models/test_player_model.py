@@ -1,9 +1,5 @@
 from django.test import TestCase
-<<<<<<< HEAD
-from quizer_game.models import Quiz, Question, Choice, Player
-=======
 from quizer_game.models import Quiz, Question, Choice, Player, Timer
->>>>>>> master
 
 
 class PlayerModelTest(TestCase):
@@ -19,11 +15,8 @@ class PlayerModelTest(TestCase):
         question = Question.objects.create(quiz=quiz, text='What is str?', number=1)
         self.player = Player.objects.create(quiz=quiz, current_question=question,
                                             name='Player2', selected_difficulty=0)
-<<<<<<< HEAD
-=======
         self.timer = self.player.timer_set.create()
         self.timer.start()
->>>>>>> master
 
     def test_quiz_label(self):
         """Test verbose name of quiz (ForeignKey)"""
