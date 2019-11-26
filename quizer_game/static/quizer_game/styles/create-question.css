@@ -193,7 +193,6 @@ lable{
 .form__footer {
   margin-top: 1em;
 }
-
 .form__footer input {
   display: block;
   color: black;
@@ -219,7 +218,6 @@ lable{
   list-style-type: none;
   padding: 0;
 }
-
 .block-list li {
   padding-bottom: .5em;
 }

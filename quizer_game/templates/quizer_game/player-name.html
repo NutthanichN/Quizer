@@ -15,6 +15,7 @@
 			font-family: 'Nunito', sans-serif;
 		}
 	</style>
+<<<<<<< HEAD
 <!--===============================================================================================-->	
 	<!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico"/> -->
 <!--===============================================================================================-->
@@ -58,6 +59,29 @@
 		<div class="container-login100" style="background: #eaece5;">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form">
+=======
+	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/main.css' %}">
+</head>
+<body>
+<!--	<h3>For manual testing</h3>-->
+
+	{# For Test Quiz contains 5 questions #}
+<!--    <p>choose 'player_test_5_q'</p>-->
+		{# <a href="{% url 'quizer_game:quiz-level' player_name='player_test_5_q' %}">Select Quiz and Difficulty</a> #}
+
+	{# For Test Quiz contains 20 questions #}
+<!--    <p>choose 'player_test_20_q'</p>-->
+		{# <a href="{% url 'quizer_game:quiz-level' player_name='player_test_20_q' %}">Select Quiz and Difficulty</a> #}
+	<div class="limiter">
+		<div class="container-login100" style="background: #eaece5;">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				
+				<form class="login100-form validate-form" action="{% url 'quizer_game:quiz-level' %}" method="post">
+					{% csrf_token %}
+>>>>>>> master
 					<span class="login100-form-title p-b-7">
 						Let's play !
 					</span>
@@ -67,10 +91,17 @@
 							Please enter your name.
 						</span>
 					</div>
+<<<<<<< HEAD
 
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Name is required">
 						<span class="label-input100">Name</span>
 						<input class="input100" type="text" name="username" placeholder="Type your name">
+=======
+					
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Name is required">
+						<span class="label-input100">Name</span>
+						<input class="input100" type="text" name="player_name" placeholder="Type your name">
+>>>>>>> master
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
 					
@@ -82,7 +113,16 @@
 							</button>
 						</div>
 					</div>
+<<<<<<< HEAD
 
+=======
+					
+				</form>
+			
+			</div>
+		</div>
+	</div>
+>>>>>>> master
 					<!-- <div class="txt1 text-center p-t-54 p-b-20">
 						<span>
 							Or Sign Up Using
@@ -111,6 +151,7 @@
 						<a href="#" class="txt2">
 							Sign Up
 						</a>
+<<<<<<< HEAD
 					</div>
 				</form>
 			</div>
@@ -139,5 +180,16 @@
 	<script src="{% static 'quizer_game/scripts/js/main.js' %}"></script>
 <!--	<script src="../../static/quizer_game/scripts/js/main.js"></script>-->
 
+=======
+					</div> -->
+	
+	<div id="dropDownSelect1"></div>
+  
+	<script src="{% static 'quizer_game/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'quizer_game/scripts/js/main.js' %}"></script>
+  <script>
+		sessionStorage.clear();
+	</script>
+>>>>>>> master
 </body>
 </html>
