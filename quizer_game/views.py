@@ -10,6 +10,7 @@ import time
 
 # Create your views here.
 DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
+DIFFICULTY_NUM = {0: 'Easy', 1: 'Medium', 2: 'Hard'}
 CHOICE_VALUE = {'wrong': 0, 'correct': 1}
 POSITION = {'max': 15, 'min': 0}
 HARD_LVL_TIME_LIMIT = 60            # seconds
@@ -203,7 +204,12 @@ def login(request):
 
 def leaderboard(request, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
-    player = quiz.player_set.get()
-    number = range(1, player.id+1)
-    context = {'quizzes': quiz, 'player': player, 'number': number}
+    players = quiz.player_set.filter(selected_difficulty=selected_difficulty,
+                                     is_achieved=True)
+    players.order_by('time')
+    # number = range(1, player.id+1)
+    context = {'quiz': quiz,
+               'players': players,
+               'difficulty': DIFFICULTY_NUM[selected_difficulty],
+               }
     return render(request, 'quizer_game/leaderboard.html', context)
