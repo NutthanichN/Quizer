@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load quizer_game_extras %}
 <head>
     <meta charset="UTF-8">
 	<title>Question set detail</title>
-    <link rel="stylesheet" href="../../static/quizer_game/styles/question-set-detail.css">
+	 {% load static %}
+  	<link rel="stylesheet" href="{% static 'quizer_game/styles/question-set-detail.css' %}">
+
 
 
 <body>
@@ -20,7 +23,7 @@
 	  	 <a class="login" href="">Login</a>
 	</div>
 </header>
- <h1>Quiz</h1>
+ <h1>{{  quiz }}</h1>
 <div class="container">
     <div id="piechart" class="chart"></div>
     <p id="easy">Easy</p>
@@ -42,186 +45,18 @@
 			</tr>
   		</thead>
   		<tbody>
+		    {% for i in  quiz.question_set.all %}
 			<tr>
-      			<td>1</td>
-				<td>How many staircases does Hogwarts have?</td>
-                <td>28</td>
+      			<td>{{forloop.counter}}</td>
+				<td>{{i}}</td>
+                <td>34</td>
       			<td>3</td>
       			<td>5</td>
       			<td>10</td>
                 <td>10</td>
     		</tr>
-			<tr>
-      			<td>2</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>21</td>
-      			<td>3</td>
-      			<td>7</td>
-      			<td>10</td>
-                <td>1</td>
-    		</tr>
-			<tr>
-      		    <td>3</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>32</td>
-      			<td>8</td>
-      			<td>5</td>
-      			<td>9</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>4</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>5</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>6</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>7</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>8</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>9</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>10</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>11</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>12</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>13</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>14</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>15</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>16</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>17</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>18</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>19</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		   	<tr>
-      			<td>20</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
+
+		    {% endfor %}
 		</tbody>
 	</table>
 
@@ -251,105 +86,18 @@
 			</tr>
   		</thead>
   		<tbody>
+		    {% for j in  quiz.question_set.all %}
 			<tr>
-      			<td>1</td>
-				<td>How many staircases does Hogwarts have?</td>
+      			<td>{{forloop.counter}}</td>
+				<td>{{j}}</td>
                 <td>28</td>
       			<td>3</td>
       			<td>5</td>
       			<td>10</td>
                 <td>10</td>
     		</tr>
-			<tr>
-      			<td>2</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>21</td>
-      			<td>3</td>
-      			<td>7</td>
-      			<td>10</td>
-                <td>1</td>
-    		</tr>
-			<tr>
-      		    <td>3</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>32</td>
-      			<td>8</td>
-      			<td>5</td>
-      			<td>9</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>4</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>5</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>6</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>7</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>8</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>9</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>10</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>11</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
+		     {% endfor %}
+
 		</tbody>
 	</table>
 
@@ -378,186 +126,18 @@
                 <th>Choice4</th>
 			</tr>
         </thead>
-            <tr>
-      			<td>1</td>
-				<td>a</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
+		  {% for j in  quiz.question_set.all %}
 			<tr>
-      			<td>2</td>
-				<td>b</td>
-                <td>21</td>
-      			<td>3</td>
-      			<td>7</td>
-      			<td>10</td>
-                <td>1</td>
-    		</tr>
-			<tr>
-      		    <td>3</td>
-				<td>c</td>
-                <td>32</td>
-      			<td>8</td>
-      			<td>5</td>
-      			<td>9</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>4</td>
-				<td>d</td>
+      			<td>{{forloop.counter}}</td>
+				<td>{{j}}</td>
                 <td>28</td>
       			<td>3</td>
       			<td>5</td>
       			<td>10</td>
                 <td>10</td>
     		</tr>
-			<tr>
-      			<td>5</td>
-				<td>e</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>6</td>
-				<td>f</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>7</td>
-				<td>g</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>8</td>
-				<td>h</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>9</td>
-				<td>i</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>10</td>
-				<td>j</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>11</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>12</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>13</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>14</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>15</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>16</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>17</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>18</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>19</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		    <tr>
-      			<td>20</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
+		     {% endfor %}
+
 		</tbody>
 	</table>
 </div>
@@ -568,10 +148,8 @@
     <a href=>Back</a>
 </div>
 
-
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-<script  type="text/javascript" src="../../static/quizer_game/scripts/question-set-detail.js"></script>
+<script  type="text/javascript" src="{% static 'quizer_game/scripts/question-set-detail.js' %}"></script>
 
 
 </body>

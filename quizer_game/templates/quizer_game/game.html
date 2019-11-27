@@ -1,10 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+{% load quizer_game_extras %}
+  <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>Quizer Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quizer_game/styles/style-game.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+  </head>
+  <body>
 
-</body>
+<!--    <div id="time-up" class="overlay" style="display: none">-->
+<!--      <div class="overlay-content">-->
+<!--        <a class="navbar" href="">Back to home page</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <a onclick="closeOverlay()">Close</a>-->
+<!--    <a onclick="openOverlay()">Open</a>-->
+    
+    <h2 class="top-text">Player's name
+      <span id="quiz-name">Quiz topic : {{ quiz.topic }}</span>
+      <span>Time: <span id="time"></span></span>
+    </h2>
+    <p class="top-text" id="player-name">{{ player.name }}</p>
+    <span class="navbar">
+      <a id="quit" href="">Quit</a>
+    </span>
+    
+    <div class="racing-track-box">
+      <img id="racing-track-img" src="{% static 'quizer_game/images/race-track.png' %}" alt="Racing Track">
+      <img id="race-car-img" style="left:{{ player.position|mul:61 }}px;" src="{% static 'quizer_game/images/race-car-200.png' %}" alt="Race car">
+    </div>
+    
+    <div class="status">
+      <span>Difficulty: {{ player.difficulty }} | </span>
+      <span>Correct answer: {{ player.correct_answer }} | </span>
+      <span>Wrong answer: {{ player.wrong_answer }}</span>
+    </div>
+    <div class="question-body">
+      <form action="{% url 'quizer_game:update' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}"
+            method="post">
+        {% csrf_token %}
+        <div id="question-text">
+          <p>Q.{{ question.number }} {{ question.text }}</p>
+        </div>
+        <!--        <p>Q1. This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg question</p>-->
+        {% for choice in question.choice_set.all %}
+          {# /quizer/game/player_id/quiz_id/difficulty/choice_value/update/ #}
+          <div class="navbar" id="c{{ forloop.counter }}">
+            <button type="submit" name="choice_id" value="{{ choice.id }}">{{ choice.text }}</button>
+<!--              <button>This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg choice</button>-->
+          </div>
+        {% endfor %}
+      </form>
+    
+    </div>
+
+  <script>
+    function openOverlay() {
+      document.getElementById("time-up").style.display = "block";
+    }
+    
+    function closeOverlay() {
+      document.getElementById("time-up").style.display = "none";
+    }
+    
+    function convertToTimeFormat(rawSeconds) {
+      rawSeconds = Math.floor(rawSeconds / 1000);
+      var hours = Math.floor(rawSeconds / (60 * 60));
+      var minutes = Math.floor((rawSeconds % (60 * 60)) / 60);
+      var seconds = Math.floor((rawSeconds % (60 * 60)) % 60);
+      var strH = hours.toString();
+      var strM = minutes.toString();
+      var strS = seconds.toString();
+      if(minutes < 10) {
+        strM = "0" + strM;
+      }
+      if(seconds < 10) {
+        strS = "0" + strS;
+      }
+      return strH + ":" + strM + ":" + strS;
+    }
+    
+    var timeLimitMsec = {{ time_limit }} * 1000;
+    function timer() {
+      var currentTime = new Date().getTime();
+      var timeDuration = currentTime - parseInt(sessionStorage.getItem("initTime"));
+      var timeDurationStr = convertToTimeFormat(timeDuration);
+      sessionStorage.setItem("previousTimeDuration", timeDurationStr);
+      
+      {% if player.selected_difficulty == 2 %}
+        if(timeDuration >= timeLimitMsec) {
+          document.getElementById("time").style.color = "red";
+        }
+      {% endif %}
+      document.getElementById("time").innerHTML = timeDurationStr;
+    }
+    
+    var startTimer;
+    {% if player.is_playing %}
+      if(typeof(Storage) !== "undefined") {
+        if(sessionStorage.getItem("initTime") === null) {
+          document.getElementById("time").innerHTML = "0:00:00";
+          var initTime = new Date().getTime();
+          sessionStorage.setItem("initTime", initTime.toString());
+        }
+        else {
+          document.getElementById("time").innerHTML = sessionStorage.getItem("previousTimeDuration");
+        }
+      }
+      
+      startTimer = setInterval(timer, 1000);
+    {% else %}
+      document.getElementById("time").innerHTML = "-:--:--";
+      clearInterval(startTimer);
+      sessionStorage.clear();
+    {% endif %}
+
+  </script>
+  </body>
 </html>
