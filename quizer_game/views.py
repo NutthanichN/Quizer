@@ -251,12 +251,15 @@ def update_create_quiz(request):
         return redirect(reverse('quizer_game:create-question-set'))
 
 
+# /quizer/edit-quiz/quiz_id/
 def edit_quiz(request,quiz_id):
     template_name = 'quizer_game/edit-question-set.html'
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     context = {'quiz': quiz}
     return render(request, template_name,context)
 
+
+# /quizer/edit-quiz/quiz_id/update/
 def edit_data(request,quiz_id):
 
     quiz = get_object_or_404(Quiz, pk =quiz_id)
@@ -266,20 +269,24 @@ def edit_data(request,quiz_id):
     question = quiz.question_set.all()
     print(question)
     count = 0
+
+    # update question text from input
     for i in quiz.question_set.all():
         count = count + 1
         i.text = request.POST[f'question_text_{count}']
         i.save()
         c = 0
+
+        # update choice text from input
         for j in i.choice_set.all():
             c = c + 1
             j.text = request.POST[f'{count}_choice_text_{c}']
             choice_value = request.POST[f'{count}_choice_value']
+
+            # check the right choice
             if int(choice_value) == int(c):
                 j.value = 1
             else:
                 j.value = 0
             j.save()
-
-
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
