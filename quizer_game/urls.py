@@ -3,7 +3,6 @@ from django.urls import path
 from . import views
 
 
-
 app_name = 'quizer_game'
 urlpatterns = [
     # /quizer/
@@ -25,12 +24,4 @@ urlpatterns = [
          views.create_quiz, name='create-question-set'),
     path('create-quiz/update/',
          views.update_create_quiz, name='update_create_quiz'),
-
-
-
-
-
-
-
-
 ]

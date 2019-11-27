@@ -17,7 +17,7 @@
 <!--    </div>-->
 <!--    <a onclick="closeOverlay()">Close</a>-->
 <!--    <a onclick="openOverlay()">Open</a>-->
-
+    
     <h2 class="top-text">Player's name
       <span id="quiz-name">Quiz topic : {{ quiz.topic }}</span>
       <span>Time: <span id="time"></span></span>
@@ -26,12 +26,12 @@
     <span class="navbar">
       <a id="quit" href="">Quit</a>
     </span>
-
+    
     <div class="racing-track-box">
       <img id="racing-track-img" src="{% static 'quizer_game/images/race-track.png' %}" alt="Racing Track">
       <img id="race-car-img" style="left:{{ player.position|mul:61 }}px;" src="{% static 'quizer_game/images/race-car-200.png' %}" alt="Race car">
     </div>
-
+    
     <div class="status">
       <span>Difficulty: {{ player.difficulty }} | </span>
       <span>Correct answer: {{ player.correct_answer }} | </span>
@@ -53,18 +53,18 @@
           </div>
         {% endfor %}
       </form>
-
+    
     </div>
 
   <script>
     function openOverlay() {
       document.getElementById("time-up").style.display = "block";
     }
-
+    
     function closeOverlay() {
       document.getElementById("time-up").style.display = "none";
     }
-
+    
     function convertToTimeFormat(rawSeconds) {
       rawSeconds = Math.floor(rawSeconds / 1000);
       var hours = Math.floor(rawSeconds / (60 * 60));
@@ -81,14 +81,14 @@
       }
       return strH + ":" + strM + ":" + strS;
     }
-
+    
     var timeLimitMsec = {{ time_limit }} * 1000;
     function timer() {
       var currentTime = new Date().getTime();
       var timeDuration = currentTime - parseInt(sessionStorage.getItem("initTime"));
       var timeDurationStr = convertToTimeFormat(timeDuration);
       sessionStorage.setItem("previousTimeDuration", timeDurationStr);
-
+      
       {% if player.selected_difficulty == 2 %}
         if(timeDuration >= timeLimitMsec) {
           document.getElementById("time").style.color = "red";
@@ -96,7 +96,7 @@
       {% endif %}
       document.getElementById("time").innerHTML = timeDurationStr;
     }
-
+    
     var startTimer;
     {% if player.is_playing %}
       if(typeof(Storage) !== "undefined") {
@@ -109,7 +109,7 @@
           document.getElementById("time").innerHTML = sessionStorage.getItem("previousTimeDuration");
         }
       }
-
+      
       startTimer = setInterval(timer, 1000);
     {% else %}
       document.getElementById("time").innerHTML = "-:--:--";
@@ -120,4 +120,3 @@
   </script>
   </body>
 </html>
-
