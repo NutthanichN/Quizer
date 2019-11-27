@@ -255,7 +255,7 @@ label input {
      font-size: 20px;
 }
 
-.field input[type='topic']{
+.topic_input{
   width: 180%;
   padding: 1.25em;
   background: #FFFAF0;
@@ -272,7 +272,7 @@ label input {
      font-size: 18px;
 }
 
-.field input[type='question']{
+.question_input{
   width: 180%;
   padding: 1.25em;
   background: #FFFAF0;
@@ -290,7 +290,7 @@ label input {
      font-size: 16px;
 }
 
-.field input[type='choice']{
+.choice_input{
   width: 180%;
   padding: 1.25em;
   background: #FFFAF0;
@@ -301,21 +301,7 @@ label input {
   font-size: 14px;
 }
 
-.choice {
-     margin-left: -3em;
-     font-size: 16px;
-}
 
-.field input[type='choice']{
-  width: 180%;
-  padding: 1.25em;
-  background: #FFFAF0;
-  border: 1px solid #191970;
-  color: black;
-  border-radius: 19px;
-  margin-left: -3em;
-  font-size: 14px;
-}
 
 .file{
    margin-left: -6em;
