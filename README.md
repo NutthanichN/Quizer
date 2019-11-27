@@ -35,7 +35,8 @@ Step1: Install virtual enviroment
     pip install virtualenv
 ```
 
-Step2: Clone this repository and change your current working directory
+
+Step2: Clone this repository and change your current working directory 
 ```bash
     git clone https://github.com/NutthanichN/Quizer
     cd Quizer
@@ -69,9 +70,9 @@ Step8: Load data dump from `quiz_and_player.json`
     python manage.py loaddata quiz_and_player.json
 ```
 
+
 Step9: Run server at localhost:8000
 ```bash
     python manage.py runserver
 ```
-
 

@@ -12,6 +12,7 @@ from django.contrib import messages
 from .models import Quiz, Player, Question, Choice, Timer
 # from .forms import QuizModelForm,QuestionModelForm
 
+
 from datetime import timedelta
 import time
 
@@ -254,17 +255,4 @@ def update_create_quiz(request):
         messages.error(request, 'Unsuccessful saving!! You must set 20 questions and 4 choices')
         quiz.delete()
         return redirect(reverse('quizer_game:create-question-set'))
-
-
-
-
-
-
-
-
-
-
-
-
-
 

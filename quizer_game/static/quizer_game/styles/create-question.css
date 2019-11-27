@@ -138,6 +138,10 @@ tbody td {
   position: absolute;
   top: 44%;
   right: 14%;
+  top: 52%;
+  right: 8.5%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   color: white;
 }
 .email a:visited  {
@@ -284,7 +288,7 @@ label input {
      margin-left: -3em;
      font-size: 16px;
 }
-
+  
 .choice_input{
   width: 180%;
   padding: 1.25em;
@@ -296,6 +300,10 @@ label input {
   font-size: 14px;
 }
 
+
+.choice {
+     margin-left: -3em;
+     font-size: 16px;
 
 .field input[type='choice']{
   width: 180%;
@@ -353,6 +361,7 @@ select option {
 
 }
 
+
 .navbar input{
   color: black;
   background-color: #eaece5;
@@ -393,5 +402,6 @@ select option {
     margin-left: -8em;
      font-size: 20px;
 }
+
 
 

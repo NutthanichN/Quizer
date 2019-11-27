@@ -29,3 +29,4 @@ class GameTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/game.html')
+
