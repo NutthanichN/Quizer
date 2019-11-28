@@ -1,9 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic import TemplateView
+from django.views import View
+from django.contrib import messages
 
-from .models import Quiz, Choice, Timer
+from .models import Quiz, Player, Question, Choice, Timer
 
 from datetime import timedelta
 import time
@@ -58,22 +61,31 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     timer.start_point = timedelta(seconds=int(time.time()))
     timer.end_point = timedelta(seconds=int(time.time()))
     timer.save()
-
     return player
 
 
 def index(request):
-    # return HttpResponse("Hello, world. You're at the Quizer game test index.")
     return render(request, 'quizer_game/index.html')
 
 
+def login(request):
+    return render(request, 'quizer_game/login.html')
+
+  
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
+
+  
+def leaderboard_index(request):
+    quiz = Quiz.objects.all()
+    context = {'quizzes': quiz}
+    return render(request, 'quizer_game/leaderboard-index.html', context)
 
 
 # <str:player_name>/quiz-level/
 def quiz_level(request):
     input_player_name = request.POST['player_name']
+    # input_player_name = request.POST.get('player_name', '')
     quizzes = Quiz.objects.all()
     context = {'player_name': input_player_name,
                'quizzes': quizzes}
@@ -93,7 +105,6 @@ def start_game(request, player_name):
 
     timer = setup_timer(player)
     timer.start()
-    
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': player.selected_difficulty, }
@@ -102,7 +113,6 @@ def start_game(request, player_name):
 
 
 # /quizer/game/player_id/quiz_id/difficulty/
-# TODO handle error (link to 404 not found page)
 def game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
@@ -117,7 +127,6 @@ def game(request, player_id, quiz_id, selected_difficulty):
 
 
 # TODO provide upvote-downvote feature
-# TODO handle error (link to 404 not found page)
 # /quizer/game/player_id/quiz_id/difficulty/update/
 def update_game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
@@ -190,7 +199,7 @@ def result(request, player_id, quiz_id, selected_difficulty):
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
-
+  
 
 def leaderboard_index(request):
     quiz = Quiz.objects.all()
@@ -213,3 +222,95 @@ def leaderboard(request, quiz_id, selected_difficulty):
                'difficulty': DIFFICULTY_NUM[selected_difficulty],
                }
     return render(request, 'quizer_game/leaderboard.html', context)
+
+  
+# /quizer/create-quiz/
+def create_quiz(request):
+    template_name = 'quizer_game/create-question.html'
+    return render(request, template_name)
+
+
+# /quizer/create-quiz/update/
+def update_create_quiz(request):
+    quiz_topic = request.POST.get('quiz_topic')
+    quiz = Quiz(topic=quiz_topic)
+    quiz.save()
+    count_question = 0
+    count_choice = 0
+
+    # update question text from input
+    for i in range(1, 21):
+        question_text = request.POST.get(f'question_text_{i}')
+
+        # check that user set question text
+        if len(question_text) != 0:
+            count_question = count_question + 1
+        question = quiz.question_set.create(text=question_text, number=i)
+
+        # update choice text from input
+        for j in range(1, 5):
+            choice_text = request.POST[f'{i}_choice_text_{j}']
+
+            # check that user set choice text
+            if len(choice_text) != 0:
+                count_choice = count_choice  + 1
+            choice_value = request.POST[f'{i}_choice_value']
+            choice = question.choice_set.create(text=choice_text)
+
+            # check the right choice
+            if choice_value == f"choice{j}":
+                choice.value = 1
+                choice.save()
+
+    # check that user set 20 questions and 80 choices
+    if count_question == 20 and count_choice  == 80:
+        messages.success(request, 'Successful saving')
+        return redirect(reverse('quizer_game:create-question-set'))
+    else:
+        messages.error(request, 'Unsuccessful saving!! You must set 20 questions and 4 choices')
+        quiz.delete()
+        return redirect(reverse('quizer_game:create-question-set'))
+
+
+# /quizer/edit-quiz/quiz_id/
+def edit_quiz(request,quiz_id):
+    template_name = 'quizer_game/edit-question-set.html'
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    context = {'quiz': quiz}
+    return render(request, template_name,context)
+
+
+# /quizer/edit-quiz/quiz_id/update/
+def edit_data(request,quiz_id):
+
+    quiz = get_object_or_404(Quiz, pk =quiz_id)
+    quiz.topic = request.POST.get('quiz_topic')
+    quiz.save()
+
+    question = quiz.question_set.all()
+    print(question)
+    count_question = 0
+
+    # update question text from input
+    for i in quiz.question_set.all():
+        count_question = count_question + 1
+        i.text = request.POST[f'question_text_{count_question}']
+        i.save()
+        count_choice = 0
+
+        # update choice text from input
+        for j in i.choice_set.all():
+            count_choice = count_choice + 1
+            j.text = request.POST[f'{count_question}_choice_text_{count_choice}']
+            choice_value = request.POST[f'{count_question}_choice_value']
+
+            # check the right choice
+            if int(choice_value) == int(count_choice):
+                j.value = 1
+            else:
+                j.value = 0
+            j.save()
+
+    # if user already save it will display successful saving
+    messages.success(request, 'Successful saving')
+    return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
