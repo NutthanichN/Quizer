@@ -1,16 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
 
-html,
-
-body {
-
+html,body {
   margin: 0;
   background: #eaece5;
   font-family: 'Nunito', serif;
   font-weight: 100;
   overflow: scroll;
-
 }
 
 .container {
@@ -61,13 +57,11 @@ h1 {
    display: block;
 }
 
-
 .fixed_header th, .fixed_header td {
   padding: 16px;
   text-align: center;
   width: 300px;
 }
-
 
 td {
   text-align: center;
@@ -103,14 +97,12 @@ tbody td {
   border: solid white;
 }
 
-
 .top a:hover{
   background: #eaece5;
   color: black;
   border: solid white;
   border-radius: 19px;
 }
-
 
 .logout{
   font-size: 12px;
@@ -214,7 +206,7 @@ lable{
 }
 .form__footer input {
   position: fixed;
-  top: 115px;
+  top: 110px;
   left: 1070px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
