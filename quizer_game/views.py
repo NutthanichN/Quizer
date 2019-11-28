@@ -13,6 +13,7 @@ import time
 
 # Create your views here.
 DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
+DIFFICULTY_NUM = {0: 'Easy', 1: 'Medium', 2: 'Hard'}
 CHOICE_VALUE = {'wrong': 0, 'correct': 1}
 POSITION = {'max': 15, 'min': 0}
 HARD_LVL_TIME_LIMIT = 60            # seconds
@@ -74,7 +75,7 @@ def login(request):
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
 
-
+  
 def leaderboard_index(request):
     quiz = Quiz.objects.all()
     context = {'quizzes': quiz}
@@ -99,7 +100,7 @@ def start_game(request, player_name):
     # test with existing player
     player = setup_player_for_testing(quiz, player_name, DIFFICULTY[difficulty], POSITION['min'])
 
-    # (real) create new player
+    # uncomment this for real use
     # player = create_player(quiz, player_name, selected_difficulty)
 
     timer = setup_timer(player)
@@ -191,13 +192,38 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
                             )
                     )
 
+
 # game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/
 def result(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
+  
 
+def leaderboard_index(request):
+    quiz = Quiz.objects.all()
+    context = {'quizzes': quiz}
+    return render(request, 'quizer_game/leaderboard-index.html', context)
+
+
+def login(request):
+    return render(request, 'quizer_game/login.html')
+
+
+def leaderboard(request, quiz_id, selected_difficulty):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    players = quiz.player_set.filter(selected_difficulty=selected_difficulty,
+                                     is_achieved=True)
+    players.order_by('time')
+    # number = range(1, player.id+1)
+    context = {'quiz': quiz,
+               'players': players,
+               'difficulty': DIFFICULTY_NUM[selected_difficulty],
+               }
+    return render(request, 'quizer_game/leaderboard.html', context)
+
+  
 # /quizer/create-quiz/
 def create_quiz(request):
     template_name = 'quizer_game/create-question.html'

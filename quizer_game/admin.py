@@ -38,7 +38,6 @@ class ChoiceAdmin(admin.ModelAdmin):
 
 
 @admin.register(Player)
-
 class PlayerAdmin(admin.ModelAdmin):
     list_display = ('name', 'quiz', 'is_achieved', 'is_failed', 'time')
     list_filter = ('name', 'quiz', 'is_achieved', 'is_failed')
@@ -50,5 +49,3 @@ class PlayerAdmin(admin.ModelAdmin):
 @admin.register(Timer)
 class TimerAdmin(admin.ModelAdmin):
     list_display = ('start_point', 'end_point', 'player')
-
-
