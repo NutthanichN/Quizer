@@ -21,10 +21,18 @@
 	<!--<div class="top">-->
 	  	 <!--<a class="login" href="">Login</a>-->
 	</div>
-   </header>
-   <h1>Edit Quiz</h1>
+  </header>
+  <h1>Edit Quiz</h1>
 
   <div class="container">
+    {% if messages %}
+	  <ul class="messages" id="message">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+	  </ul>
+	{% endif %}
+
     <form id="page-info" action="{% url 'quizer_game:edit_data'  quiz_id=quiz.id %}" method="post">
 	  {% csrf_token %}
 	  <article class="field">
