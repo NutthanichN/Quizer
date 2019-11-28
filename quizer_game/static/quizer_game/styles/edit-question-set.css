@@ -293,19 +293,6 @@ label input {
   font-size: 14px;
 }
 
-.file{
-  margin-left: -6em;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.file [type='file'] {
-  font-family: 'Nunito', serif;
-  color: black;
-  background-color: #eaece5;
-  font-size: 18px;
-}
-
 .choose_choice{
   margin-left: -2em;
   font-size: 18px;
