@@ -217,6 +217,25 @@ def quit_game(request, player_id, quiz_id, selected_difficulty):
     return redirect(reverse('quizer_game:index'))
 
 
+def upvote_downvote(request, player_id, quiz_id, selected_difficulty, code):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    player = quiz.player_set.get(pk=player_id)
+    if player.has_vote:
+        if code == 0:
+            quiz.downvotes += 1
+            quiz.save()
+        else:
+            quiz.upvotes += 1
+            quiz.save()
+        player.has_vote = False
+        player.save()
+    return redirect(reverse('quizer_game:result',
+                            kwargs={'player_id': player.id, 'quiz_id': quiz.id,
+                                    'selected_difficulty': player.selected_difficulty, }
+                            )
+                    )
+
+
 # game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/
 def result(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)

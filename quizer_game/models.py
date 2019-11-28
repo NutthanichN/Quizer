@@ -8,6 +8,8 @@ DIFFICULTY_NUM = {0: 'Easy', 1: 'Medium', 2: 'Hard'}
 
 class Quiz(models.Model):
     topic = models.CharField(max_length=200, verbose_name='Topic')
+    upvotes = models.IntegerField(default=0, verbose_name='Upvote')
+    downvotes = models.IntegerField(default=0, verbose_name='Downvote')
 
     @property
     def total_player(self) -> int:
@@ -49,6 +51,7 @@ class Player(models.Model):
     is_timeout = models.BooleanField(default=False, verbose_name='Timeout')
     correct_answer = models.IntegerField(default=0, verbose_name='Number of correct answers')
     wrong_answer = models.IntegerField(default=0, verbose_name='Number of wrong answers')
+    has_vote = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name

@@ -21,6 +21,8 @@ urlpatterns = [
          views.result, name='result'),
     path('game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/quit/',
          views.quit_game, name='quit-game'),
+    path('game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/<int:code>/upvote-downvote/',
+         views.upvote_downvote, name='upvote-downvote'),
     path('leaderboard-index/',
          views.leaderboard_index, name='leaderboard-index'),
     path('leaderboard/<int:quiz_id>/<int:selected_difficulty>/',

@@ -17,6 +17,8 @@
     <h6>Total correct answer: {{ player.correct_answer }}</h6>
     <h6>Total wrong answer: {{ player.wrong_answer }}</h6>
     <h6>Total visit of quiz: {{ quiz.total_player }}</h6>
+    <h6>Total upvote: {{ quiz.upvotes }}</h6>
+    <h6>Total downvote: {{quiz.downvotes }}</h6>
 
     <section class="home-slider">
       <div class="slider-item">
@@ -58,6 +60,16 @@
                   Home
                 </a>
               </p1>
+              
+              <br>
+              <a href="{% url 'quizer_game:upvote-downvote' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty code=1 %}">
+                Upvote
+                <span>
+                  <a href="{% url 'quizer_game:upvote-downvote' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty code=0 %}">
+                    Downvote
+                  </a>
+                </span>
+              </a>
             
             </div>
           </div>
