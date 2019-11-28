@@ -1,16 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
-
-html,
-
-body {
-
+html,body {
   margin: 0;
   background: #eaece5;
   font-family: 'Nunito', serif;
   font-weight: 100;
   overflow: scroll;
-
 }
 
 .container {
@@ -30,22 +25,19 @@ body {
 }
 
 h1 {
-    position: absolute;
+  position: absolute;
   top:100px;
   left:45%;
   color: black;
   text-align: center;
   font-size: 30px;
   top: 100 px;
-
 }
 
 .fixed_header{
-
-    width: 120px;
-    table-layout: fixed;
-    border-collapse: collapse;
-
+  width: 120px;
+  table-layout: fixed;
+  border-collapse: collapse;
 }
 
 .fixed_header tbody{
@@ -54,13 +46,11 @@ h1 {
   overflow: auto;
   height: 250px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
-
 }
 
 .fixed_header thead tr {
    display: block;
 }
-
 
 .fixed_header th, .fixed_header td {
   padding: 16px;
@@ -68,25 +58,27 @@ h1 {
   width: 300px;
 }
 
-
 td {
   text-align: center;
   padding: 18px;
   color: black;
   word-wrap: break-word;
   max-width: 100px;
-
 }
+
 th {
   text-align: center;
 }
+
 thead th {
   background-color: #25274d;
   color: white;
 }
+
 tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.7);
 }
+
 tbody td {
   position: relative;
 }
@@ -103,7 +95,6 @@ tbody td {
   border: solid white;
 }
 
-
 .top a:hover{
   background: #eaece5;
   color: black;
@@ -111,13 +102,11 @@ tbody td {
   border-radius: 19px;
 }
 
-
 .logout{
   font-size: 12px;
   position: absolute;
   top: 55%;
   left: 95%;
-
 }
 
 .create {
@@ -138,20 +127,20 @@ tbody td {
   position: absolute;
   top: 44%;
   right: 14%;
-  top: 52%;
-  right: 8.5%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: white;
 }
+
 .email a:visited  {
   color: white;
 }
 
 .email a:hover{
   color: #00FFFF;
+  top: 44%;
+  right: 14%;
 }
-
 
 .login {
   position: absolute;
@@ -161,9 +150,9 @@ tbody td {
 }
 
 #back a{
-   position: fixed;
-   top: 120px;
-   left: 55px;
+  position: fixed;
+  top: 120px;
+  left: 55px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: black;
@@ -174,8 +163,8 @@ tbody td {
   font-size: 20px;
   border-radius: 19px;
   border: solid black;
-
 }
+
 #back a:hover {
   background: #25274d;
   color: white;
@@ -212,7 +201,13 @@ lable{
 .form__footer {
   margin-top: 1em;
 }
+
 .form__footer input {
+  position: fixed;
+  top: 115px;
+  left: 1070px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   display: block;
   color: black;
   background-color: #eaece5;
@@ -230,7 +225,6 @@ lable{
   color: white;
   border: solid black;
   border-radius: 19px;
-
 }
 
 .block-list {
@@ -238,6 +232,7 @@ lable{
   list-style-type: none;
   padding: 0;
 }
+
 .block-list li {
   padding-bottom: .5em;
 }
@@ -246,12 +241,11 @@ label input {
   margin-right: .25em;
   margin-top: -4px;
   vertical-align: middle;
-
 }
 
 .topic {
-     margin-left: -8em;
-     font-size: 20px;
+  margin-left: -8em;
+  font-size: 20px;
 }
 
 .topic_input{
@@ -260,15 +254,15 @@ label input {
   background: #FFFAF0;
   border: 1px solid #191970;
   border: 1px solid #272727;
-  color: #555;
+  color: black;
   border-radius: 19px;
   margin-left: -12em;
   font-size: 14px;
 }
 
 .question {
-     margin-left: -6em;
-     font-size: 18px;
+  margin-left: -6em;
+  font-size: 18px;
 }
 
 .question_input{
@@ -277,12 +271,11 @@ label input {
   background: #FFFAF0;
   border: 1px solid #191970;
   border: 1px solid #272727;
-  color: #555;
+  color: black;
   border-radius: 19px;
   margin-left: -8em;
   font-size: 14px;
 }
-
 
 .choice {
      margin-left: -3em;
@@ -300,36 +293,6 @@ label input {
   font-size: 14px;
 }
 
-.choice {
-     margin-left: -3em;
-     font-size: 16px;
-
-.field input[type='choice']{
-  width: 180%;
-  padding: 1.25em;
-  background: #FFFAF0;
-  border: 1px solid #191970;
-  color: black;
-  border-radius: 19px;
-  margin-left: -3em;
-  font-size: 14px;
-}
-
-.file{
-   margin-left: -6em;
-   font-size: 18px;
-   font-weight: bold;
-}
-
-.file [type='file'] {
-
-  font-family: 'Nunito', serif;
-  color: black;
-  background-color: #eaece5;
-  font-size: 18px;
-
-}
-
 .choose_choice{
   margin-left: -2em;
   font-size: 18px;
@@ -340,7 +303,7 @@ label input {
   margin-left: -6em;
   font-size: 18px;
   font-weight: bold;
- }
+}
 
 select{
   margin:20px;
@@ -358,34 +321,6 @@ select option {
   foint-size: 18px;
 }
 
-.navbar input{
-  color: black;
-  background-color: #eaece5;
-  text-align: center;
-  padding: 18px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  border-radius: 19px;
-  border: solid black;
-
-}
-
-.navbar input:hover, a:hover {
-  background: #25274d;
-  color: white;
-  border: solid black;
-}
-
-.input {
-  width: 180%;
-  padding: 1.25em;
-  background: #FFFAF0;
-  border: 1px solid #191970;
-  border: 1px solid #272727;
-  color: #555;
-  border-radius: 19px;
-}
-
 #id{
   background-color: #4CAF50;
   border: none;
@@ -394,8 +329,15 @@ select option {
   border-radius: 19px;
 }
 
-#message{
-  background-color: #000FFF;
+#message_success{
+  background-color: #7FFFD4;
+  margin-left: -8em;
+  font-size: 20px;
+}
+
+#message_error{
+  background-color: #8B0000;
+  color: white;
   margin-left: -8em;
   font-size: 20px;
 }

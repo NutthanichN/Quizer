@@ -1,8 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
-
 html,body {
-   margin: 0;
+  margin: 0;
   background: #eaece5;
   font-family: 'Nunito', serif;
   font-weight: 100;
@@ -239,7 +238,6 @@ label input {
   margin-right: .25em;
   margin-top: -4px;
   vertical-align: middle;
-
 }
 
 .topic {
@@ -325,3 +323,4 @@ select option {
   margin-left: -8em;
   font-size: 20px;
 }
+

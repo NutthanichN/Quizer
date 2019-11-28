@@ -137,3 +137,4 @@ class PlayerModelTest(TestCase):
             self.player.selected_difficulty = difficulty_code
             with self.subTest(difficulty_code=difficulty_code):
                 self.assertEqual(self.player.difficulty, difficulty[difficulty_code])
+

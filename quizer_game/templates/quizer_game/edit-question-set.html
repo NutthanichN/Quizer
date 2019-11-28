@@ -26,12 +26,12 @@
 
   <div class="container">
     {% if messages %}
-	  <ul class="messages" id="message">
+	    <ul class="messages" id="message">
         {% for message in messages %}
           <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
         {% endfor %}
-	  </ul>
-	{% endif %}
+	    </ul>
+	  {% endif %}
 
     <form id="page-info" action="{% url 'quizer_game:edit_data'  quiz_id=quiz.id %}" method="post">
 	  {% csrf_token %}

@@ -50,3 +50,5 @@ class PlayerAdmin(admin.ModelAdmin):
 @admin.register(Timer)
 class TimerAdmin(admin.ModelAdmin):
     list_display = ('start_point', 'end_point', 'player')
+
+

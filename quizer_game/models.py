@@ -45,7 +45,7 @@ class Player(models.Model):
     is_timeout = models.BooleanField(default=False, verbose_name='Timeout')
     correct_answer = models.IntegerField(default=0, verbose_name='Number of correct answers')
     wrong_answer = models.IntegerField(default=0, verbose_name='Number of wrong answers')
-    
+
     def __str__(self):
         return self.name
 
@@ -98,3 +98,4 @@ class Timer(models.Model):
     def set_time_limit(self, seconds, minutes=0, hours=0):
         self.time_limit = timedelta(hours=hours, minutes=minutes, seconds=seconds)
         self.save()
+

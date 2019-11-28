@@ -35,6 +35,7 @@ Step1: Install virtual enviroment
     pip install virtualenv
 ```
 
+
 Step2: Clone this repository and change your current working directory 
 ```bash
     git clone https://github.com/NutthanichN/Quizer
@@ -73,3 +74,4 @@ Step9: Run server at localhost:8000
 ```bash
     python manage.py runserver
 ```
+
