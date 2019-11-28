@@ -142,8 +142,12 @@ def login(request):
 
 
 def leaderboard(request, quiz_id, selected_difficulty):
+    timelst = []
     quiz = get_object_or_404(Quiz, pk=quiz_id)
-    player = quiz.player_set.get()
-    number = range(1, player.id+1)
-    context = {'quizzes': quiz, 'player': player, 'number': number}
+    players = quiz.player_set.all()         # <QuerySet [<Player: player_test_20_q>, <Player: p2_20>]>
+    for player in players:
+        timelst.append(player.time)
+
+    number = range(1, len(players)+1)
+    context = {'quizzes': quiz, 'player': players, 'number': number, 'timelst': timelst}
     return render(request, 'quizer_game/leaderboard.html', context)

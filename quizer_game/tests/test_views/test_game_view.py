@@ -26,6 +26,8 @@ class GameTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/game.html')
 
+
+class SystemTest(TestCase):
     def test_can_view_index(self):
         """ Test that anyone can see index page """
         url = reverse('quizer_game:index')

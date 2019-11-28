@@ -898,12 +898,15 @@
     "quiz": 3,
     "current_question": 10,
     "name": "player_test_5_q",
-    "time": null,
+    "time": "00:00:00",
     "selected_difficulty": 0,
     "position": 5,
     "is_playing": false,
-    "is_failed": true,
-    "is_achieved": false
+    "is_failed": false,
+    "is_achieved": false,
+    "is_timeout": false,
+    "correct_answer": 0,
+    "wrong_answer": 0
   }
 },
 {
@@ -913,12 +916,71 @@
     "quiz": 4,
     "current_question": 11,
     "name": "player_test_20_q",
-    "time": null,
+    "time": "00:00:00",
+    "selected_difficulty": 2,
+    "position": 0,
+    "is_playing": false,
+    "is_failed": false,
+    "is_achieved": false,
+    "is_timeout": false,
+    "correct_answer": 0,
+    "wrong_answer": 0
+  }
+},
+{
+  "model": "quizer_game.player",
+  "pk": 6,
+  "fields": {
+    "quiz": 3,
+    "current_question": null,
+    "name": "player1",
+    "time": "00:00:00",
     "selected_difficulty": 0,
     "position": 0,
     "is_playing": false,
-    "is_failed": true,
-    "is_achieved": true
+    "is_failed": false,
+    "is_achieved": false,
+    "is_timeout": false,
+    "correct_answer": 0,
+    "wrong_answer": 0
+  }
+},
+{
+  "model": "quizer_game.player",
+  "pk": 7,
+  "fields": {
+    "quiz": 3,
+    "current_question": 10,
+    "name": "player2_5",
+    "time": "00:00:00",
+    "selected_difficulty": 0,
+    "position": 5,
+    "is_playing": false,
+    "is_failed": false,
+    "is_achieved": false,
+    "is_timeout": false,
+    "correct_answer": 0,
+    "wrong_answer": 0
+  }
+},
+{
+  "model": "quizer_game.timer",
+  "pk": 1,
+  "fields": {
+    "start_point": "00:00:00",
+    "end_point": "00:00:00",
+    "time_limit": "00:00:00",
+    "player": 5
+  }
+},
+{
+  "model": "quizer_game.timer",
+  "pk": 2,
+  "fields": {
+    "start_point": "00:00:00",
+    "end_point": "00:00:00",
+    "time_limit": "00:00:00",
+    "player": 1
   }
 }
 ]
