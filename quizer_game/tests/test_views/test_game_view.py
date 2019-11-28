@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.urls import reverse
 
 from quizer_game.models import Quiz, Question, Choice, Player
@@ -18,15 +18,11 @@ class GameTest(TestCase):
         self.player.is_playing = True
         self.player.save()
 
-        # setup player's timer
-        self.timer = self.player.timer_set.create()
-        self.timer.start()
-
-    def test_can_view_game(self):
+def test_can_view_game(self):
         """Test that a player can view game"""
         url = reverse('quizer_game:game', kwargs={'player_id': self.player.id, 'quiz_id': self.quiz.id,
                                                   'selected_difficulty': self.player.selected_difficulty})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/game.html')
-
+        
