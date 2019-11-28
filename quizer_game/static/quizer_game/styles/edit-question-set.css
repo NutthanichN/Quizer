@@ -202,6 +202,11 @@ lable{
 }
 
 .form__footer input {
+  position: fixed;
+  top: 115px;
+  left: 1070px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   display: block;
   color: black;
   background-color: #eaece5;
@@ -329,3 +334,8 @@ select option {
   foint-size: 18px;
 }
 
+#message{
+  background-color: #7FFFD4;
+  margin-left: -8em;
+  font-size: 20px;
+}
