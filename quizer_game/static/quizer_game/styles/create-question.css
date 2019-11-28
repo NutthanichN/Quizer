@@ -300,7 +300,6 @@ label input {
   font-size: 14px;
 }
 
-
 .choice {
      margin-left: -3em;
      font-size: 16px;
@@ -397,8 +396,8 @@ select option {
 
 #message{
   background-color: #000FFF;
-    margin-left: -8em;
-     font-size: 20px;
+  margin-left: -8em;
+  font-size: 20px;
 }
 
 
