@@ -1,66 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  {% load static %}
-  <meta charset="UTF-8">
-  <title>Leader board</title>
-  <link rel="stylesheet" href="{% static 'quizer_game/styles/leaderboard.css' %}">
-</head>
-<body>
+  <head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Leader board</title>
+    <link rel="stylesheet" href="{% static 'quizer_game/styles/leaderboard.css' %}">
+  </head>
+  <body>
 
-<header id="masthead">
-  <!--login version-->
-  <!--<div class="email">-->
-    <!--<a href="">Email: hello55@gmail.com</a>-->
-  <!--</div>-->
-  <!--<div class="top">-->
-    <!--<a class="create" href="">Create quiz</a>-->
-    <!--<a class="history" href="">History</a>-->
-    <!--<a class="logout" href="">Logout</a>-->
-  
-  <div class="top">
-    <a class="signup" href="{% url 'quizer_game:login' %}">Sign Up</a>
-    <a class="login" href="{% url 'quizer_game:login' %}">Login</a>
+  <header id="masthead">
+    <!--login version-->
+    <!--<div class="email">-->
+      <!--<a href="">Email: hello55@gmail.com</a>-->
+    <!--</div>-->
+    <!--<div class="top">-->
+      <!--<a class="create" href="">Create quiz</a>-->
+      <!--<a class="history" href="">History</a>-->
+      <!--<a class="logout" href="">Logout</a>-->
+
+    <div class="top">
+      <a class="signup" href="{% url 'quizer_game:login' %}">Sign Up</a>
+      <a class="login" href="{% url 'quizer_game:login' %}">Login</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1>Leaderboard</h1>
+    <h2></h2>
+    <h2></h2>
+
+    <table class="fixed_header">
+      <thead>
+      <tr>
+        <th>Quiz</th>
+        <th></th>
+        <th>Difficulty</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for quiz in quizzes %}
+      <tr>
+        <td>{{ quiz.topic }}</td>
+        <td>
+          <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=0%}">Easy</a>
+        </td>
+        <td>
+          <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=1%}">Medium</a>
+        </td>
+        <td>
+          <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=2%}">Hard</a>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
   </div>
-</header>
 
-<div class="container">
-  <h1>Leaderboard</h1>
-  <h2></h2>
-  <h2></h2>
-  
-  <table class="fixed_header">
-    <thead>
-    <tr>
-      <th>Quiz</th>
-      <th></th>
-      <th>Difficulty</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for quiz in quizzes %}
-    <tr>
-      <td>{{ quiz.topic }}</td>
-      <td>
-        <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=0%}">Easy</a>
-      </td>
-      <td>
-        <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=1%}">Medium</a>
-      </td>
-      <td>
-        <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=2%}">Hard</a>
-      </td>
-    </tr>
-    {% endfor %}
-    </tbody>
-  </table>
-</div>
+  <div id="quit">
+    <a href="{% url 'quizer_game:index' %}">Back</a>
 
-<div id="quit">
-  <a href="{% url 'quizer_game:index' %}">Back</a>
-
-</div>
-
-</body>
+  </div>
+  </body>
 </html>

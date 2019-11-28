@@ -1,8 +1,6 @@
 from django.contrib import admin
 from .models import Quiz, Question, Choice, Player, Timer
 
-from .models import Quiz, Question, Choice, Player
-
 # Register your models here.
 
 

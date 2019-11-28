@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.urls import reverse
 
 from quizer_game.models import Quiz, Question, Choice, Player

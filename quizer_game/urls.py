@@ -16,7 +16,6 @@ urlpatterns = [
     # /quizer/game/player_id/quiz_id/difficulty/question_id/
     path('game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/',
          views.game, name='game'),
-    # /quizer/game/player_id/quiz_id/difficulty/choice_value/update/
     path('game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/update/',
          views.update_game, name='update'),
     path('game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/',
@@ -27,5 +26,12 @@ urlpatterns = [
          views.login, name='login'),
     path('leaderboard/<int:quiz_id>/<int:selected_difficulty>/',
          views.leaderboard, name='leaderboard'),
-
+    path('create-quiz/',
+         views.create_quiz, name='create-question-set'),
+    path('create-quiz/update/',
+         views.update_create_quiz, name='update_create_quiz'),
+    path('edit-quiz/<int:quiz_id>/',
+         views.edit_quiz, name='edit_quiz'),
+    path('edit-quiz/<int:quiz_id>/update/',
+         views.edit_data, name='edit_data'),
 ]
