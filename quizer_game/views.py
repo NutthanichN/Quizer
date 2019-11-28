@@ -268,25 +268,27 @@ def edit_data(request,quiz_id):
 
     question = quiz.question_set.all()
     print(question)
-    count = 0
+    count_question = 0
 
     # update question text from input
     for i in quiz.question_set.all():
-        count = count + 1
-        i.text = request.POST[f'question_text_{count}']
+        count_question = count_question + 1
+        i.text = request.POST[f'question_text_{count_question}']
         i.save()
-        c = 0
+        count_choice = 0
 
         # update choice text from input
         for j in i.choice_set.all():
-            c = c + 1
-            j.text = request.POST[f'{count}_choice_text_{c}']
-            choice_value = request.POST[f'{count}_choice_value']
+            count_choice = count_choice + 1
+            j.text = request.POST[f'{count_question}_choice_text_{count_choice}']
+            choice_value = request.POST[f'{count_question}_choice_value']
 
             # check the right choice
-            if int(choice_value) == int(c):
+            if int(choice_value) == int(count_choice):
                 j.value = 1
             else:
                 j.value = 0
             j.save()
+  
+    messages.success(request, 'Successful saving')
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
