@@ -8,25 +8,18 @@
     <link rel="stylesheet" href="{% static 'quizer_game/styles/style-game.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
     
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<!--    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>-->
   </head>
   <body>
-<!--    <div id="time-up" class="overlay" style="display: none">-->
-<!--      <div class="overlay-content">-->
-<!--        <a class="navbar" href="">Back to home page</a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <a onclick="closeOverlay()">Close</a>-->
-<!--    <a onclick="openOverlay()">Open</a>-->
-    
     <h2 class="top-text">Player's name
       <span id="quiz-name">Quiz topic : {{ quiz.topic }}</span>
       <span>Time: <span id="time"></span></span>
     </h2>
     <p class="top-text" id="player-name">{{ player.name }}</p>
     <span class="navbar">
-      <a id="quit" href="">Quit</a>
+      <a id="quit"
+         href="{% url 'quizer_game:quit-game' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}">
+        Quit
+      </a>
     </span>
     
     <div class="racing-track-box">
@@ -46,21 +39,15 @@
         <div id="question-text">
           <p>Q.{{ question.number }} {{ question.text }}</p>
         </div>
-        <!--        <p>Q1. This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg question</p>-->
         {% for choice in question.choice_set.all %}
           {# /quizer/game/player_id/quiz_id/difficulty/choice_value/update/ #}
           <div class="navbar" id="c{{ forloop.counter }}">
             <button type="submit" name="choice_id" value="{{ choice.id }}">{{ choice.text }}</button>
-<!--              <button>This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg choice</button>-->
           </div>
         {% endfor %}
       </form>
     </div>
-
-<!--  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>-->
-<!--  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script></script>-->
-
-
+    
   <script>
     function openOverlay() {
       document.getElementById("time-up").style.display = "block";

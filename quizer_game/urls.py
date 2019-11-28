@@ -19,6 +19,8 @@ urlpatterns = [
          views.update_game, name='update'),
     path('game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/',
          views.result, name='result'),
+    path('game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/quit/',
+         views.quit_game, name='quit-game'),
     path('leaderboard-index/',
          views.leaderboard_index, name='leaderboard-index'),
     path('leaderboard/<int:quiz_id>/<int:selected_difficulty>/',

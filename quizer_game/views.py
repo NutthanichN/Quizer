@@ -76,18 +76,8 @@ def index(request):
     return render(request, 'quizer_game/index.html')
 
 
-def login(request):
-    return render(request, 'quizer_game/login.html')
-
-  
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
-
-  
-def leaderboard_index(request):
-    quiz = Quiz.objects.all()
-    context = {'quizzes': quiz}
-    return render(request, 'quizer_game/leaderboard-index.html', context)
 
 
 # TODO handle when there is no player_name
@@ -219,22 +209,30 @@ def update_player_position(choice, player, difficulty) -> None:
                 player.move_backward()
 
 
+# game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/quit/
+def quit_game(request, player_id, quiz_id, selected_difficulty):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    player = quiz.player_set.get(pk=player_id)
+    player.delete()
+    return redirect(reverse('quizer_game:index'))
+
+
 # game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/
 def result(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
-  
+
+
+def login(request):
+    return render(request, 'quizer_game/login.html')
+
 
 def leaderboard_index(request):
     quiz = Quiz.objects.all()
     context = {'quizzes': quiz}
     return render(request, 'quizer_game/leaderboard-index.html', context)
-
-
-def login(request):
-    return render(request, 'quizer_game/login.html')
 
 
 def leaderboard(request, quiz_id, selected_difficulty):
