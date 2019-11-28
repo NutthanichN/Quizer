@@ -378,10 +378,17 @@ select option {
   border-radius: 19px;
 }
 
-#message{
-  background-color: #00FFFF;
-    margin-left: -8em;
-     font-size: 20px;
+#message_success{
+  background-color: #7FFFD4;
+  margin-left: -8em;
+  font-size: 20px;
+}
+
+#message_fail{
+  background-color: #8B0000;
+  color: white;
+  margin-left: -8em;
+  font-size: 20px;
 }
 
 
