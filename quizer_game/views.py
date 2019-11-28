@@ -135,29 +135,26 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     timer = Timer.objects.get(player=player)
     timer.stop()
 
-    # update position
-    if choice.value == CHOICE_VALUE['correct']:
-        player.correct_answer += 1
-        if player.position < POSITION['max']:
-            player.move_forward()
-    else:
-        player.wrong_answer += 1
-        if selected_difficulty > DIFFICULTY['easy']:
-            if player.position > POSITION['min']:
-                player.move_backward()
-
     # check time for hard level
     # player can still play game but player won't be ranked on leaderboard
     # TODO prevent player from answering after time's up
     if selected_difficulty == DIFFICULTY['hard']:
         if timer.time_duration >= timer.time_limit:
             player.is_timeout = True
+            player.is_playing = False
             player.save()
+            player.save_time_duration()
+            return redirect(reverse('quizer_game:result',
+                                    kwargs={'player_id': player.id, 'quiz_id': quiz.id,
+                                            'selected_difficulty': player.selected_difficulty, }
+                                    )
+                            )
+
+    # update position
+    update_player_position(choice, player, selected_difficulty)
 
     # check if player reaches the finish line or not
     if player.position == POSITION['max']:
-        if not player.is_timeout:
-            player.is_achieved = True
         player.is_playing = False
         player.save()
         player.save_time_duration()
@@ -173,8 +170,6 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
             new_question_number = old_question.number + 1
             player.current_question = quiz.question_set.get(number=new_question_number)
         except ObjectDoesNotExist:
-            if not player.is_timeout:
-                player.is_failed = True
             player.is_playing = False
             player.save()
             player.save_time_duration()
@@ -190,6 +185,18 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
                                     'selected_difficulty': selected_difficulty}
                             )
                     )
+
+
+def update_player_position(choice, player, difficulty) -> None:
+    if choice.value == CHOICE_VALUE['correct']:
+        player.correct_answer += 1
+        if player.position < POSITION['max']:
+            player.move_forward()
+    else:
+        player.wrong_answer += 1
+        if difficulty > DIFFICULTY['easy']:
+            if player.position > POSITION['min']:
+                player.move_backward()
 
 
 # game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/
