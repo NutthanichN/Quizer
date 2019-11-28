@@ -26,33 +26,33 @@
 
 <div class="container">
   <h1>Leaderboard</h1>
-  <h2>Quiz name: {{ quizzes.topic }}</h2>
-  <h2>Difficulty: xxx </h2>
+  <h2>Quiz name: {{ quiz.topic }}</h2>
+  <h2>Difficulty: {{ difficulty }} </h2>
 
   <table class="fixed_header">
     <thead>
       <tr>
         <th>Rank</th>
-        <th>Name</th>
-        <th>Time</th>
-        <th>Number of all answers</th>
+      	<th>Name</th>
+      	<th>Time</th>
+      	<th>Number of all answers</th>
 	  </tr>
   	</thead>
   	<tbody>
-	{% for n in number %}
+	{% for player in players %}
 	<tr>
-      <td>{{ n }}</td>
+      <td>{{ forloop.counter }}</td>
       <td>{{ player.name }}</td>
       <td>{{ player.time }}</td>
-      <td>xxx</td>
+      <td>{{ player.total_answer }}</td>
 	  {% endfor %}
     </tr>
-    </tbody>
+	</tbody>
   </table>
 </div>
 
 <div id="quit">
-  <a href="{% url 'quizer_game:index' %}">Quit</a>
+  <a href="{% url 'quizer_game:leaderboard-index' %}">Back</a>
 
 </div>
 

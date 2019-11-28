@@ -1,4 +1,5 @@
 from django.contrib import admin
+from .models import Quiz, Question, Choice, Player, Timer
 
 from .models import Quiz, Question, Choice, Player
 
@@ -12,6 +13,10 @@ class QuestionInline(admin.TabularInline):
 
 class ChoiceInline(admin.TabularInline):
     model = Choice
+
+
+class TimerInline(admin.TabularInline):
+    model = Timer
 
 
 @admin.register(Quiz)
@@ -40,3 +45,9 @@ class PlayerAdmin(admin.ModelAdmin):
     list_filter = ('name', 'quiz', 'is_achieved', 'is_failed')
     fields = ['name', ('quiz', 'selected_difficulty'), ('current_question', 'position'),
               ('is_playing', 'is_achieved', 'is_failed')]
+    inlines = [TimerInline]
+
+
+@admin.register(Timer)
+class TimerAdmin(admin.ModelAdmin):
+    list_display = ('start_point', 'end_point', 'player')

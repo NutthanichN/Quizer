@@ -1,5 +1,5 @@
 from django.test import TestCase
-from quizer_game.models import Quiz, Question, Choice, Player
+from quizer_game.models import Quiz, Question, Choice, Player, Timer
 
 
 class PlayerModelTest(TestCase):
@@ -15,6 +15,8 @@ class PlayerModelTest(TestCase):
         question = Question.objects.create(quiz=quiz, text='What is str?', number=1)
         self.player = Player.objects.create(quiz=quiz, current_question=question,
                                             name='Player2', selected_difficulty=0)
+        self.timer = self.player.timer_set.create()
+        self.timer.start()
 
     def test_quiz_label(self):
         """Test verbose name of quiz (ForeignKey)"""
@@ -110,12 +112,28 @@ class PlayerModelTest(TestCase):
         """move_forward() move Player position +1 unit without saving"""
         old_position = self.player.position
         self.player.move_forward()
-        self.player.save()
         self.assertEquals(self.player.position, old_position + 1)
 
     def test_move_backward(self):
         """move_forward() move Player position -1 unit without saving"""
         old_position = self.player.position
         self.player.move_backward()
-        self.player.save()
         self.assertEquals(self.player.position, old_position - 1)
+
+    def test_save_time_duration(self):
+        self.timer.stop()
+        time_duration = self.timer.time_duration
+        self.player.save_time_duration()
+        self.assertEqual(self.player.time, time_duration)
+
+    def test_total_answer_property(self):
+        self.player.correct_answer = 5
+        self.player.wrong_answer = 4
+        self.assertEqual(self.player.total_answer, 9)
+
+    def test_difficulty_property(self):
+        difficulty = {0: 'Easy', 1: 'Medium', 2: 'Hard'}
+        for difficulty_code in range(3):
+            self.player.selected_difficulty = difficulty_code
+            with self.subTest(difficulty_code=difficulty_code):
+                self.assertEqual(self.player.difficulty, difficulty[difficulty_code])
