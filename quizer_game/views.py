@@ -251,7 +251,7 @@ def update_create_quiz(request):
         messages.success(request, 'Successful saving')
         return redirect(reverse('quizer_game:create-question-set'))
     else:
-        messages.error(request, 'Unsuccessful saving!! You must set 20 questions and 4 choices')
+        messages.error(request, 'Unsuccessful saving!! You must set 20 questions and 80 choices')
         quiz.delete()
         return redirect(reverse('quizer_game:create-question-set'))
 
