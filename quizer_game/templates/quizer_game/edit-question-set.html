@@ -44,9 +44,6 @@
           <label class = "question">Question {{forloop.counter}}</label>
           <input name="question_text_{{forloop.counter}}"  value= "{{i}}" class="question_input">
         </article>
-	    <artical class = "file" action="/action_page.php">
-  	      Select a file: <input type="file"><br>
-	    </artical>
 	    {% for j in i.choice_set.all %}
           <article class="field">
 		    <label class = "choice">Choice {{forloop.counter}}</label>
