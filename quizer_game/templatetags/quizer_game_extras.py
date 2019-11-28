@@ -9,9 +9,10 @@ def mul(value, arg):
     value = int(value)
     arg = int(arg)
     return value * arg
-
-
+  
+  
 @register.filter(name='times')
 def times(number):
     return range(number)
+
 
