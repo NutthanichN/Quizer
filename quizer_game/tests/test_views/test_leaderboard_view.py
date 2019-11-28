@@ -5,8 +5,8 @@ from quizer_game.models import Quiz, Question, Choice, Player
 from datetime import timedelta
 
 
-def create_achieved_player(quiz: Quiz, player_name: str) -> Player:
-    player = quiz.player_set.create(name=player_name)
+def create_achieved_player(quiz: Quiz, player_name: str, time) -> Player:
+    player = quiz.player_set.create(name=player_name, time=time)
     player.is_achieved = True
     player.save()
     return player
@@ -24,9 +24,9 @@ class LeaderboardTest(TestCase):
         self.choice2 = Choice.objects.create(question=self.question, text="I don't know", value=0)
 
         # setup player
-        self.player1 = create_achieved_player(self.quiz, 'Player1')
-        self.player2 = create_achieved_player(self.quiz, 'Player2')
-        self.player3 = create_achieved_player(self.quiz, 'Player3')
+        self.player1 = create_achieved_player(self.quiz, 'Player1', time=timedelta(seconds=500))
+        self.player2 = create_achieved_player(self.quiz, 'Player2', time=timedelta(seconds=600))
+        self.player3 = create_achieved_player(self.quiz, 'Player3', time=timedelta(seconds=700))
 
     def test_can_access_leaderboard_by_url_name(self) -> None:
         """
@@ -47,26 +47,6 @@ class LeaderboardTest(TestCase):
                               'selected_difficulty': 0})
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'quizer_game/leaderboard.html')
-
-    # def test_leaderboard_ranks_players_using_time_in_ascending_order(self) -> None:
-    #     """
-    #     Test that players are ranked in ascending order
-    #     """
-    #     self.player1.time = timedelta(minutes=5)
-    #     self.player1.save()
-    #
-    #     self.player2.time = timedelta(seconds=59)
-    #     self.player2.save()
-    #
-    #     self.player3.time = timedelta(seconds=58)
-    #     self.player3.save()
-    #
-    #     url = reverse('quizer_game:leaderboard',
-    #                   kwargs={'quiz_id': self.quiz.id,
-    #                           'selected_difficulty': 0})
-    #     response = self.client.get(url)
-    #     player_list = list(response.context['players'])
-    #     self.assertQuerysetEqual(player_list, ['<Player: Player3>', '<Player: Player2>', '<Player: Player1>'])
 
     def test_leaderboard_displays_achieved_player(self) -> None:
         """
