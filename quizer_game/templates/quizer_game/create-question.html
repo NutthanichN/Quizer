@@ -32,7 +32,7 @@
     	  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
 			<ul class="success-message" id="message_success">{{ message }}</ul>
 		  {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-            <ul class="error-message" id="message_fail">{{ message }}</ul>
+            <ul class="error-message" id="message_error">{{ message }}</ul>
           {% endif %}
         {% endfor %}
 	  </ul>
@@ -80,7 +80,6 @@
   <div id="back">
     <a href=>Back</a>
   </div>
-
 
 </body>
 </html>
