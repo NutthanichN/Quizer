@@ -192,16 +192,6 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
                     )
 
 
-def active_timer(request, player_id, quiz_id):
-    quiz = get_object_or_404(Quiz, pk=quiz_id)
-    player = quiz.player_set.get(pk=player_id)
-    timer = Timer.objects.get(player=player)
-    timer.stop()
-    data = {'timer': timer}
-    print("here")
-    return JsonResponse(data)
-
-
 # game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/
 def result(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
