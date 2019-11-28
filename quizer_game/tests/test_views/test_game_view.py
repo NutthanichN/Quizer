@@ -18,7 +18,7 @@ class GameTest(TestCase):
         self.player.is_playing = True
         self.player.save()
 
-def test_can_view_game(self):
+    def test_can_view_game(self):
         """Test that a player can view game"""
         url = reverse('quizer_game:game', kwargs={'player_id': self.player.id, 'quiz_id': self.quiz.id,
                                                   'selected_difficulty': self.player.selected_difficulty})
