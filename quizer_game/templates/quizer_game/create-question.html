@@ -38,9 +38,8 @@
 	  </ul>
 	{% endif %}
 
-
-  <form id="page-info" action="{% url 'quizer_game:update_create_quiz'%}" method="post">
-    {% csrf_token %}  
+    <form id="page-info" action="{% url 'quizer_game:update_create_quiz'%}" method="post">
+		{% csrf_token %}
 	<article class="field">
       <label class = "topic">Topic</label>
       <input  name="quiz_topic" class="topic_input">
@@ -85,3 +84,4 @@
 
 </body>
 </html>
+
