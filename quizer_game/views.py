@@ -65,22 +65,31 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     timer.start_point = timedelta(seconds=int(time.time()))
     timer.end_point = timedelta(seconds=int(time.time()))
     timer.save()
-
     return player
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the Quizer game test index.")
+    return render(request, 'quizer_game/index.html')
 
 
-# TODO handle error (link to 404 not found page)
+def login(request):
+    return render(request, 'quizer_game/login.html')
+
+
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
+
+
+def leaderboard_index(request):
+    quiz = Quiz.objects.all()
+    context = {'quizzes': quiz}
+    return render(request, 'quizer_game/leaderboard-index.html', context)
 
 
 # <str:player_name>/quiz-level/
 def quiz_level(request):
     input_player_name = request.POST['player_name']
+    # input_player_name = request.POST.get('player_name', '')
     quizzes = Quiz.objects.all()
     context = {'player_name': input_player_name,
                'quizzes': quizzes}
@@ -95,12 +104,12 @@ def start_game(request, player_name):
     # test with existing player
     player = setup_player_for_testing(quiz, player_name, DIFFICULTY[difficulty], POSITION['min'])
 
-    # uncomment this for real use
+    # (real) create new player
     # player = create_player(quiz, player_name, selected_difficulty)
 
     timer = setup_timer(player)
     timer.start()
-    
+
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': player.selected_difficulty, }
@@ -109,7 +118,6 @@ def start_game(request, player_name):
 
 
 # /quizer/game/player_id/quiz_id/difficulty/
-# TODO handle error (link to 404 not found page)
 def game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
@@ -124,7 +132,6 @@ def game(request, player_id, quiz_id, selected_difficulty):
 
 
 # TODO provide upvote-downvote feature
-# TODO handle error (link to 404 not found page)
 # /quizer/game/player_id/quiz_id/difficulty/update/
 def update_game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
@@ -189,16 +196,6 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
                                     'selected_difficulty': selected_difficulty}
                             )
                     )
-
-
-def active_timer(request, player_id, quiz_id):
-    quiz = get_object_or_404(Quiz, pk=quiz_id)
-    player = quiz.player_set.get(pk=player_id)
-    timer = Timer.objects.get(player=player)
-    timer.stop()
-    data = {'timer': timer}
-    print("here")
-    return JsonResponse(data)
 
 
 # game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/
