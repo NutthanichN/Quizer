@@ -1,9 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic import TemplateView
+from django.views import View
+from django.contrib import messages
 
-from .models import Quiz, Choice, Timer
+
+
+
+from .models import Quiz, Player, Question, Choice, Timer
+# from .forms import QuizModelForm,QuestionModelForm
+
 
 from datetime import timedelta
 import time
@@ -196,3 +204,52 @@ def result(request, player_id, quiz_id, selected_difficulty):
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
+
+
+# /quizer/create-quiz/
+def create_quiz(request):
+    template_name = 'quizer_game/create-question.html'
+    return render(request, template_name)
+
+
+# /quizer/create-quiz/update/
+def update_create_quiz(request):
+    quiz_topic = request.POST.get('quiz_topic')
+    quiz = Quiz(topic=quiz_topic)
+    quiz.save()
+    count_question = 0
+    count_choice = 0
+
+    # update question text from input
+    for i in range(1, 21):
+        question_text = request.POST.get(f'question_text_{i}')
+
+        # check that user set question text
+        if len(question_text) != 0:
+            count_question = count_question + 1
+        question = quiz.question_set.create(text=question_text, number=i)
+
+        # update choice text from input
+        for j in range(1, 5):
+            choice_text = request.POST[f'{i}_choice_text_{j}']
+
+            # check that user set choice text
+            if len(choice_text) != 0:
+                count_choice = count_choice  + 1
+            choice_value = request.POST[f'{i}_choice_value']
+            choice = question.choice_set.create(text=choice_text)
+
+            # check the right choice
+            if choice_value == f"choice{j}":
+                choice.value = 1
+                choice.save()
+
+    # check that user set 20 questions and 80 choices
+    if count_question == 20 and count_choice  == 80:
+        messages.success(request, 'Successful saving')
+        return redirect(reverse('quizer_game:create-question-set'))
+    else:
+        messages.error(request, 'Unsuccessful saving!! You must set 20 questions and 80 choices')
+        quiz.delete()
+        return redirect(reverse('quizer_game:create-question-set'))
+
