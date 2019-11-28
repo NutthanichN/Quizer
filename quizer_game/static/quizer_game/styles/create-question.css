@@ -209,6 +209,11 @@ lable{
   margin-top: 1em;
 }
 .form__footer input {
+  position: fixed;
+  top: 115px;
+  left: 1070px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   display: block;
   color: black;
   background-color: #eaece5;
