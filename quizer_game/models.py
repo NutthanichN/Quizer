@@ -49,7 +49,7 @@ class Player(models.Model):
     is_timeout = models.BooleanField(default=False, verbose_name='Timeout')
     correct_answer = models.IntegerField(default=0, verbose_name='Number of correct answers')
     wrong_answer = models.IntegerField(default=0, verbose_name='Number of wrong answers')
-    
+
     def __str__(self):
         return self.name
 

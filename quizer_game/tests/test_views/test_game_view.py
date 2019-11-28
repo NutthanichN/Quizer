@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.urls import reverse
 
 from quizer_game.models import Quiz, Question, Choice, Player
@@ -50,4 +50,3 @@ class GameTest(TestCase):
                                                   'selected_difficulty': self.player.selected_difficulty})
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'quizer_game/game.html')
-

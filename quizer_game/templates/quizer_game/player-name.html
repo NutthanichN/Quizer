@@ -1,95 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	{% load static %}
-	<title>Player Name</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
-		@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
-		header > h1{
-			font-family: 'Nunito', sans-serif;
-			font-weight: 700;
-		}
-		main > p{
-			font-family: 'Nunito', sans-serif;
-		}
-	</style>
-	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/fonts/iconic/css/material-design-iconic-font.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/main.css' %}">
-</head>
-<body>
-<!--	<h3>For manual testing</h3>-->
+  <head>
+    {% load static %}
+    <title>Player Name</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+      header > h1{
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+      }
+      main > p{
+        font-family: 'Nunito', sans-serif;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'quizer_game/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'quizer_game/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/main.css' %}">
+  </head>
+  <body>
+  <!--	<h3>For manual testing</h3>-->
 
-	{# For Test Quiz contains 5 questions #}
-<!--    <p>choose 'player_test_5_q'</p>-->
-		{# <a href="{% url 'quizer_game:quiz-level' player_name='player_test_5_q' %}">Select Quiz and Difficulty</a> #}
+    {# For Test Quiz contains 5 questions #}
+  <!--    <p>choose 'player_test_5_q'</p>-->
+      {# <a href="{% url 'quizer_game:quiz-level' player_name='player_test_5_q' %}">Select Quiz and Difficulty</a> #}
 
-	{# For Test Quiz contains 20 questions #}
-<!--    <p>choose 'player_test_20_q'</p>-->
-		{# <a href="{% url 'quizer_game:quiz-level' player_name='player_test_20_q' %}">Select Quiz and Difficulty</a> #}
-	<div class="limiter">
-		<div class="container-login100" style="background: #eaece5;">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-				
-				<form class="login100-form validate-form" action="{% url 'quizer_game:quiz-level' %}" method="post">
-					{% csrf_token %}
-					<span class="login100-form-title p-b-7">
-						Let's play !
-					</span>
+    {# For Test Quiz contains 20 questions #}
+  <!--    <p>choose 'player_test_20_q'</p>-->
+      {# <a href="{% url 'quizer_game:quiz-level' player_name='player_test_20_q' %}">Select Quiz and Difficulty</a> #}
+    <div class="limiter">
+      <div class="container-login100" style="background: #eaece5;">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 
-					<div class="txt1 text-center p-t-7 p-b-20">
-						<span>
-							Please enter your name.
-						</span>
-					</div>
-					
-					<div class="wrap-input100 validate-input m-b-23" data-validate = "Name is required">
-						<span class="label-input100">Name</span>
-						<input class="input100" type="text" name="player_name" placeholder="Type your name">
-						<span class="focus-input100" data-symbol="&#xf206;"></span>
-					</div>
-					
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								OK
-							</button>
-						</div>
-					</div>
-					
-				</form>
-			
-			</div>
-		</div>
-	</div>
-					<!-- <div class="txt1 text-center p-t-54 p-b-20">
-						<span>
-							Or Sign Up Using
-						</span>
-					</div>
+          <form class="login100-form validate-form" action="{% url 'quizer_game:quiz-level' %}" method="post">
+            {% csrf_token %}
+            <span class="login100-form-title p-b-7">
+              Let's play !
+            </span>
 
-					<div class="flex-c-m">
-						<a href="#" class="login100-social-item bg1">
-							<i class="fa fa-facebook"></i>
-						</a>
+            <div class="txt1 text-center p-t-7 p-b-20">
+              <span>
+                Please enter your name.
+              </span>
+            </div>
 
-						<a href="#" class="login100-social-item bg2">
-							<i class="fa fa-twitter"></i>
-						</a>
+            <div class="wrap-input100 validate-input m-b-23" data-validate = "Name is required">
+              <span class="label-input100">Name</span>
+              <input class="input100" type="text" name="player_name" placeholder="Type your name">
+              <span class="focus-input100" data-symbol="&#xf206;"></span>
+            </div>
 
-						<a href="#" class="login100-social-item bg3">
-							<i class="fa fa-google"></i>
-						</a>
-					</div>
+            <div class="container-login100-form-btn">
+              <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button class="login100-form-btn">
+                  OK
+                </button>
+              </div>
+            </div>
 
-					<div class="flex-col-c p-t-155">
-						<span class="txt1 p-b-17">
-							Or Sign Up Using
-						</span>
+          </form>
 
 						<a href="#" class="txt2">
 							Sign Up
@@ -105,3 +77,4 @@
 	</script>
 </body>
 </html>
+
