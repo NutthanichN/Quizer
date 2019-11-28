@@ -18,6 +18,10 @@ class GameTest(TestCase):
         self.player.is_playing = True
         self.player.save()
 
+        # setup player's timer
+        self.timer = self.player.timer_set.create()
+        self.timer.start()
+
     def test_can_view_game(self):
         """Test that a player can view game"""
         url = reverse('quizer_game:game', kwargs={'player_id': self.player.id, 'quiz_id': self.quiz.id,
@@ -26,3 +30,4 @@ class GameTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/game.html')
         
+

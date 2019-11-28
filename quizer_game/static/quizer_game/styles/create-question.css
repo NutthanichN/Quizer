@@ -1,8 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
-
 html,body {
-   margin: 0;
+  margin: 0;
   background: #eaece5;
   font-family: 'Nunito', serif;
   font-weight: 100;
@@ -126,8 +125,8 @@ tbody td {
 
 .email {
   position: absolute;
-  top: 52%;
-  right: 8.5%;
+  top: 44%;
+  right: 14%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: white;
@@ -242,7 +241,6 @@ label input {
   margin-right: .25em;
   margin-top: -4px;
   vertical-align: middle;
-
 }
 
 .topic {

@@ -70,7 +70,6 @@ Step8: Load data dump from `quiz_and_player.json`
     python manage.py loaddata quiz_and_player.json
 ```
 
-
 Step9: Run server at localhost:8000
 ```bash
     python manage.py runserver

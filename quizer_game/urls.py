@@ -29,4 +29,8 @@ urlpatterns = [
          views.create_quiz, name='create-question-set'),
     path('create-quiz/update/',
          views.update_create_quiz, name='update_create_quiz'),
+    path('edit-quiz/<int:quiz_id>/',
+         views.edit_quiz, name='edit_quiz'),
+    path('edit-quiz/<int:quiz_id>/update/',
+         views.edit_data, name='edit_data'),
 ]

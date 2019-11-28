@@ -98,3 +98,4 @@ class Timer(models.Model):
     def set_time_limit(self, seconds, minutes=0, hours=0):
         self.time_limit = timedelta(hours=hours, minutes=minutes, seconds=seconds)
         self.save()
+

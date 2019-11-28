@@ -6,12 +6,7 @@ from django.views.generic import TemplateView
 from django.views import View
 from django.contrib import messages
 
-
-
-
 from .models import Quiz, Player, Question, Choice, Timer
-# from .forms import QuizModelForm,QuestionModelForm
-
 
 from datetime import timedelta
 import time
@@ -75,7 +70,7 @@ def index(request):
 def login(request):
     return render(request, 'quizer_game/login.html')
 
-
+  
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
 
@@ -109,7 +104,6 @@ def start_game(request, player_name):
 
     timer = setup_timer(player)
     timer.start()
-
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': player.selected_difficulty, }
@@ -197,14 +191,12 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
                             )
                     )
 
-
 # game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/result/
 def result(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
-
 
 # /quizer/create-quiz/
 def create_quiz(request):
@@ -249,7 +241,50 @@ def update_create_quiz(request):
         messages.success(request, 'Successful saving')
         return redirect(reverse('quizer_game:create-question-set'))
     else:
-        messages.error(request, 'Unsuccessful saving!! You must set 20 questions and 80 choices')
+        messages.error(request, 'Unsuccessful saving!! You must set 20 questions and 4 choices')
         quiz.delete()
         return redirect(reverse('quizer_game:create-question-set'))
 
+
+# /quizer/edit-quiz/quiz_id/
+def edit_quiz(request,quiz_id):
+    template_name = 'quizer_game/edit-question-set.html'
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    context = {'quiz': quiz}
+    return render(request, template_name,context)
+
+
+# /quizer/edit-quiz/quiz_id/update/
+def edit_data(request,quiz_id):
+
+    quiz = get_object_or_404(Quiz, pk =quiz_id)
+    quiz.topic = request.POST.get('quiz_topic')
+    quiz.save()
+
+    question = quiz.question_set.all()
+    print(question)
+    count_question = 0
+
+    # update question text from input
+    for i in quiz.question_set.all():
+        count_question = count_question + 1
+        i.text = request.POST[f'question_text_{count_question}']
+        i.save()
+        count_choice = 0
+
+        # update choice text from input
+        for j in i.choice_set.all():
+            count_choice = count_choice + 1
+            j.text = request.POST[f'{count_question}_choice_text_{count_choice}']
+            choice_value = request.POST[f'{count_question}_choice_value']
+
+            # check the right choice
+            if int(choice_value) == int(count_choice):
+                j.value = 1
+            else:
+                j.value = 0
+            j.save()
+
+    # if user already save it will display successful saving
+    messages.success(request, 'Successful saving')
+    return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
