@@ -46,10 +46,7 @@
         <label class = "question">Question {{forloop.counter}}</label>
         <input name="question_text_{{forloop.counter}}" class="question_input">
 	  </article>
-	  
-	  <artical class = "file" action="/action_page.php">
-  	    Select a file: <input type="file"><br>
-	  </artical>
+
 	  {% for i in 4|times %}
         <article class="field">
           <label class = "choice">Choice {{forloop.counter}}</label>
