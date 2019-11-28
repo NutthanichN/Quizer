@@ -26,13 +26,18 @@
   <h1>Create Quiz</h1>
 
   <div class="container">
-    {% if messages %}
+	{% if messages %}
 	  <ul class="messages" id="message">
         {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    	  {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+			<ul class="success-message" id="message_success">{{ message }}</ul>
+		  {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <ul class="error-message" id="message_fail">{{ message }}</ul>
+          {% endif %}
         {% endfor %}
 	  </ul>
 	{% endif %}
+
 
   <form id="page-info" action="{% url 'quizer_game:update_create_quiz'%}" method="post">
     {% csrf_token %}  
