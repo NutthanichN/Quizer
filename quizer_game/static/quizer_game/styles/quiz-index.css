@@ -68,11 +68,24 @@ h1 {
   width: 400px;
 }
 
-table#table1 {
-    width:70%;
-    margin-left:15%;
-    margin-right:15%;
-  }
+table {
+    border:none;
+    border-collapse: collapse;
+}
+
+table td {
+    border-left: 1px solid #25274d;
+    border-right: 1px solid #25274d;
+}
+
+table td:first-child {
+    border-left: none;
+}
+
+table td:last-child {
+    border-right: none;
+}
+
 th,
 td {
   text-align: center;
@@ -186,3 +199,4 @@ tbody td {
   color: white;
   border: solid black;
 }
+
