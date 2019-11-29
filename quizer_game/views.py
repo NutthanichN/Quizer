@@ -314,3 +314,6 @@ def edit_data(request,quiz_id):
     # if user already save it will display successful saving
     messages.success(request, 'Successful saving')
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
+
+def quiz_index(request):
+    return render(request, 'quizer_game/quiz-index.html')
