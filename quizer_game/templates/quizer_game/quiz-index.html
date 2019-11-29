@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load quizer_game_extras %}
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz index</title>
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'quizer_game/styles/quiz-index.css' %}">
+</head>
+<body>
+
+<header id="masthead">
+	<!--login version-->
+	<!--<div class="email">-->
+     <!--<a href="">Email: hello55@gmail.com</a>-->
+	<!--</div>-->
+	 <!--<div class="top">-->
+	  <!--<a class="create" href="">Create quiz</a>-->
+	  <!--<a class="history" href="">History</a>-->
+	  <!--<a class="logout" href="">Logout</a>-->
+
+	<div class="top">
+	  	 <a class="login" href="">Login</a>
+	</div>
+</header>
+
+<div class="container">
+	<h1>Quiz</h1>
+
+	<table class="fixed_header">
+  		<thead>
+    		<tr>
+      			<th>Quiz</th>
+      			<th>Upvote</th>
+      			<th>Downvote</th>
+			</tr>
+  		</thead>
+  		<tbody>
+           {% for i in 20|times %}
+			<tr>
+      			<td>Python</td>
+      			<td>1</td>
+      			<td>0</td>
+    		</tr>
+           {% endfor %}
+			<!--<tr>-->
+      			<!--<td>2</td>-->
+      			<!--<td>David</td>-->
+      			<!--<td>01.34</td>-->
+      			<!--<td>10</td>-->
+    		<!--</tr>-->
+			<!--<tr>-->
+      			<!--<td>3</td>-->
+      			<!--<td>Mel</td>-->
+      			<!--<td>01.55</td>-->
+      			<!--<td>11</td>-->
+    		<!--</tr>-->
+			<!--<tr>-->
+      			<!--<td>4</td>-->
+      			<!--<td>Jo</td>-->
+      			<!--<td>02.01</td>-->
+      			<!--<td>10</td>-->
+    		<!--</tr>-->
+			<!--<tr>-->
+      			<!--<td>5</td>-->
+      			<!--<td>Jack</td>-->
+      			<!--<td>02.45</td>-->
+      			<!--<td>12</td>-->
+    		<!--</tr>-->
+			<!--<tr>-->
+      			<!--<td>6</td>-->
+      			<!--<td>Jason</td>-->
+      			<!--<td>02.56</td>-->
+      			<!--<td>12</td>-->
+    		<!--</tr>-->
+			<!--<tr>-->
+      			<!--<td>7</td>-->
+      			<!--<td>Willam</td>-->
+      			<!--<td>03.44</td>-->
+      			<!--<td>14</td>-->
+    		<!--</tr>-->
+		    	<!--<tr>-->
+      			<!--<td>8</td>-->
+      			<!--<td>Georg</td>-->
+      			<!--<td>03.59</td>-->
+      			<!--<td>16</td>-->
+    		<!--</tr>-->
+		    	<!--<tr>-->
+      			<!--<td>9</td>-->
+      			<!--<td>Dan</td>-->
+      			<!--<td>04.45</td>-->
+      			<!--<td>14</td>-->
+    		<!--</tr>-->
+		</tbody>
+	</table>
+</div>
+
+<div id="back">
+  <a href=>Back</a>
+
+</div>
+
+</body>
+</html>
