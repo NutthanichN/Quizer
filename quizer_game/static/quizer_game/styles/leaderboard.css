@@ -146,6 +146,13 @@ tbody td {
   left: 89%;
 }
 
+.signup{
+  font-size: 12px;
+  position: absolute;
+  top: 55%;
+  left: 87.5%;
+}
+
 .email {
   position: absolute;
   top: 44%;
