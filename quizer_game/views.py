@@ -201,16 +201,6 @@ def result(request, player_id, quiz_id, selected_difficulty):
     return render(request, 'quizer_game/result.html', context)
   
 
-def leaderboard_index(request):
-    quiz = Quiz.objects.all()
-    context = {'quizzes': quiz}
-    return render(request, 'quizer_game/leaderboard-index.html', context)
-
-
-def login(request):
-    return render(request, 'quizer_game/login.html')
-
-
 def leaderboard(request, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     players = quiz.player_set.filter(selected_difficulty=selected_difficulty,
@@ -223,7 +213,7 @@ def leaderboard(request, quiz_id, selected_difficulty):
                }
     return render(request, 'quizer_game/leaderboard.html', context)
 
-  
+
 # /quizer/create-quiz/
 def create_quiz(request):
     template_name = 'quizer_game/create-question.html'
@@ -314,6 +304,7 @@ def edit_data(request,quiz_id):
     # if user already save it will display successful saving
     messages.success(request, 'Successful saving')
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
+
 
 def quiz_index(request):
     return render(request, 'quizer_game/quiz-index.html')
