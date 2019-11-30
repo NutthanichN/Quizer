@@ -74,8 +74,18 @@ def index(request):
     return render(request, 'quizer_game/index.html')
 
 
+def login(request):
+    return render(request, 'quizer_game/login.html')
+
+  
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
+
+  
+def leaderboard_index(request):
+    quiz = Quiz.objects.all()
+    context = {'quizzes': quiz}
+    return render(request, 'quizer_game/leaderboard-index.html', context)
 
 
 # <str:player_name>/quiz-level/
@@ -152,6 +162,13 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
 
     # update position
     update_player_position(choice, player, selected_difficulty)
+
+    # check time for hard level
+    # player can still play game but player won't be ranked on leaderboard
+    if selected_difficulty == DIFFICULTY['hard']:
+        if timer.time_duration >= timer.time_limit:
+            player.is_timeout = True
+            player.save()
 
     # check if player reaches the finish line or not
     if player.position == POSITION['max']:
@@ -236,18 +253,8 @@ def result(request, player_id, quiz_id, selected_difficulty):
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
-
-
-def login(request):
-    return render(request, 'quizer_game/login.html')
-
-
-def leaderboard_index(request):
-    quiz = Quiz.objects.all()
-    context = {'quizzes': quiz}
-    return render(request, 'quizer_game/leaderboard-index.html', context)
-
-
+  
+  
 def leaderboard(request, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     players = quiz.player_set.filter(selected_difficulty=selected_difficulty,
@@ -351,3 +358,10 @@ def edit_data(request,quiz_id):
     # if user already save it will display successful saving
     messages.success(request, 'Successful saving')
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
+
+  
+def quiz_index(request):
+    quizzes = Quiz.objects.all()
+    context = {'quizzes': quizzes}
+    return render(request, 'quizer_game/quiz-index.html', context)
+

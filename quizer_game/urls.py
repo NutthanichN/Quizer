@@ -37,4 +37,6 @@ urlpatterns = [
          views.edit_quiz, name='edit_quiz'),
     path('edit-quiz/<int:quiz_id>/update/',
          views.edit_data, name='edit_data'),
+    path('quiz-index/',
+         views.quiz_index, name='quiz-index'),
 ]
