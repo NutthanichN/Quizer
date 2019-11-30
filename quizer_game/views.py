@@ -165,7 +165,6 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
 
     # check time for hard level
     # player can still play game but player won't be ranked on leaderboard
-    # TODO prevent player from answering after time's up
     if selected_difficulty == DIFFICULTY['hard']:
         if timer.time_duration >= timer.time_limit:
             player.is_timeout = True
@@ -223,6 +222,8 @@ def update_player_position(choice, player, difficulty) -> None:
 def quit_game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
+    if player.name in PLAYERS_FOR_TESTING:
+        return redirect(reverse('quizer_game:index'))
     player.delete()
     return redirect(reverse('quizer_game:index'))
 
@@ -253,7 +254,7 @@ def result(request, player_id, quiz_id, selected_difficulty):
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
   
-
+  
 def leaderboard(request, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     players = quiz.player_set.filter(selected_difficulty=selected_difficulty,
@@ -358,8 +359,9 @@ def edit_data(request,quiz_id):
     messages.success(request, 'Successful saving')
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
 
-
+  
 def quiz_index(request):
     quizzes = Quiz.objects.all()
     context = {'quizzes': quizzes}
     return render(request, 'quizer_game/quiz-index.html', context)
+
