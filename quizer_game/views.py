@@ -365,3 +365,24 @@ def quiz_index(request):
     context = {'quizzes': quizzes}
     return render(request, 'quizer_game/quiz-index.html', context)
 
+def user_profile(request):
+    template_name = 'quizer_game/user-profile.html'
+    quizzes = Quiz.objects.all()
+    context = {'quizzes': quizzes}
+    return render(request, template_name, context)
+
+
+def update_user_profile(request):
+    # template_name = 'quizer_game/user-profile.html'
+    quiz = Quiz.objects.all()
+
+    count_quiz = 0
+    for i in quiz:
+        count_quiz = count_quiz + 1
+        delete = request.POST.get(f'd')
+        if delete == f'delete_{count_quiz}':
+            i.delete()
+        else:
+            print(delete)
+
+    return redirect(reverse('quizer_game:user_profile'))
