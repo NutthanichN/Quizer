@@ -68,7 +68,8 @@
               
               {% if player.is_achieved %}
               <p1>
-                <a href="" class="btn btny js-scroll-trigger px-4 py-3">
+                <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}"
+                   class="btn btny js-scroll-trigger px-4 py-3">
                   <span class="ion-ios-play mr-2"></span>
                   Leaderboard
                 </a>
