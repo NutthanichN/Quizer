@@ -43,7 +43,7 @@
 						<div class="center-on-page p-t-54">
 							<div class="select" style="margin-top:150px;">
 								<select autofocus name="quiz_id" id="slct">
-									<option>Select Quiz</option>
+									<option value="" disabled selected>Select Quiz</option>
 									{% for quiz in quizzes %}
 										<option value="{{ quiz.id }}">{{ quiz.topic }}</option>
 									{% endfor %}
@@ -52,7 +52,7 @@
 							
 							<div class="select">
 								<select autofocus name="difficulty" id="slct">
-									<option>Select Difficulty</option>
+									<option value="" disabled selected>Select Difficulty</option>
 									<option value="easy">Easy</option>
 									<option value="medium">Medium</option>
 									<option value="hard">Hard</option>

@@ -84,6 +84,9 @@ def player_name(request):
 # <str:player_name>/quiz-level/
 def quiz_level(request):
     input_player_name = request.POST['player_name']
+    if input_player_name == '':
+        messages.error(request, "Please enter player's name!")
+        return redirect(reverse('quizer_game:player-name'))
     quizzes = Quiz.objects.all()
     top_quizzes = Quiz.objects.order_by('-upvotes')[:5]
     context = {'player_name': input_player_name,

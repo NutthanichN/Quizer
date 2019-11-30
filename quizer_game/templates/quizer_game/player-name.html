@@ -34,9 +34,13 @@
             </span>
 
             <div class="txt1 text-center p-t-7 p-b-20">
-              <span>
-                Please enter your name.
-              </span>
+              {% if messages %}
+                {% for message in messages %}
+                  <p style="color:red;">{{ message }}</p>
+                {% endfor %}
+              {% else %}
+                <p>Please enter your name</p>
+              {% endif %}
             </div>
 
             <div class="wrap-input100 validate-input m-b-23" data-validate = "Name is required">
