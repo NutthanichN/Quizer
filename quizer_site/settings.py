@@ -28,12 +28,12 @@ SECRET_KEY = config('SECRET_KEY', default="secret")
 DEBUG = config('DEBUG', cast=bool)
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("OAUTH2_KEY", default="key")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("OAUTH2_SECRET", default="secret")
 
 
 LOGIN_REDIRECT_URL = '/quizer/'
+
 
 ALLOWED_HOSTS = []
 
