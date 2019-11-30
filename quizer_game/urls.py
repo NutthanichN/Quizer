@@ -34,5 +34,7 @@ urlpatterns = [
          views.edit_quiz, name='edit_quiz'),
     path('edit-quiz/<int:quiz_id>/update/',
          views.edit_data, name='edit_data'),
-    path('logout/', views.logout_auth, name='logout'),
+    path('logout/', views.logout_user, name='logout'),
+    path('login-result/', views.login_result, name='login_result'),
+
 ]
