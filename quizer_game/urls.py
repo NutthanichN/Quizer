@@ -39,4 +39,8 @@ urlpatterns = [
          views.edit_data, name='edit_data'),
     path('quiz-index/',
          views.quiz_index, name='quiz-index'),
+    path('user-profile/',
+         views.user_profile, name='user_profile'),
+    path('user-profile/update/',
+         views.update_user_profile, name='update-user-profile'),
 ]
