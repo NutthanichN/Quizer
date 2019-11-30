@@ -4,7 +4,10 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="{% static 'quizer_game/styles/leaderboard.css' %}">
+
+   <link rel="stylesheet" href="{% static 'quizer_game/styles/leaderboard.css' %}">
+  
+
   </head>
   <body>
   
@@ -53,6 +56,10 @@
   
   <div id="quit">
     <a href="{% url 'quizer_game:leaderboard-index' %}">Back</a>
+  </div>
+  
+  <div id="home">
+    <a href="{% url 'quizer_game:index' %}">Home</a>
   </div>
   
   </body>
