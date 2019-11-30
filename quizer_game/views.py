@@ -205,6 +205,8 @@ def update_player_position(choice, player, difficulty) -> None:
 def quit_game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
+    if player.name in PLAYERS_FOR_TESTING:
+        return redirect(reverse('quizer_game:index'))
     player.delete()
     return redirect(reverse('quizer_game:index'))
 
