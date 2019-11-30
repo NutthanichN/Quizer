@@ -242,7 +242,6 @@ def create_quiz(request):
         return render(request, 'quizer_game/login_result.html')
 
 
-
 # /quizer/create-quiz/update/
 def update_create_quiz(request):
     quiz_topic = request.POST.get('quiz_topic')
@@ -286,7 +285,7 @@ def update_create_quiz(request):
 
 
 # /quizer/edit-quiz/quiz_id/
-def edit_quiz(request,quiz_id):
+def edit_quiz(request, quiz_id):
     template_name = 'quizer_game/edit-question-set.html'
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     context = {'quiz': quiz}
@@ -294,8 +293,6 @@ def edit_quiz(request,quiz_id):
         return render(request, template_name, context)
     else:
         return render(request, 'quizer_game/login_result.html')
-
-
 
 
 # /quizer/edit-quiz/quiz_id/update/
