@@ -163,13 +163,6 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     # update position
     update_player_position(choice, player, selected_difficulty)
 
-    # check time for hard level
-    # player can still play game but player won't be ranked on leaderboard
-    if selected_difficulty == DIFFICULTY['hard']:
-        if timer.time_duration >= timer.time_limit:
-            player.is_timeout = True
-            player.save()
-
     # check if player reaches the finish line or not
     if player.position == POSITION['max']:
         player.is_playing = False
