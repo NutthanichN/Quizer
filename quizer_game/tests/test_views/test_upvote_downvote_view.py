@@ -39,7 +39,7 @@ class UpvoteDownvoteTest(TestCase):
                               }
                       )
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     def test_redirect_to_correct_view(self):
         """
