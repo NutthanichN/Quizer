@@ -1,0 +1,12 @@
+html, body {
+  background: #eaece5;
+  font-family: 'Nunito', sans-serif;
+}
+
+.top-5-quizzes {
+  margin-top: 25px;
+}
+
+li {
+  overflow-wrap: break-word;
+}

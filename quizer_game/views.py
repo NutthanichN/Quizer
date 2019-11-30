@@ -84,10 +84,11 @@ def player_name(request):
 # <str:player_name>/quiz-level/
 def quiz_level(request):
     input_player_name = request.POST['player_name']
-    # input_player_name = request.POST.get('player_name', '')
     quizzes = Quiz.objects.all()
+    top_quizzes = Quiz.objects.order_by('-upvotes')[:5]
     context = {'player_name': input_player_name,
-               'quizzes': quizzes}
+               'quizzes': quizzes,
+               'top_quizzes': top_quizzes}
     return render(request, 'quizer_game/question-level.html', context)
 
 
@@ -126,7 +127,6 @@ def game(request, player_id, quiz_id, selected_difficulty):
     return render(request, 'quizer_game/game.html', context)
 
 
-# TODO provide upvote-downvote feature
 # TODO handle error (link to 404 not found page)
 # /quizer/game/player_id/quiz_id/difficulty/update/
 def update_game(request, player_id, quiz_id, selected_difficulty):
@@ -138,8 +138,6 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     timer.stop()
 
     # check time for hard level
-    # player can still play game but player won't be ranked on leaderboard
-    # TODO prevent player from answering after time's up
     if selected_difficulty == DIFFICULTY['hard']:
         if timer.time_duration >= timer.time_limit:
             player.is_timeout = True
@@ -155,17 +153,10 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     # update position
     update_player_position(choice, player, selected_difficulty)
 
-    # check time for hard level
-    # player can still play game but player won't be ranked on leaderboard
-    # TODO prevent player from answering after time's up
-    if selected_difficulty == DIFFICULTY['hard']:
-        if timer.time_duration >= timer.time_limit:
-            player.is_timeout = True
-            player.save()
-
     # check if player reaches the finish line or not
     if player.position == POSITION['max']:
         player.is_playing = False
+        player.is_achieved = True
         player.save()
         player.save_time_duration()
         return redirect(reverse('quizer_game:result',
@@ -181,6 +172,7 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
             player.current_question = quiz.question_set.get(number=new_question_number)
         except ObjectDoesNotExist:
             player.is_playing = False
+            player.is_failed = True
             player.save()
             player.save_time_duration()
             return redirect(reverse('quizer_game:result',

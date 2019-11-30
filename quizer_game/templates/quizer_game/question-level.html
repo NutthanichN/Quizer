@@ -2,44 +2,46 @@
 <html lang="en">
 	<head>
 		{% load static %}
-		<title>Question Level</title>
+		<title>Quiz Level</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style>
-			@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
-			header > h1{
-				font-family: 'Nunito', sans-serif;
-				font-weight: 700;
-			}
-			main > p{
-				font-family: 'Nunito', sans-serif;
-			}
-		</style>
+		
+		<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/util.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/main.css' %}">
 		<link rel="stylesheet" href="{% static 'quizer_game/styles/css/style.css' %}">
+		<link rel="stylesheet" href="{% static 'quizer_game/styles/quiz-level.css' %}">
+	
 	</head>
 	<body>
 		<div class="limiter">
 			<div class="container-login100" style="background: #eaece5;">
 				<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 					
+					<h1 class="login100-form-title p-b-7">
+							Select Quiz and Level
+					</h1>
+					
+					<div class="txt1 text-center p-t-7 p-b-20">
+							<h5>
+								Player Name: {{ player_name }}
+							</h5>
+							<div class="top-5-quizzes">
+								<h6>Top 5 upvote quizzes</h6>
+								<ul>
+									{% for top_quiz in top_quizzes %}
+										<li>{{ top_quiz.topic }} ({{ top_quiz.upvotes }} upvotes)</li>
+									{% endfor %}
+								</ul>
+							</div>
+							
+					</div>
+					
 					<form class="login100-form validate-form"
 								action="{% url 'quizer_game:start-game' player_name=player_name %}" method="post">
 						{% csrf_token %}
-						<span class="login100-form-title p-b-7">
-							Select Quiz and Level
-						</span>
-	
-						<div class="txt1 text-center p-t-7 p-b-20">
-							<p>
-								Player Name: {{ player_name }}
-							</p>
-
-						</div>
-						
 						<div class="center-on-page p-t-54">
-							<div class="select">
+							<div class="select" style="margin-top:150px;">
 								<select autofocus name="quiz_id" id="slct">
 									<option>Select Quiz</option>
 									{% for quiz in quizzes %}
