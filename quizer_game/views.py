@@ -360,4 +360,6 @@ def edit_data(request,quiz_id):
 
 
 def quiz_index(request):
-    return render(request, 'quizer_game/quiz-index.html')
+    quizzes = Quiz.objects.all()
+    context = {'quizzes': quizzes}
+    return render(request, 'quizer_game/quiz-index.html', context)
