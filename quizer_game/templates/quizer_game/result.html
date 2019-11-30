@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="{% static 'quizer_game/fonts/ionicons/css/ionicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'quizer_game/styles/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'quizer_game/styles/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'quizer_game/styles/result.css' %}">
+
   </head>
   <body id="page-top">
     <!-- END nav -->
-    <h6>{{ player.time }}</h6>
-    <h6>Total answer: {{ player.total_answer }}</h6>
-    <h6>Total correct answer: {{ player.correct_answer }}</h6>
-    <h6>Total wrong answer: {{ player.wrong_answer }}</h6>
+<!--    <h6>Total visit of quiz: {{ quiz.total_player }}</h6>-->
+<!--    <h6>Total upvote: {{ quiz.upvotes }}</h6>-->
+<!--    <h6>Total downvote: {{quiz.downvotes }}</h6>-->
 
     <section class="home-slider">
       <div class="slider-item">
@@ -43,9 +44,32 @@
                 {% endif %}
               </h1>
               
+              <div class="player-status">
+                <h5>Answered {{ player.total_answer }} question(s)</h5>
+                <h5>({{ player.correct_answer }} correct and {{ player.wrong_answer }} wrong)</h5>
+                <h5>Time spent: {{ player.time }}</h5>
+              </div>
+              
+              <div class="upvote-downvote">
+                <h5>Like this quiz?
+                  <span>
+                    <a id="upvote" href="{% url 'quizer_game:upvote-downvote' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty code=1 %}">
+                      Upvote
+                    </a>
+                  </span>
+                  <span>
+                      <a id="downvote" href="{% url 'quizer_game:upvote-downvote' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty code=0 %}">
+                        Downvote
+                      </a>
+                  </span>
+                </h5>
+                
+              </div>
+              
               {% if player.is_achieved %}
               <p1>
-                <a href="" class="btn btny js-scroll-trigger px-4 py-3">
+                <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}"
+                   class="btn btny js-scroll-trigger px-4 py-3">
                   <span class="ion-ios-play mr-2"></span>
                   Leaderboard
                 </a>
@@ -57,7 +81,7 @@
                   Home
                 </a>
               </p1>
-            
+              
             </div>
           </div>
         </div>
@@ -86,7 +110,7 @@
 
   <script>
 			sessionStorage.clear();
-	</script>
+  </script>
   
   </body>
 </html>

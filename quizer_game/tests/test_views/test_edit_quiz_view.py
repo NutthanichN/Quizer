@@ -4,7 +4,6 @@ from django.urls import reverse
 from quizer_game.models import Quiz, Question, Choice, Player
 
 
-
 class EditQuizTest(TestCase):
 
     def setUp(self):

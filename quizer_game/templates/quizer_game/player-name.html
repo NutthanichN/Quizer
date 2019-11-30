@@ -22,14 +22,7 @@
   </head>
   <body>
   <!--	<h3>For manual testing</h3>-->
-
-    {# For Test Quiz contains 5 questions #}
-  <!--    <p>choose 'player_test_5_q'</p>-->
-      {# <a href="{% url 'quizer_game:quiz-level' player_name='player_test_5_q' %}">Select Quiz and Difficulty</a> #}
-
-    {# For Test Quiz contains 20 questions #}
-  <!--    <p>choose 'player_test_20_q'</p>-->
-      {# <a href="{% url 'quizer_game:quiz-level' player_name='player_test_20_q' %}">Select Quiz and Difficulty</a> #}
+  
     <div class="limiter">
       <div class="container-login100" style="background: #eaece5;">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
@@ -41,9 +34,13 @@
             </span>
 
             <div class="txt1 text-center p-t-7 p-b-20">
-              <span>
-                Please enter your name.
-              </span>
+              {% if messages %}
+                {% for message in messages %}
+                  <p style="color:red;">{{ message }}</p>
+                {% endfor %}
+              {% else %}
+                <p>Please enter your name</p>
+              {% endif %}
             </div>
 
             <div class="wrap-input100 validate-input m-b-23" data-validate = "Name is required">
@@ -56,47 +53,13 @@
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
                 <button class="login100-form-btn">
-                  OK
+                  NEXT
                 </button>
               </div>
             </div>
 
           </form>
-
         </div>
-      </div>
-    </div>
-            <!-- <div class="txt1 text-center p-t-54 p-b-20">
-              <span>
-                Or Sign Up Using
-              </span>
-            </div>
-
-            <div class="flex-c-m">
-              <a href="#" class="login100-social-item bg1">
-                <i class="fa fa-facebook"></i>
-              </a>
-
-              <a href="#" class="login100-social-item bg2">
-                <i class="fa fa-twitter"></i>
-              </a>
-
-              <a href="#" class="login100-social-item bg3">
-                <i class="fa fa-google"></i>
-              </a>
-            </div>
-
-            <div class="flex-col-c p-t-155">
-              <span class="txt1 p-b-17">
-                Or Sign Up Using
-              </span>
-
-              <a href="#" class="txt2">
-                Sign Up
-              </a>
-            </div> -->
-
-    <div id="dropDownSelect1"></div>
     <script src="{% static 'quizer_game/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'quizer_game/scripts/js/main.js' %}"></script>
     <script>

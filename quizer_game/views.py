@@ -1,8 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+<<<<<<< HEAD
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView
+=======
+from django.core.exceptions import ObjectDoesNotExist
+>>>>>>> main-game
 from django.views import View
 from django.contrib import messages
 
@@ -17,6 +21,10 @@ DIFFICULTY_NUM = {0: 'Easy', 1: 'Medium', 2: 'Hard'}
 CHOICE_VALUE = {'wrong': 0, 'correct': 1}
 POSITION = {'max': 15, 'min': 0}
 HARD_LVL_TIME_LIMIT = 60            # seconds
+<<<<<<< HEAD
+=======
+PLAYERS_FOR_TESTING = ['player_test_5_q', 'player_test_20_q']
+>>>>>>> main-game
 
 
 def create_player(quiz, player_name, selected_difficulty):
@@ -64,6 +72,13 @@ def setup_player_for_testing(quiz, player_name, selected_difficulty, position):
     return player
 
 
+def is_player_for_testing(player_name):
+    for name in PLAYERS_FOR_TESTING:
+        if name == player_name:
+            return True
+    return False
+
+
 def index(request):
     return render(request, 'quizer_game/index.html')
 
@@ -85,10 +100,14 @@ def leaderboard_index(request):
 # <str:player_name>/quiz-level/
 def quiz_level(request):
     input_player_name = request.POST['player_name']
-    # input_player_name = request.POST.get('player_name', '')
+    if input_player_name == '':
+        messages.error(request, "Please enter player's name!")
+        return redirect(reverse('quizer_game:player-name'))
     quizzes = Quiz.objects.all()
+    top_quizzes = Quiz.objects.order_by('-upvotes')[:5]
     context = {'player_name': input_player_name,
-               'quizzes': quizzes}
+               'quizzes': quizzes,
+               'top_quizzes': top_quizzes}
     return render(request, 'quizer_game/question-level.html', context)
 
 
@@ -97,11 +116,11 @@ def start_game(request, player_name):
     quiz_id = request.POST['quiz_id']
     difficulty = request.POST['difficulty']
     quiz = get_object_or_404(Quiz, pk=quiz_id)
-    # test with existing player
-    player = setup_player_for_testing(quiz, player_name, DIFFICULTY[difficulty], POSITION['min'])
 
-    # uncomment this for real use
-    # player = create_player(quiz, player_name, selected_difficulty)
+    if is_player_for_testing(player_name):
+        player = setup_player_for_testing(quiz, player_name, DIFFICULTY[difficulty], POSITION['min'])
+    else:
+        player = create_player(quiz, player_name, DIFFICULTY[difficulty])
 
     timer = setup_timer(player)
     timer.start()
@@ -113,6 +132,7 @@ def start_game(request, player_name):
 
 
 # /quizer/game/player_id/quiz_id/difficulty/
+# TODO handle error (link to 404 not found page)
 def game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     player = quiz.player_set.get(pk=player_id)
@@ -126,7 +146,7 @@ def game(request, player_id, quiz_id, selected_difficulty):
     return render(request, 'quizer_game/game.html', context)
 
 
-# TODO provide upvote-downvote feature
+# TODO handle error (link to 404 not found page)
 # /quizer/game/player_id/quiz_id/difficulty/update/
 def update_game(request, player_id, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
@@ -136,16 +156,21 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     timer = Timer.objects.get(player=player)
     timer.stop()
 
+    # check time for hard level
+    if selected_difficulty == DIFFICULTY['hard']:
+        if timer.time_duration >= timer.time_limit:
+            player.is_timeout = True
+            player.is_playing = False
+            player.save()
+            player.save_time_duration()
+            return redirect(reverse('quizer_game:result',
+                                    kwargs={'player_id': player.id, 'quiz_id': quiz.id,
+                                            'selected_difficulty': player.selected_difficulty, }
+                                    )
+                            )
+
     # update position
-    if choice.value == CHOICE_VALUE['correct']:
-        player.correct_answer += 1
-        if player.position < POSITION['max']:
-            player.move_forward()
-    else:
-        player.wrong_answer += 1
-        if selected_difficulty > DIFFICULTY['easy']:
-            if player.position > POSITION['min']:
-                player.move_backward()
+    update_player_position(choice, player, selected_difficulty)
 
     # check time for hard level
     # player can still play game but player won't be ranked on leaderboard
@@ -157,9 +182,8 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
 
     # check if player reaches the finish line or not
     if player.position == POSITION['max']:
-        if not player.is_timeout:
-            player.is_achieved = True
         player.is_playing = False
+        player.is_achieved = True
         player.save()
         player.save_time_duration()
         return redirect(reverse('quizer_game:result',
@@ -174,9 +198,8 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
             new_question_number = old_question.number + 1
             player.current_question = quiz.question_set.get(number=new_question_number)
         except ObjectDoesNotExist:
-            if not player.is_timeout:
-                player.is_failed = True
             player.is_playing = False
+            player.is_failed = True
             player.save()
             player.save_time_duration()
             return redirect(reverse('quizer_game:result',
@@ -189,6 +212,45 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
                                     'selected_difficulty': selected_difficulty}
+                            )
+                    )
+
+
+def update_player_position(choice, player, difficulty) -> None:
+    if choice.value == CHOICE_VALUE['correct']:
+        player.correct_answer += 1
+        if player.position < POSITION['max']:
+            player.move_forward()
+    else:
+        player.wrong_answer += 1
+        if difficulty > DIFFICULTY['easy']:
+            if player.position > POSITION['min']:
+                player.move_backward()
+
+
+# game/<int:player_id>/<int:quiz_id>/<int:selected_difficulty>/quit/
+def quit_game(request, player_id, quiz_id, selected_difficulty):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    player = quiz.player_set.get(pk=player_id)
+    player.delete()
+    return redirect(reverse('quizer_game:index'))
+
+
+def upvote_downvote(request, player_id, quiz_id, selected_difficulty, code):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
+    player = quiz.player_set.get(pk=player_id)
+    if player.has_vote:
+        if code == 0:
+            quiz.downvotes += 1
+            quiz.save()
+        else:
+            quiz.upvotes += 1
+            quiz.save()
+        player.has_vote = False
+        player.save()
+    return redirect(reverse('quizer_game:result',
+                            kwargs={'player_id': player.id, 'quiz_id': quiz.id,
+                                    'selected_difficulty': player.selected_difficulty, }
                             )
                     )
 
@@ -213,7 +275,7 @@ def leaderboard(request, quiz_id, selected_difficulty):
                }
     return render(request, 'quizer_game/leaderboard.html', context)
 
-
+  
 # /quizer/create-quiz/
 def create_quiz(request):
     template_name = 'quizer_game/create-question.html'
