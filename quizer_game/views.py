@@ -277,7 +277,10 @@ def create_quiz(request):
 # /quizer/create-quiz/update/
 def update_create_quiz(request):
     quiz_topic = request.POST.get('quiz_topic')
-    quiz = Quiz(topic=quiz_topic)
+    if request.user.is_authenticated:
+        quiz = Quiz(topic=quiz_topic, user_id=request.user.id)
+    else:
+        quiz = Quiz(topic=quiz_topic)
     quiz.save()
     count_question = 0
     count_choice = 0
@@ -365,19 +368,20 @@ def quiz_index(request):
     context = {'quizzes': quizzes}
     return render(request, 'quizer_game/quiz-index.html', context)
 
+
 def user_profile(request):
     template_name = 'quizer_game/user-profile.html'
-    quizzes = Quiz.objects.all()
+    quizzes = Quiz.objects.filter(user_id=request.user.id)
     context = {'quizzes': quizzes}
     return render(request, template_name, context)
 
 
 def update_user_profile(request):
     # template_name = 'quizer_game/user-profile.html'
-    quiz = Quiz.objects.all()
+    quizzes = Quiz.objects.filter(user_id=request.user.id)
 
     count_quiz = 0
-    for i in quiz:
+    for i in quizzes:
         count_quiz = count_quiz + 1
         delete = request.POST.get(f'd')
         if delete == f'delete_{count_quiz}':
