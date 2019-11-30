@@ -1,8 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
-from django.views.generic import TemplateView
 from django.views import View
 from django.contrib import messages
 
@@ -80,7 +78,6 @@ def player_name(request):
     return render(request, 'quizer_game/player-name.html')
 
 
-# TODO handle when there is no player_name
 # <str:player_name>/quiz-level/
 def quiz_level(request):
     input_player_name = request.POST['player_name']
