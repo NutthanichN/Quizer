@@ -4,7 +4,6 @@
 html,
 
 body {
-
   margin: 0;
   background: #eaece5;
   font-family: 'Nunito', serif;
@@ -49,7 +48,6 @@ td {
   left:25%;
 }
 
-
 .top a{
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -61,7 +59,6 @@ td {
   border-radius: 19px;
   border: solid white;
 }
-
 
 .top a:hover{
   background: #eaece5;
@@ -76,7 +73,6 @@ td {
   position: absolute;
   top: 55%;
   left: 95%;
-
 }
 
 .create {
@@ -101,6 +97,7 @@ td {
           transform: translate(-50%, -50%);
   color: white;
 }
+
 .email a:visited  {
   color: white;
 }
@@ -108,7 +105,6 @@ td {
 .email a:hover{
   color: #00FFFF;
 }
-
 
 .login {
   position: absolute;
@@ -130,16 +126,15 @@ td {
   font-size: 20px;
   border-radius: 19px;
   border: solid black;
-
 }
+
 #back a:hover {
   background: #25274d;
   color: white;
   border: solid black;
 }
 
-
-.navbar a {
+.navbar button {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: black;
@@ -152,7 +147,7 @@ td {
   border-radius: 19px;
 }
 
-.navbar a:hover {
+.navbar button:hover {
   background: #25274d;
   color: white;
   border: solid black;
@@ -169,8 +164,15 @@ td {
 #question {
   position: absolute;
   margin-top:4px;
-  margin-left: -90px;
+  margin-left: -60px;
   font-size: 24px;
+}
+
+#information {
+  position: absolute;
+  margin-top:38px;
+  margin-left: -70px;
+  font-size: 16px;
 }
 
 #edit {
@@ -183,7 +185,7 @@ td {
   margin-left: 50px;
 }
 
-#yes{
+#yes {
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -191,12 +193,11 @@ td {
   border-radius: 19px;
 }
 
-#no{
+#no {
   background-color: #f44336;
   border: none;
   color: white;
   padding: 10px 16px;
   border-radius: 19px;
 }
-
 
