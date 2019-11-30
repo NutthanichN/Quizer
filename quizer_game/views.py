@@ -1,12 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-<<<<<<< HEAD
-from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
-from django.views.generic import TemplateView
-=======
-from django.core.exceptions import ObjectDoesNotExist
->>>>>>> main-game
 from django.views import View
 from django.contrib import messages
 
@@ -21,10 +15,7 @@ DIFFICULTY_NUM = {0: 'Easy', 1: 'Medium', 2: 'Hard'}
 CHOICE_VALUE = {'wrong': 0, 'correct': 1}
 POSITION = {'max': 15, 'min': 0}
 HARD_LVL_TIME_LIMIT = 60            # seconds
-<<<<<<< HEAD
-=======
 PLAYERS_FOR_TESTING = ['player_test_5_q', 'player_test_20_q']
->>>>>>> main-game
 
 
 def create_player(quiz, player_name, selected_difficulty):
