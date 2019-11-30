@@ -1,10 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+{% load quizer_game_extras %}
+  <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>Edit question</title>
+    {% load static %}
+	<link rel="stylesheet" href="{% static 'quizer_game/styles/edit-question-set.css' %}">
+  <head>
+  <body>
+
+  <header id="masthead">
+    <!--login version-->
+    <div class="email">
+	  <a href="">Email: {{ text }}</a>
+	</div>
+	<div class="top">
+	  <a class="create" href="">Create quiz</a>
+	  <a class="history" href="">History</a>
+	  <a class="logout" href="">Logout</a>
+	<!--<div class="top">-->
+	  	 <!--<a class="login" href="">Login</a>-->
+	</div>
+  </header>
+  <h1>Edit Quiz</h1>
+
+  <div class="container">
+    {% if messages %}
+	    <ul class="messages" id="message">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+	    </ul>
+	  {% endif %}
+
+    <form id="page-info" action="{% url 'quizer_game:edit_data'  quiz_id=quiz.id %}" method="post">
+	  {% csrf_token %}
+	  <article class="field">
+        <label class = "topic">Topic</label>
+	    <input name="quiz_topic"  value = "{{quiz}}" class="topic_input">
+	  </article>
+      {% for i in quiz.question_set.all%}
+	    <article class="field">
+          <label class = "question">Question {{forloop.counter}}</label>
+          <input name="question_text_{{forloop.counter}}"  value= "{{i}}" class="question_input">
+        </article>
+	    {% for j in i.choice_set.all %}
+          <article class="field">
+		    <label class = "choice">Choice {{forloop.counter}}</label>
+	        <input  name="{{forloop.parentloop.counter}}_choice_text_{{forloop.counter}}"  value= "{{j}}" class = "choice_input">
+	      </article>
+	    {% endfor %}
+
+		<article class="choose_choice">
+		  Choose the right choice
+		  <select name="{{forloop.counter}}_choice_value" >
+		    {% for k in i.choice_set.all %}
+			  {% if k.value == 1%}
+			    <option value= {{forloop.counter}} selected>{{forloop.counter}}</option>
+			  {% else %}
+				<option value= {{forloop.counter}}>{{forloop.counter}}</option>
+			  {% endif %}
+			{% endfor %}
+		  </select>
+		</article>
+	  {% endfor %}
+
+      <footer class="form__footer">
+        <input type="submit" value="Save">
+      </footer>
+    </form>
+
+  </div>
+
+  <div id="back">
+    <a href=>Back</a>
+  </div>
 
 </body>
 </html>
