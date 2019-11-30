@@ -36,16 +36,20 @@
 							</div>
 							
 					</div>
-					
+     
 					<form class="login100-form validate-form"
 								action="{% url 'quizer_game:start-game' player_name=player_name %}" method="post">
 						{% csrf_token %}
 						<div class="center-on-page p-t-54">
 							<div class="select" style="margin-top:150px;">
 								<select autofocus name="quiz_id" id="slct">
-									<option value="" disabled selected>Select Quiz</option>
+<!--									<option value="" disabled selected>Select Quiz</option>-->
 									{% for quiz in quizzes %}
-										<option value="{{ quiz.id }}">{{ quiz.topic }}</option>
+                    {% if forloop.count == 1 %}
+                      <option value="{{ quiz.id }}" selected>{{ quiz.topic }}</option>
+                    {% else %}
+										  <option value="{{ quiz.id }}">{{ quiz.topic }}</option>
+                    {% endif %}
 									{% endfor %}
 								</select>
 							</div>
@@ -53,7 +57,7 @@
 							<div class="select">
 								<select autofocus name="difficulty" id="slct">
 									<option value="" disabled selected>Select Difficulty</option>
-									<option value="easy">Easy</option>
+									<option value="easy" selected>Easy</option>
 									<option value="medium">Medium</option>
 									<option value="hard">Hard</option>
 								</select>
