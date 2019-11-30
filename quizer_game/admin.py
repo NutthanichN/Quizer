@@ -19,7 +19,7 @@ class TimerInline(admin.TabularInline):
 
 @admin.register(Quiz)
 class QuizAdmin(admin.ModelAdmin):
-    list_display = ('topic', )
+    list_display = ('topic', 'upvotes', 'downvotes')
     inlines = [QuestionInline]
 
 
@@ -42,7 +42,7 @@ class PlayerAdmin(admin.ModelAdmin):
     list_display = ('name', 'quiz', 'is_achieved', 'is_failed', 'time')
     list_filter = ('name', 'quiz', 'is_achieved', 'is_failed')
     fields = ['name', ('quiz', 'selected_difficulty'), ('current_question', 'position'),
-              ('is_playing', 'is_achieved', 'is_failed')]
+              ('is_playing', 'is_achieved', 'is_failed', 'has_vote')]
     inlines = [TimerInline]
 
 

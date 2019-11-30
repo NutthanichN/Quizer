@@ -34,30 +34,22 @@ h1 {
   color: black;
   text-align: center;
   font-size: 30px;
-  margin-left: -100px;
-
-}
-
-h2 {
-  color: black;
-  text-align: center;
-  font-size: 17px;
-  margin-left: -100px;
+  margin-left: -120px;
 
 }
 
 .fixed_header{
-  width: 920px;
+  width: 1000px;
   table-layout: fixed;
   border-collapse: collapse;
-  margin-left: 70px;
+  margin-left: -50px;
 }
 
 .fixed_header tbody{
   display:block;
-  width: 78.5%;
+  width: 100%;
   overflow: auto;
-  height: 390px;
+  height: 440px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
@@ -65,25 +57,41 @@ h2 {
    display: block;
 }
 .fixed_header th{
-  padding: 15px;
+  padding: 30px;
   text-align: center;
-  width: 200px;
+  width: 400px;
 }
 
 .fixed_header td {
   padding: 25px;
   text-align: center;
-  width: 200px;
+  width: 400px;
 }
 
-th,
-td {
+table {
+    border:none;
+    border-collapse: collapse;
+}
+
+table td {
+    border-left: 1px solid #25274d;
+    border-right: 1px solid #25274d;
+}
+
+table td:first-child {
+    border-left: none;
+}
+
+table td:last-child {
+    border-right: none;
+}
+
+th,td {
   text-align: center;
   padding: 18px;
   color: black;
   word-wrap: break-word;
-  max-width: 150px;
-
+  max-width: 300px;
 }
 
 th {
@@ -115,7 +123,6 @@ tbody td {
   border: solid white;
 }
 
-
 .top a:hover{
   background: #eaece5;
   color: black;
@@ -123,13 +130,11 @@ tbody td {
   border-radius: 19px;
 }
 
-
 .logout{
   font-size: 12px;
   position: absolute;
   top: 55%;
   left: 95%;
-
 }
 
 .create {
@@ -144,13 +149,6 @@ tbody td {
   position: absolute;
   top: 55%;
   left: 89%;
-}
-
-.signup{
-  font-size: 12px;
-  position: absolute;
-  top: 55%;
-  left: 87.5%;
 }
 
 .email {
@@ -174,7 +172,7 @@ tbody td {
   left: 94%;
 }
 
-#quit a{
+#back a{
    position: fixed;
    top: 120px;
    left: 55px;
@@ -190,30 +188,9 @@ tbody td {
   border: solid black;
 }
 
-#quit a:hover {
+#back a:hover {
   background: #25274d;
   color: white;
   border: solid black;
 }
 
-#home a{
-   position: fixed;
-   top: 200px;
-   left:60px;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: black;
-  background-color: #eaece5;
-  text-align: center;
-  padding: 18px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  border-radius: 19px;
-  border: solid black;
-}
-
-#home a:hover {
-  background: #25274d;
-  color: white;
-  border: solid black;
-}

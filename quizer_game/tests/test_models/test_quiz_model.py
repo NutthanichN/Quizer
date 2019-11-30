@@ -10,13 +10,33 @@ class QuizModelTest(TestCase):
         Quiz.objects.create(topic='Python Programming')
 
     def test_topic_label(self):
-        """Test verbose name of topic (CharField)"""
+        """
+        Test verbose name of topic (CharField)
+        """
         quiz = Quiz.objects.get(id=1)
         field_label = quiz._meta.get_field('topic').verbose_name
         self.assertEquals(field_label, 'Topic')
 
+    def test_upvotes_label(self):
+        """
+        Test verbose name of upvotes (IntegerField)
+        """
+        quiz = Quiz.objects.get(id=1)
+        field_label = quiz._meta.get_field('upvotes').verbose_name
+        self.assertEquals(field_label, 'Upvote')
+
+    def test_downvotes_label(self):
+        """
+        Test verbose name of upvotes (IntegerField)
+        """
+        quiz = Quiz.objects.get(id=1)
+        field_label = quiz._meta.get_field('downvotes').verbose_name
+        self.assertEquals(field_label, 'Downvote')
+
     def test_topic_max_length(self):
-        """Test max length of topic (CharField)"""
+        """
+        Test max length of topic (CharField)
+        """
         quiz = Quiz.objects.get(id=1)
         field_max_length = quiz._meta.get_field('topic').max_length
         self.assertEquals(field_max_length, 200)
