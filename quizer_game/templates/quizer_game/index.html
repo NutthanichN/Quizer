@@ -17,11 +17,10 @@
    <header id="masthead">
 
 	  <div class="top">
-
         {% if user.is_authenticated %}
            <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
-           <a href="" class="email">Email: {{user.username}}</a>
-           <a class="create" href="">Create quiz</a>
+           <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
+           <a href="{% url 'quizer_game:create-question-set' %}" class="create" >Create quiz</a>
         {% else %}
             <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
         {% endif %}
