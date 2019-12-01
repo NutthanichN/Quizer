@@ -325,7 +325,7 @@ def update_create_quiz(request):
                 choice.save()
 
     # check that user set 20 questions and 80 choices
-    if count_question == 20 and count_choice  == 80:
+    if count_question == 20 and count_choice == 80:
         messages.success(request, 'Successful saving')
         return redirect(reverse('quizer_game:create-question-set'))
     else:
@@ -344,8 +344,8 @@ def edit_quiz(request, quiz_id):
         return render(request, template_name, context)
     else:
         return render(request, 'quizer_game/login_result.html')
-
-
+#
+#
 # /quizer/edit-quiz/quiz_id/update/
 def edit_data(request,quiz_id):
 
@@ -392,7 +392,11 @@ def user_profile(request):
     template_name = 'quizer_game/user-profile.html'
     quizzes = Quiz.objects.filter(user_id=request.user.id)
     context = {'quizzes': quizzes}
-    return render(request, template_name, context)
+
+    if request.user.is_authenticated:
+        return render(request, template_name, context)
+    else:
+        return render(request, 'quizer_game/login_result.html')
 
 
 def update_user_profile(request):
