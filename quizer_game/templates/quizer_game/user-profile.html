@@ -4,24 +4,22 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>User profile</title>
+    <link rel="stylesheet" href="{% static 'quizer_game/styles/base.css' %}">
     <link rel="stylesheet" href="{% static 'quizer_game/styles/user-profile.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'> -->
   </head>
   <body>
   <header id="masthead">
-	<!--login version-->
-     <!--<div class="email">-->
-     <!--<a href="">Email: hello55@gmail.com</a>-->
-	<!--</div>-->
-	 <!--<div class="top">-->
-	  <!--<a class="create" href="">Create quiz</a>-->
-	  <!--<a class="history" href="">History</a>-->
-	  <!--<a class="logout" href="">Logout</a>-->
-	  <div class="top">
-      <a class="signup" href="/quizer/login/">Sign Up</a>
-	  	<a class="login" href="/quizer/login/">Login</a>
-	  </div>
+    <div class="top">
+      {% if user.is_authenticated %}
+        <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
+        <a href="" class="email">Email: {{user.username}}</a>
+        <a class="create" href="">Create quiz</a>
+      {% else %}
+        <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
+      {% endif %}
+   </div>
   </header>
   <h1>Quiz</h1>
 
