@@ -43,4 +43,6 @@ urlpatterns = [
          views.user_profile, name='user_profile'),
     path('user-profile/update/',
          views.update_user_profile, name='update-user-profile'),
+    path('logout/', views.logout_user, name='logout'),
+    path('login-result/', views.login_result, name='login_result'),
 ]

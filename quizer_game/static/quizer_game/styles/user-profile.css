@@ -40,8 +40,7 @@ h1 {
 td {
   text-align: center;
   padding:0 200px 0 15px;
-  color: black;
-  font-sixe
+  color: black; 
   word-wrap: break-word;
   max-width: 300px;
   font-size: 20px;
@@ -97,7 +96,6 @@ td {
           transform: translate(-50%, -50%);
   color: white;
 }
-
 .email a:visited  {
   color: white;
 }
@@ -126,8 +124,8 @@ td {
   font-size: 20px;
   border-radius: 19px;
   border: solid black;
-}
 
+}
 #back a:hover {
   background: #25274d;
   color: white;
