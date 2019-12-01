@@ -8,20 +8,18 @@
   </head>
   <body>
 
-  <div class="container">
+    <div class="container">
       <p>Login</p>
+    </div>
 
+    <div id="back">
+      <a href="{% url 'quizer_game:index' %}" >Home</a>
+    </div>
 
-
-  </div>
-  <div id="back">
-    <a href="{% url 'quizer_game:index' %}" >Home</a>
-
-  </div>
-  <div id="login">
+    <div id="login">
      <a href="{% url 'social:begin' 'google-oauth2' %}" >Login with google</a>
+    </div>
 
-  </div>
   </body>
 </html>
 
