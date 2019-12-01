@@ -1,31 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
-
-
-html,
-
-body {
-  margin: 0;
-  background: #eaece5;
-  font-family: 'Nunito', serif;
-  font-weight: 100;
-  overflow: scroll;
-}
-
-.container {
-  position: absolute;
-  top:220px;
-  margin-right:-50px;
-  margin-left:-50px;
-  left:25%;
-}
-
-#masthead {
-  z-index: 10;
-  position: fixed;
-  width: 100%;
-  height: 70px;
-  background: #25274d;
-}
 
 h1 {
   position: absolute;
@@ -64,72 +36,6 @@ td {
   color: black;
   border: solid white;
   border-radius: 19px;
-}
-
-
-.logout{
-  font-size: 12px;
-  position: absolute;
-  top: 55%;
-  left: 95%;
-}
-
-.create {
-  font-size: 20px;
-  position: absolute;
-  top: 50%;
-  left: 8%;
-}
-
-.history{
-  font-size: 12px;
-  position: absolute;
-  top: 55%;
-  left: 89%;
-}
-
-.email {
-  position: absolute;
-  top: 52%;
-  right: 8.5%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: white;
-}
-.email a:visited  {
-  color: white;
-}
-
-.email a:hover{
-  color: #00FFFF;
-}
-
-.login {
-  position: absolute;
-  top: 55%;
-  left: 94%;
-}
-
-#back a{
-   position: fixed;
-   top: 120px;
-   left: 55px;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: black;
-  background-color: #eaece5;
-  text-align: center;
-  padding: 18px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  border-radius: 19px;
-  border: solid black;
-
-}
-#back a:hover {
-  background: #25274d;
-  color: white;
-  border: solid black;
 }
 
 .navbar button {
