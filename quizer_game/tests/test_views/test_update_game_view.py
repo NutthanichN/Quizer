@@ -221,30 +221,4 @@ class UpdateGameTest(TestCase):
                 self.player.refresh_from_db()
 
                 self.assertEqual(self.player.position, old_pos + 1)
-
-    # def test_player_chooses_wrong_answer(self):
-    #     """
-    #     When the player chooses wrong answer, player's position will increase by 1
-    #     """
-    #     url = reverse('quizer_game:update',
-    #                   kwargs={'player_id': self.player.id,
-    #                           'quiz_id': self.quiz.id,
-    #                           'selected_difficulty': self.player.selected_difficulty
-    #                           }
-    #                   )
-    #     self.player.position = 5
-    #     self.player.save()
-    #
-    #     for i in range(3):
-    #         with self.subTest(selected_difficulty=i):
-    #             old_pos = self.player.position
-    #             self.player.selected_difficulty = i
-    #             self.player.save()
-    #
-    #             self.client.post(url, data={'choice_id': self.wrong_choice1.id})
-    #             self.player.refresh_from_db()
-    # 
-    #             if i < 1:
-    #                 self.assertEqual(self.player.position, old_pos)
-    #             else:
-    #                 self.assertEqual(self.player.position, old_pos - 1)
+    
