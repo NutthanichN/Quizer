@@ -81,6 +81,20 @@ html,body {
   left: 90%;
 }
 
+.homepage_logout {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 4%;
+}
+
+.homepage {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 13.5%;
+}
+
 #back a{
   position: fixed;
   top: 120px;
