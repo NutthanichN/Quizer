@@ -16,7 +16,6 @@
         {% if user.is_authenticated %}
            <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
            <a href="" class="email">Email: {{user.username}}</a>
-           <a class="create" href="">Create quiz</a>
         {% else %}
             <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
         {% endif %}
