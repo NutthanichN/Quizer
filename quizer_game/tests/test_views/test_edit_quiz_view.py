@@ -2,7 +2,6 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-
 from quizer_game.models import Quiz, Question, Choice, Player
 
 
@@ -34,4 +33,5 @@ class EditQuizTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/login_result.html')
+
 

@@ -12,7 +12,6 @@ class Quiz(models.Model):
     downvotes = models.IntegerField(default=0, verbose_name='Downvote')
     user_id = models.IntegerField(blank=True, null=True)
 
-
     @property
     def total_player(self) -> int:
         players = self.player_set.filter(is_achieved=True)

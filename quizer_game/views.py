@@ -7,7 +7,6 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 
-
 from .models import Quiz, Player, Question, Choice, Timer
 
 from datetime import timedelta
@@ -90,8 +89,7 @@ def logout_user(request):
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
 
-
-
+  
 def leaderboard_index(request):
     quiz = Quiz.objects.all()
     context = {'quizzes': quiz}
@@ -335,7 +333,6 @@ def update_create_quiz(request):
 
 
 # /quizer/edit-quiz/quiz_id/
-
 def edit_quiz(request, quiz_id):
     template_name = 'quizer_game/edit-question-set.html'
     quiz = get_object_or_404(Quiz, pk=quiz_id)
@@ -344,8 +341,8 @@ def edit_quiz(request, quiz_id):
         return render(request, template_name, context)
     else:
         return render(request, 'quizer_game/login_result.html')
-#
-#
+
+      
 # /quizer/edit-quiz/quiz_id/update/
 def edit_data(request,quiz_id):
 
