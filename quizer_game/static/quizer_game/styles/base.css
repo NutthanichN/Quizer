@@ -54,6 +54,8 @@ html,body {
   position: absolute;
   top: 55%;
   right: 4%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   color: white;
 }
 
