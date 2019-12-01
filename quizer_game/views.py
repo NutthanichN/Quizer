@@ -407,11 +407,11 @@ def update_user_profile(request):
     for i in quizzes:
         count_quiz = count_quiz + 1
         delete = request.POST.get(f'd')
-        edit= request.POST.get(f'e')
+        edit = request.POST.get(f'e')
         if delete == f'delete_{count_quiz}':
             i.delete()
         if edit == f'edit_{i.id}':
-            return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': count_quiz}))
+            return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': i.id}))
 
 
     return redirect(reverse('quizer_game:user_profile'))
