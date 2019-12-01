@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
-html,
-body {
+html {
   height: 100%;
 }
 
@@ -33,6 +32,7 @@ h1 {
   text-align: center;
   font-size: 30px;
   margin-left: -120px;
+
 }
 
 .fixed_header{
