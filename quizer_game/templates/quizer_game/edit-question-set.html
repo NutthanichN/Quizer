@@ -5,22 +5,21 @@
     <meta charset="UTF-8">
     <title>Edit question</title>
     {% load static %}
+	<link rel="stylesheet" href="{% static 'quizer_game/styles/base.css' %}">
 	<link rel="stylesheet" href="{% static 'quizer_game/styles/edit-question-set.css' %}">
   <head>
   <body>
 
   <header id="masthead">
-    <!--login version-->
-    <div class="email">
-	  <a href="">Email: {{ text }}</a>
-	</div>
-	<div class="top">
-	  <a class="create" href="">Create quiz</a>
-	  <a class="history" href="">History</a>
-	  <a class="logout" href="">Logout</a>
-	<!--<div class="top">-->
-	  	 <!--<a class="login" href="">Login</a>-->
-	</div>
+     <div class="top">
+		   {% if user.is_authenticated %}
+         <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
+         <a href="" class="email">Email: {{user.username}}</a>
+         <a class="create" href="">Create quiz</a>
+       {% else %}
+         <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
+       {% endif %}
+	   </div>
   </header>
   <h1>Edit Quiz</h1>
 
