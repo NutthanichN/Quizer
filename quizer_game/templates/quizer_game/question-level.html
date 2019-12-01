@@ -2,75 +2,69 @@
 <html lang="en">
 	<head>
 		{% load static %}
-		<title>Question Level</title>
+		<title>Quiz Level</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style>
-			@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
-			header > h1{
-				font-family: 'Nunito', sans-serif;
-				font-weight: 700;
-			}
-			main > p{
-				font-family: 'Nunito', sans-serif;
-			}
-		</style>
+		
+		<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/util.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'quizer_game/styles/css/main.css' %}">
 		<link rel="stylesheet" href="{% static 'quizer_game/styles/css/style.css' %}">
+		<link rel="stylesheet" href="{% static 'quizer_game/styles/quiz-level.css' %}">
+	
 	</head>
 	<body>
-<!--		<h3>For manual testing</h3>-->
-<!--		<p>{{ player_name }}</p>-->
-	
-			{# For Test Quiz contains 5 questions #}
-	<!--		<p>Select: Test Quiz contains 5 questions </p>-->
-	<!--		<p>Difficulty: 0 (easy)</p>-->
-<!--			{# <a href="{% url 'quizer_game:start-game' player_name=player_name quiz_id=3 selected_difficulty=0 %}">Start Game</a> #}-->
-	
-			{# For Test Quiz contains 20 questions#}
-<!--			<p>Select: Test Quiz contains 20 questions </p>-->
-<!--			<p>Difficulty: 0 (easy)</p>-->
-<!--			{# <a href="{% url 'quizer_game:start-game' player_name=player_name quiz_id=4 selected_difficulty=0 %}">Start Game</a> #}-->
-	
-	
 		<div class="limiter">
 			<div class="container-login100" style="background: #eaece5;">
 				<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 					
-					<form class="login100-form validate-form" action="{% url 'quizer_game:start-game' player_name=player_name %}" method="post">
-						{% csrf_token %}
-						<span class="login100-form-title p-b-7">
+					<h1 class="login100-form-title p-b-7">
 							Select Quiz and Level
-						</span>
-	
-						<div class="txt1 text-center p-t-7 p-b-20">
-							<p>
+					</h1>
+					
+					<div class="txt1 text-center p-t-7 p-b-20">
+							<h5>
 								Player Name: {{ player_name }}
-							</p>
-
-						</div>
-						
+							</h5>
+							<div class="top-5-quizzes">
+								<h6>Top 5 upvote quizzes</h6>
+								<ul>
+									{% for top_quiz in top_quizzes %}
+										<li>{{ top_quiz.topic }} ({{ top_quiz.upvotes }} upvotes)</li>
+									{% endfor %}
+								</ul>
+							</div>
+							
+					</div>
+     
+					<form class="login100-form validate-form"
+								action="{% url 'quizer_game:start-game' player_name=player_name %}" method="post">
+						{% csrf_token %}
 						<div class="center-on-page p-t-54">
-							<div class="select">
+							<div class="select" style="margin-top:150px;">
 								<select autofocus name="quiz_id" id="slct">
-									<option>Select Quiz</option>
+<!--									<option value="" disabled selected>Select Quiz</option>-->
 									{% for quiz in quizzes %}
-										<option value="{{ quiz.id }}">{{ quiz.topic }}</option>
+                    {% if forloop.count == 1 %}
+                      <option value="{{ quiz.id }}" selected>{{ quiz.topic }}</option>
+                    {% else %}
+										  <option value="{{ quiz.id }}">{{ quiz.topic }}</option>
+                    {% endif %}
 									{% endfor %}
 								</select>
 							</div>
 							
 							<div class="select">
 								<select autofocus name="difficulty" id="slct">
-									<option>Select Difficulty</option>
-									<option value="easy">Easy</option>
+									<option value="" disabled selected>Select Difficulty</option>
+									<option value="easy" selected>Easy</option>
 									<option value="medium">Medium</option>
 									<option value="hard">Hard</option>
 								</select>
 							</div>
 						</div>
-            <div class="container-login100-form-btn p-t-155">
+						
+						<div class="container-login100-form-btn p-t-155">
 							<div class="wrap-login100-form-btn">
 								<div class="login100-form-bgbtn"></div>
 								<button class="login100-form-btn">
@@ -84,36 +78,7 @@
 				</div>
 			</div>
 		</div>
-            <!-- <div class="txt1 text-center p-t-54 p-b-20">
-							<span>
-								Or Sign Up Using
-							</span>
-						</div>
-	
-						<div class="flex-c-m">
-							<a href="#" class="login100-social-item bg1">
-								<i class="fa fa-facebook"></i>
-							</a>
-	
-							<a href="#" class="login100-social-item bg2">
-								<i class="fa fa-twitter"></i>
-							</a>
-	
-							<a href="#" class="login100-social-item bg3">
-								<i class="fa fa-google"></i>
-							</a>
-						</div>
-	
-						<div class="flex-col-c p-t-155">
-							<span class="txt1 p-b-17">
-								Or Sign Up Using
-							</span>
-	
-							<a href="#" class="txt2">
-								Sign Up
-							</a>
-						</div> -->
-		
+  
 		<div id="dropDownSelect1"></div>
 	
 		<script src="{% static 'quizer_game/scripts/js/main.js' %}"></script>

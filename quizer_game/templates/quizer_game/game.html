@@ -7,6 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'quizer_game/styles/style-game.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    
   </head>
   <body>
 <!--    <div id="time-up" class="overlay" style="display: none">-->
@@ -23,7 +24,10 @@
     </h2>
     <p class="top-text" id="player-name">{{ player.name }}</p>
     <span class="navbar">
-      <a id="quit" href="">Quit</a>
+      <a id="quit"
+         href="{% url 'quizer_game:quit-game' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}">
+        Quit
+      </a>
     </span>
     
     <div class="racing-track-box">
@@ -43,18 +47,15 @@
         <div id="question-text">
           <p>Q.{{ question.number }} {{ question.text }}</p>
         </div>
-        <!--        <p>Q1. This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg question</p>-->
         {% for choice in question.choice_set.all %}
           {# /quizer/game/player_id/quiz_id/difficulty/choice_value/update/ #}
           <div class="navbar" id="c{{ forloop.counter }}">
             <button type="submit" name="choice_id" value="{{ choice.id }}">{{ choice.text }}</button>
-<!--              <button>This should be a very longgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg choice</button>-->
           </div>
         {% endfor %}
       </form>
-    
     </div>
-
+    
   <script>
     function openOverlay() {
       document.getElementById("time-up").style.display = "block";

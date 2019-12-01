@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  {% load static %}
-  <meta charset="UTF-8">
-  <title>Leaderboard</title>
-  <link rel="stylesheet" href="{% static 'quizer_game/styles/base.css' %}">
-  <link rel="stylesheet" href="{% static 'quizer_game/styles/leaderboard.css' %}">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Leaderboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quizer_game/styles/base.css' %}">
+    <link rel="stylesheet" href="{% static 'quizer_game/styles/leaderboard.css' %}">
+  </head>
+  <body>
 
   <header id="masthead">
     <div class="top">
@@ -21,37 +21,40 @@
     </div>
   </header>
 
-<div class="container">
-  <h1>Leaderboard</h1>
-  <h2>Quiz name: {{ quiz.topic }}</h2>
-  <h2>Difficulty: {{ difficulty }} </h2>
+  <div class="container">
+    <h1>Leaderboard</h1>
+    <h2>Quiz name: {{ quiz.topic }}</h2>
+    <h2>Difficulty: {{ difficulty }} </h2>
 
-  <table class="fixed_header">
-    <thead>
-      <tr>
-        <th>Rank</th>
-      	<th>Name</th>
-      	<th>Time</th>
-      	<th>Number of all answers</th>
-	  </tr>
-  	</thead>
-  	<tbody>
-	{% for player in players %}
-	<tr>
-      <td>{{ forloop.counter }}</td>
-      <td>{{ player.name }}</td>
-      <td>{{ player.time }}</td>
-      <td>{{ player.total_answer }}</td>
-	  {% endfor %}
-    </tr>
-	</tbody>
-  </table>
-</div>
+    <table class="fixed_header">
+      <thead>
+        <tr>
+          <th>Rank</th>
+      	  <th>Name</th>
+      	  <th>Time</th>
+      	  <th>Number of all answers</th>
+	      </tr>
+  	  </thead>
+  	  <tbody>
+	      {% for player in players %}
+	        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.time }}</td>
+            <td>{{ player.total_answer }}</td>
+	      {% endfor %}
+         </tr>
+	    </tbody>
+    </table>
+  </div>
 
-<div id="back">
-  <a href="{% url 'quizer_game:leaderboard-index' %}" >Back</a>
+  <div id="back">
+    <a href="{% url 'quizer_game:leaderboard-index' %}" >Back</a>
+  </div>
+    
+  <div id="home">
+    <a href="{% url 'quizer_game:index' %}">Home</a>
+  </div>
 
-</div>
-
-</body>
+  </body>
 </html>
