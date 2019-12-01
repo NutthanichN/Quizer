@@ -375,12 +375,13 @@ def edit_data(request,quiz_id):
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
   
   
- def quiz_index(request):
+def quiz_index(request):
     quizzes = Quiz.objects.all()
     context = {'quizzes': quizzes}
     return render(request, 'quizer_game/quiz-index.html', context)  
 
- def login_result(request):
+
+def login_result(request):
     return render(request, 'quizer_game/login_result.html')
 
   
