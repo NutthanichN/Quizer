@@ -3,6 +3,9 @@ from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.views import View
 from django.contrib import messages
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
 
 from .models import Quiz, Player, Question, Choice, Timer
 
@@ -77,11 +80,16 @@ def index(request):
 def login(request):
     return render(request, 'quizer_game/login.html')
 
-  
+
+def logout_user(request):
+    logout(request)
+    return redirect("quizer_game:index")
+
+
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
 
-  
+
 def leaderboard_index(request):
     quiz = Quiz.objects.all()
     context = {'quizzes': quiz}
@@ -253,7 +261,7 @@ def result(request, player_id, quiz_id, selected_difficulty):
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
-  
+
   
 def leaderboard(request, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
@@ -265,13 +273,17 @@ def leaderboard(request, quiz_id, selected_difficulty):
                'players': players,
                'difficulty': DIFFICULTY_NUM[selected_difficulty],
                }
+
     return render(request, 'quizer_game/leaderboard.html', context)
 
-  
+
 # /quizer/create-quiz/
 def create_quiz(request):
     template_name = 'quizer_game/create-question.html'
-    return render(request, template_name)
+    if request.user.is_authenticated:
+        return render(request,  template_name)
+    else:
+        return render(request, 'quizer_game/login_result.html')
 
 
 # /quizer/create-quiz/update/
@@ -317,11 +329,14 @@ def update_create_quiz(request):
 
 
 # /quizer/edit-quiz/quiz_id/
-def edit_quiz(request,quiz_id):
+def edit_quiz(request, quiz_id):
     template_name = 'quizer_game/edit-question-set.html'
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     context = {'quiz': quiz}
-    return render(request, template_name,context)
+    if request.user.is_authenticated:
+        return render(request, template_name, context)
+    else:
+        return render(request, 'quizer_game/login_result.html')
 
 
 # /quizer/edit-quiz/quiz_id/update/
@@ -358,10 +373,16 @@ def edit_data(request,quiz_id):
     # if user already save it will display successful saving
     messages.success(request, 'Successful saving')
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
-
+  
   
 def quiz_index(request):
     quizzes = Quiz.objects.all()
     context = {'quizzes': quizzes}
-    return render(request, 'quizer_game/quiz-index.html', context)
+    return render(request, 'quizer_game/quiz-index.html', context)  
+
+
+def login_result(request):
+    return render(request, 'quizer_game/login_result.html')
+
+  
 

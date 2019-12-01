@@ -39,4 +39,6 @@ urlpatterns = [
          views.edit_data, name='edit_data'),
     path('quiz-index/',
          views.quiz_index, name='quiz-index'),
+    path('logout/', views.logout_user, name='logout'),
+    path('login-result/', views.login_result, name='login_result'),
 ]

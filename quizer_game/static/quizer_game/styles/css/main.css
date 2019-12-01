@@ -564,59 +564,42 @@ tbody td {
   border-radius: 19px;
 }
 
-
-.logout{
-  font-size: 12px;
-  position: absolute;
-  top: 55%;
-  left: 95%;
-
-}
-
 .create {
   font-size: 20px;
   position: absolute;
   top: 50%;
-  left: 8%;
-}
-
-.history{
-  font-size: 12px;
-  position: absolute;
-  top: 55%;
-  left: 89%;
+  left: 5%;
 }
 
 .email {
   position: absolute;
-  top: 52%;
-  right: 8.5%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  top: 55%;
+  right: 4%;
   color: white;
-
 }
+
 .email a:visited  {
   color: white;
 }
 
 .email a:hover{
   color: #00FFFF;
+  top: 44%;
+  right: 14%;
 }
 
+.logout {
+  position: absolute;
+  font-size: 12px;
+  top: 55%;
+  left: 95%;
+}
 
 .signup {
   font-size: 12px;
   position: absolute;
   top: 55%;
-  left: 89%;
-}
-
-.login {
-  font-size: 12px;
-  position: absolute;
-  top: 55%;
-  left: 95%;
+  left: 90%;
 }
 
 .bottom a{

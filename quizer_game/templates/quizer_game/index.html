@@ -14,22 +14,20 @@
   </head>
   <body id="page-top">
     
-    <header id="masthead">
-      <!-- login version -->
-      <!-- <div class="email">
-        <a href="">Email: hello55@gmail.com</a>
-      </div>
-      <div class="top">
-        <a class="create" href="">Create quiz</a>
-        <a class="history" href="">History</a>
-        <a class="logout" href="">Logout</a>
-      </div> -->
+   <header id="masthead">
 
-      <div class="top">
-        <a href="{% url 'quizer_game:login' %}" class="signup">Sign Up</a>
-        <a href="{% url 'quizer_game:login' %}" class="login">Login</a>
-      </div>
-    </header>
+	  <div class="top">
+
+        {% if user.is_authenticated %}
+           <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
+           <a href="" class="email">Email: {{user.username}}</a>
+           <a class="create" href="">Create quiz</a>
+        {% else %}
+            <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
+        {% endif %}
+	  </div>
+  </header>
+
     <!-- END nav -->
     
     <section class="home-slider">
