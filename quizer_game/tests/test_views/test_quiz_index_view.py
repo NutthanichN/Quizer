@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from quizer_game.models import Quiz, Question, Choice, Player
+from quizer_game.models import Quiz
 
 
 class QuizIndexTest(TestCase):
@@ -18,7 +18,6 @@ class QuizIndexTest(TestCase):
         url = reverse('quizer_game:quiz-index')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        # self.assertTemplateUsed(response,'quizer_game/quiz-index.html')
 
     def test_quiz_index_uses_correct_template(self) -> None:
         """

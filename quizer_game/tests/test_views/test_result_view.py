@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from quizer_game.models import Quiz, Question, Choice, Player
+from quizer_game.models import Quiz, Question
 
 
 class ResultTest(TestCase):

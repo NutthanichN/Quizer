@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from quizer_game.models import Quiz, Question, Choice, Player
+from quizer_game.models import Quiz
 from datetime import timedelta
 
 
@@ -12,8 +12,6 @@ class UpdateGameTest(TestCase):
         self.question1 = self.quiz.question_set.create(text='Question 1', number=1)
         self.correct_choice1 = self.question1.choice_set.create(text='Correct 1', value=1)
         self.wrong_choice1 = self.question1.choice_set.create(text='Wrong 1', value=0)
-
-        # self.question2 = self.quiz.question_set.create(text='Question 2', number=2)
 
         self.player = self.quiz.player_set.create(name='Player1')
         self.player.current_question = self.question1
