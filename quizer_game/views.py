@@ -7,6 +7,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 
+
 from .models import Quiz, Player, Question, Choice, Timer
 
 from datetime import timedelta
@@ -389,8 +390,6 @@ def login_result(request):
     return render(request, 'quizer_game/login_result.html')
 
   
-
-
 def user_profile(request):
     template_name = 'quizer_game/user-profile.html'
     quizzes = Quiz.objects.filter(user_id=request.user.id)
