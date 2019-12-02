@@ -21,6 +21,7 @@ class UserProfileTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/user-profile.html')
 
+
     def test_can_view_user_profile_for_player(self):
         """
         Test that a player can not view user profile

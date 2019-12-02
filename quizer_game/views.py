@@ -400,7 +400,7 @@ def update_user_profile(request):
             i.delete()
         if edit == f'edit_{i.id}':
             return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': i.id}))
-
+          
     return redirect(reverse('quizer_game:user_profile'))
 
 
