@@ -34,7 +34,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("OAUTH2_KEY", default="key")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("OAUTH2_SECRET", default="secret")
 
 
-LOGIN_REDIRECT_URL = '/quizer/'
+LOGIN_REDIRECT_URL = '/'
 
 
 ALLOWED_HOSTS = []
