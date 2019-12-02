@@ -4,8 +4,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.views import View
 from django.contrib import messages
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
-
 
 
 from .models import Quiz, Player, Question, Choice, Timer
