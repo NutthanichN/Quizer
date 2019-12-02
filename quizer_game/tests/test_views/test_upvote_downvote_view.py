@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from quizer_game.models import Quiz, Question, Choice, Player
+from quizer_game.models import Quiz, Player
 
 
 def create_player(quiz, player_name) -> Player:
@@ -9,7 +9,6 @@ def create_player(quiz, player_name) -> Player:
     Create a player of the given `quiz` and set player statuses to playing state
     """
     player = quiz.player_set.create(name=player_name)
-    # player.current_question = quiz.question_set.get(id=1)
     player.save()
     return player
 

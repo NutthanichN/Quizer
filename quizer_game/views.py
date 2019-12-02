@@ -1,10 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
-from django.views import View
 from django.contrib import messages
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 
 
 from .models import Quiz, Player, Question, Choice, Timer
@@ -171,13 +169,6 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     # update position
     update_player_position(choice, player, selected_difficulty)
 
-    # check time for hard level
-    # player can still play game but player won't be ranked on leaderboard
-    if selected_difficulty == DIFFICULTY['hard']:
-        if timer.time_duration >= timer.time_limit:
-            player.is_timeout = True
-            player.save()
-
     # check if player reaches the finish line or not
     if player.position == POSITION['max']:
         player.is_playing = False
@@ -261,7 +252,7 @@ def result(request, player_id, quiz_id, selected_difficulty):
     player = quiz.player_set.get(pk=player_id)
     context = {'quiz': quiz, 'player': player}
     return render(request, 'quizer_game/result.html', context)
-
+  
   
 def leaderboard(request, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
@@ -409,14 +400,10 @@ def update_user_profile(request):
             i.delete()
         if edit == f'edit_{i.id}':
             return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': i.id}))
-
-
+          
     return redirect(reverse('quizer_game:user_profile'))
 
 
 # display when normal player try to access the page og register user
 def login_result(request):
     return render(request, 'quizer_game/login_result.html')
-
-  
-
