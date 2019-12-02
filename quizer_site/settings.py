@@ -27,6 +27,8 @@ SECRET_KEY = config('SECRET_KEY', default="secret")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
+# Store the extracted extra data
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("OAUTH2_KEY", default="key")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("OAUTH2_SECRET", default="secret")
