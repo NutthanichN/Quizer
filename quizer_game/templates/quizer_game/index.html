@@ -17,7 +17,6 @@
    <header id="masthead">
 
 	  <div class="top">
-
         {% if user.is_authenticated %}
            <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
            <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>

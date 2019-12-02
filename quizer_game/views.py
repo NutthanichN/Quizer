@@ -341,7 +341,7 @@ def edit_quiz(request, quiz_id):
     else:
         return render(request, 'quizer_game/login_result.html')
 
-
+      
 # /quizer/edit-quiz/quiz_id/update/
 def edit_data(request,quiz_id):
 
@@ -388,6 +388,42 @@ def login_result(request):
     return render(request, 'quizer_game/login_result.html')
 
   
+def user_profile(request):
+    template_name = 'quizer_game/user-profile.html'
+    quizzes = Quiz.objects.filter(user_id=request.user.id)
+    context = {'quizzes': quizzes}
+
+    if request.user.is_authenticated:
+        return render(request, template_name, context)
+    else:
+        return render(request, 'quizer_game/login_result.html')
+
+
+def update_user_profile(request):
+    # template_name = 'quizer_game/user-profile.html'
+    quizzes = Quiz.objects.filter(user_id=request.user.id)
+
+    count_quiz = 0
+    for i in quizzes:
+        count_quiz = count_quiz + 1
+        delete = request.POST.get(f'd')
+        edit = request.POST.get(f'e')
+        if delete == f'delete_{count_quiz}':
+            i.delete()
+        if edit == f'edit_{i.id}':
+            return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': i.id}))
+
+
+    return redirect(reverse('quizer_game:user_profile'))
+
+
+# display when normal player try to access the page og register user
+def login_result(request):
+    return render(request, 'quizer_game/login_result.html')
+
+  
+
+
 def user_profile(request):
     template_name = 'quizer_game/user-profile.html'
     quizzes = Quiz.objects.filter(user_id=request.user.id)
