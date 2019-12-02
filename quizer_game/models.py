@@ -10,6 +10,7 @@ class Quiz(models.Model):
     topic = models.CharField(max_length=200, verbose_name='Topic')
     upvotes = models.IntegerField(default=0, verbose_name='Upvote')
     downvotes = models.IntegerField(default=0, verbose_name='Downvote')
+    user_id = models.IntegerField(blank=True, null=True)
 
     @property
     def total_player(self) -> int:

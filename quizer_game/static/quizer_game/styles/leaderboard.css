@@ -91,27 +91,5 @@ tbody td {
   position: relative;
 }
 
-#home a{
-   position: fixed;
-   top: 200px;
-   left:60px;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  color: black;
-  background-color: #eaece5;
-  text-align: center;
-  padding: 18px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  border-radius: 19px;
-  border: solid black;
-}
-
-#home a:hover {
-  background: #25274d;
-  color: white;
-  border: solid black;
-}
-
 
 

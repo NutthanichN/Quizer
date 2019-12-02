@@ -289,7 +289,11 @@ def create_quiz(request):
 # /quizer/create-quiz/update/
 def update_create_quiz(request):
     quiz_topic = request.POST.get('quiz_topic')
-    quiz = Quiz(topic=quiz_topic)
+    if request.user.is_authenticated:
+        quiz = Quiz(topic=quiz_topic, user_id=request.user.id)
+    else:
+        quiz = Quiz(topic=quiz_topic)
+
     quiz.save()
     count_question = 0
     count_choice = 0
@@ -319,7 +323,7 @@ def update_create_quiz(request):
                 choice.save()
 
     # check that user set 20 questions and 80 choices
-    if count_question == 20 and count_choice  == 80:
+    if count_question == 20 and count_choice == 80:
         messages.success(request, 'Successful saving')
         return redirect(reverse('quizer_game:create-question-set'))
     else:
@@ -381,6 +385,42 @@ def quiz_index(request):
     return render(request, 'quizer_game/quiz-index.html', context)  
 
 
+def login_result(request):
+    return render(request, 'quizer_game/login_result.html')
+
+  
+
+
+def user_profile(request):
+    template_name = 'quizer_game/user-profile.html'
+    quizzes = Quiz.objects.filter(user_id=request.user.id)
+    context = {'quizzes': quizzes}
+
+    if request.user.is_authenticated:
+        return render(request, template_name, context)
+    else:
+        return render(request, 'quizer_game/login_result.html')
+
+
+def update_user_profile(request):
+    # template_name = 'quizer_game/user-profile.html'
+    quizzes = Quiz.objects.filter(user_id=request.user.id)
+
+    count_quiz = 0
+    for i in quizzes:
+        count_quiz = count_quiz + 1
+        delete = request.POST.get(f'd')
+        edit = request.POST.get(f'e')
+        if delete == f'delete_{count_quiz}':
+            i.delete()
+        if edit == f'edit_{i.id}':
+            return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': i.id}))
+
+
+    return redirect(reverse('quizer_game:user_profile'))
+
+
+# display when normal player try to access the page og register user
 def login_result(request):
     return render(request, 'quizer_game/login_result.html')
 

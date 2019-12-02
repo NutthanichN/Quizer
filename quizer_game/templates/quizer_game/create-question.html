@@ -15,10 +15,11 @@
 
         {% if user.is_authenticated %}
            <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
-           <a href="" class="email">Email: {{user.username}}</a>
-           <a class="create" href="">Create quiz</a>
+           <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
+           <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
         {% else %}
             <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
+            <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
         {% endif %}
 	  </div>
   </header>
@@ -78,9 +79,11 @@
  </div>
 
  <div id="back">
-   <a href=>Back</a>
+    <script>
+      document.write('<a href="' + document.referrer + '">Back</a>');
+    </script>
  </div>
 
-</body>
+ </body>
 </html>
 
