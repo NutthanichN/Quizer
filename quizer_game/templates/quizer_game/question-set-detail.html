@@ -1,231 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-	<title>Question set detail</title>
-    <link rel="stylesheet" href="../../static/quizer_game/styles/question-set-detail.css">
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>Question set detail</title>
+  <link rel="stylesheet" href="{% static 'quizer_game/styles/question-set-detail.css' %}">
 
-
-<body>
-<header id="masthead">
-	<!--login version-->
-     <!--<div class="email">-->
-     <!--<a href="">Email: hello55@gmail.com</a>-->
-	<!--</div>-->
-	 <!--<div class="top">-->
-	  <!--<a class="create" href="">Create quiz</a>-->
-	  <!--<a class="history" href="">History</a>-->
-	  <!--<a class="logout" href="">Logout</a>-->
-	<div class="top">
-	  	 <a class="login" href="">Login</a>
-	</div>
-</header>
- <h1>Quiz</h1>
-<div class="container">
-    <div id="piechart" class="chart"></div>
-    <p id="easy">Easy</p>
-    <a href="#" class="button" id ="detail1" onclick="easy()">detail</a>
-    <br>
-    <br>
-    <br>
-    <br>
-     <table id="table_easy" class="fixed_header w3-hide" >
-  		<thead>
+  <body>
+    <header id="masthead">
+	  <!--login version-->
+      <!--<div class="email">-->
+        <!--<a href="">Email: hello55@gmail.com</a>-->
+	  <!--</div>-->
+	  <!--<div class="top">-->
+	    <!--<a class="create" href="">Create quiz</a>-->
+	    <!--<a class="history" href="">History</a>-->
+	    <!--<a class="logout" href="">Logout</a>-->
+	  <div class="top">
+	  	<a class="login" href="">Login</a>
+	  </div>
+    </header>
+    <h1>Quiz</h1>
+    <div class="container">
+      <div id="piechart" class="chart"></div>
+        <p id="easy">Easy</p>
+          <a href="#" class="button" id ="detail1" onclick="easy()">detail</a>
+        <br>
+        <br>
+        <br>
+        <br>
+        <table id="table_easy" class="fixed_header w3-hide" >
+  		  <thead>
     		<tr>
-      			<th>Question number</th>
-				<th>Question</th>
-                <th>Number of player</th>
-      			<th>Choice1</th>
-      			<th>Choice2</th>
-      			<th>Choice3</th>
-                <th>Choice4</th>
+      		  <th>Question number</th>
+			  <th>Question</th>
+              <th>Number of player</th>
+      		  <th>Choice1</th>
+      		  <th>Choice2</th>
+      		  <th>Choice3</th>
+              <th>Choice4</th>
 			</tr>
-  		</thead>
-  		<tbody>
+  		  </thead>
+  		  <tbody>
 			<tr>
-      			<td>1</td>
-				<td>How many staircases does Hogwarts have?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>1</td>
+			  <td>How many staircases does Hogwarts have?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>2</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>21</td>
-      			<td>3</td>
-      			<td>7</td>
-      			<td>10</td>
-                <td>1</td>
+      		  <td>2</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>21</td>
+      		  <td>3</td>
+      		  <td>7</td>
+      		  <td>10</td>
+              <td>1</td>
     		</tr>
 			<tr>
-      		    <td>3</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>32</td>
-      			<td>8</td>
-      			<td>5</td>
-      			<td>9</td>
-                <td>10</td>
+      		  <td>3</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>32</td>
+      		  <td>8</td>
+      		  <td>5</td>
+      		  <td>9</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>4</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>4</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>5</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>5</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>6</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>6</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>7</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>7</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>8</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>8</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>9</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>9</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>10</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>10</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>11</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>11</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>12</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>12</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>13</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>13</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>14</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>14</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>15</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>15</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>16</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>16</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>17</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>17</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>18</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>18</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>19</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>19</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		   	<tr>
-      			<td>20</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>20</td>
+			  <td>How many possible Quidditch fouls are there?</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
-		</tbody>
-	</table>
+		  </tbody>
+	    </table>
 
-    <p id="medium">Medium</p>
+      <p id="medium">Medium</p>
 
     <a href="#" class="button" id ="detail2" onclick="medium()">detail</a>
     <br>
@@ -239,118 +239,118 @@
     <br>
     <br>
     <table id="table_medium" class="fixed_header w3-hide" >
-  		<thead>
-    		<tr>
-      			<th>Question number</th>
-				<th>Question</th>
-                <th>Number of player</th>
-      			<th>Choice1</th>
-      			<th>Choice2</th>
-      			<th>Choice3</th>
-                <th>Choice4</th>
-			</tr>
-  		</thead>
-  		<tbody>
-			<tr>
-      			<td>1</td>
-				<td>How many staircases does Hogwarts have?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>2</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>21</td>
-      			<td>3</td>
-      			<td>7</td>
-      			<td>10</td>
-                <td>1</td>
-    		</tr>
-			<tr>
-      		    <td>3</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>32</td>
-      			<td>8</td>
-      			<td>5</td>
-      			<td>9</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>4</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>5</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>6</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>7</td>
-				<td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>8</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>9</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>10</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-			<tr>
-      			<td>11</td>
-			    <td>How many possible Quidditch fouls are there?</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
-    		</tr>
-		</tbody>
+  	  <thead>
+    	<tr>
+      	  <th>Question number</th>
+		  <th>Question</th>
+          <th>Number of player</th>
+      	  <th>Choice1</th>
+      	  <th>Choice2</th>
+      	  <th>Choice3</th>
+          <th>Choice4</th>
+		</tr>
+  	  </thead>
+  	  <tbody>
+		<tr>
+		  <td>1</td>
+		  <td>How many staircases does Hogwarts have?</td>
+		  <td>28</td>
+		  <td>3</td>
+		  <td>5</td>
+		  <td>10</td>
+	      <td>10</td>
+		</tr>
+		<tr>
+		  <td>2</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>21</td>
+		  <td>3</td>
+		  <td>7</td>
+		  <td>10</td>
+		  <td>1</td>
+		</tr>
+		<tr>
+		  <td>3</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>32</td>
+		  <td>8</td>
+		  <td>5</td>
+		  <td>9</td>
+		  <td>10</td>
+		</tr>
+		<tr>
+		  <td>4</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>28</td>
+		  <td>3</td>
+		  <td>5</td>
+		  <td>10</td>
+		  <td>10</td>
+		</tr>
+		<tr>
+		  <td>5</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>28</td>
+		  <td>3</td>
+		  <td>5</td>
+		  <td>10</td>
+		  <td>10</td>
+		</tr>
+		<tr>
+		  <td>6</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>28</td>
+		  <td>3</td>
+		  <td>5</td>
+		  <td>10</td>
+		  <td>10</td>
+		</tr>
+		<tr>
+		  <td>7</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>28</td>
+		  <td>3</td>
+		  <td>5</td>
+		  <td>10</td>
+		  <td>10</td>
+		</tr>
+		<tr>
+		  <td>8</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>28</td>
+		  <td>3</td>
+		  <td>5</td>
+		  <td>10</td>
+		  <td>10</td>
+		</tr>
+		<tr>
+		  <td>9</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>28</td>
+		  <td>3</td>
+		  <td>5</td>
+		  <td>10</td>
+		  <td>10</td>
+		</tr>
+		<tr>
+		  <td>10</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>28</td>
+		  <td>3</td>
+		  <td>5</td>
+		  <td>10</td>
+		  <td>10</td>
+		</tr>
+		<tr>
+		  <td>11</td>
+		  <td>How many possible Quidditch fouls are there?</td>
+		  <td>28</td>
+		  <td>3</td>
+		  <td>5</td>
+		  <td>10</td>
+		  <td>10</td>
+		</tr>
+	  </tbody>
 	</table>
 
     <p id="hard">Hard</p>
@@ -365,214 +365,211 @@
     <br>
     <br>
     <br>
-    <br>
-    <table id="table_hard" class="fixed_header w3-hide" >
-        <thead>
+      <br>
+        <table id="table_hard" class="fixed_header w3-hide" >
+          <thead>
     		<tr>
-      			<th>Question number</th>
-				<th>Question</th>
-                <th>Number of player</th>
-      			<th>Choice1</th>
-      			<th>Choice2</th>
-      			<th>Choice3</th>
-                <th>Choice4</th>
+      		  <th>Question number</th>
+			  <th>Question</th>
+              <th>Number of player</th>
+      		  <th>Choice1</th>
+      		  <th>Choice2</th>
+      		  <th>Choice3</th>
+              <th>Choice4</th>
 			</tr>
-        </thead>
+          </thead>
             <tr>
-      			<td>1</td>
-				<td>a</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>1</td>
+			  <td>a</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>2</td>
-				<td>b</td>
-                <td>21</td>
-      			<td>3</td>
-      			<td>7</td>
-      			<td>10</td>
-                <td>1</td>
+      		  <td>2</td>
+			  <td>b</td>
+              <td>21</td>
+      		  <td>3</td>
+      		  <td>7</td>
+      		  <td>10</td>
+              <td>1</td>
     		</tr>
 			<tr>
-      		    <td>3</td>
-				<td>c</td>
-                <td>32</td>
-      			<td>8</td>
-      			<td>5</td>
-      			<td>9</td>
-                <td>10</td>
+      		  <td>3</td>
+			  <td>c</td>
+              <td>32</td>
+      		  <td>8</td>
+      		  <td>5</td>
+      		  <td>9</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>4</td>
-				<td>d</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>4</td>
+			  <td>d</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>5</td>
-				<td>e</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>5</td>
+			  <td>e</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>6</td>
-				<td>f</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>6</td>
+			  <td>f</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 			<tr>
-      			<td>7</td>
-				<td>g</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>7</td>
+			  <td>g</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>8</td>
-				<td>h</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>8</td>
+			  <td>h</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>9</td>
-				<td>i</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>9</td>
+			  <td>i</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>10</td>
-				<td>j</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>10</td>
+			  <td>j</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>11</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>11</td>
+			  <td>k</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>12</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>12</td>
+			  <td>k</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>13</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+       		  <td>13</td>
+			  <td>k</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>14</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>14</td>
+			  <td>k</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>15</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>15</td>
+			  <td>k</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>16</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>16</td>
+			  <td>k</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>17</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>17</td>
+			  <td>k</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>18</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>18</td>
+			  <td>k</td>
+              <td>28</td>
+      		  <td>3</td>
+      	      <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>19</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+      		  <td>19</td>
+			  <td>k</td>
+              <td>28</td>
+      		  <td>3</td>
+      		  <td>5</td>
+      		  <td>10</td>
+              <td>10</td>
     		</tr>
 		    <tr>
-      			<td>20</td>
-				<td>k</td>
-                <td>28</td>
-      			<td>3</td>
-      			<td>5</td>
-      			<td>10</td>
-                <td>10</td>
+			  <td>20</td>
+			  <td>k</td>
+			  <td>28</td>
+			  <td>3</td>
+			  <td>5</td>
+			  <td>10</td>
+			  <td>10</td>
     		</tr>
-		</tbody>
-	</table>
-</div>
-</table>
-</div>
+		  </tbody>
+	   </table>
+     </div>
+   </table>
+  </div>
 
-<div id="back">
+  <div id="back">
     <a href=>Back</a>
-</div>
+  </div>
 
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script  type="text/javascript" src="{% static 'quizer_game/scripts/question-set-detail.js' %}"></script>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-<script  type="text/javascript" src="../../static/quizer_game/scripts/question-set-detail.js"></script>
-
-
-</body>
+  </body>
 </html>

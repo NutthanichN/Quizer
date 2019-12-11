@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{% static 'quizer_game/styles/base.css' %}">
     <link rel="stylesheet" href="{% static 'quizer_game/styles/user-profile.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'> -->
   </head>
   <body>
   <header id="masthead">
@@ -21,7 +20,7 @@
         <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
         <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
       {% endif %}
-   </div>
+    </div>
   </header>
   <h1>Quiz</h1>
 
@@ -36,18 +35,13 @@
             <p id="information">Number of all player: {{quiz.total_player}}   upvote: {{ quiz.upvotes }}
               downvote: {{ quiz.downvotes }}</p>
             <div class="navbar">
-
               <button id="edit" name='e' value='edit_{{quiz.id}}' ><i class="fa fa-edit"></i>edit</button>
-
               <button  id="delete" name='d' value='delete_{{forloop.counter}}' href=><i class="fa fa-trash"></i>delete</button>
-              <!--<a id="delete"data-toggle="modal" data-target="#myModal"  href=><i class="fa fa-trash"></i>delete</a>-->
             </div>
           </tr>
           <br>
-         <br>
+          <br>
         </table>
-
-
 
         <!--<div class="modal fade" id="myModal">-->
           <!--<div class="modal-dialog" role="document">-->

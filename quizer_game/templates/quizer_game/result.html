@@ -13,10 +13,10 @@
 
   </head>
   <body id="page-top">
-    <!-- END nav -->
-<!--    <h6>Total visit of quiz: {{ quiz.total_player }}</h6>-->
-<!--    <h6>Total upvote: {{ quiz.upvotes }}</h6>-->
-<!--    <h6>Total downvote: {{quiz.downvotes }}</h6>-->
+  <!-- END nav -->
+  <!--<h6>Total visit of quiz: {{ quiz.total_player }}</h6>-->
+  <!--<h6>Total upvote: {{ quiz.upvotes }}</h6>-->
+  <!--<h6>Total downvote: {{quiz.downvotes }}</h6>-->
 
     <section class="home-slider">
       <div class="slider-item">
@@ -28,17 +28,17 @@
               <h1 class="mb-4" style="color: black;">
                 {% if player.is_achieved %}
                   <strong class="typewrite" data-period="4000"
-                          data-type='[ "Congratulations ^^", "Congratulations ^^" ]'>
+                    data-type='[ "Congratulations ^^", "Congratulations ^^" ]'>
                     <span class="wrap"></span>
                   </strong>
                 {% elif player.is_timeout %}
                   <strong class="typewrite" data-period="4000"
-                          data-type='[ "Time is up! Please try again", "Time is up! Please try again" ]'>
+                    data-type='[ "Time is up! Please try again", "Time is up! Please try again" ]'>
                     <span class="wrap"></span>
                   </strong>
                 {% else %}
                   <strong class="typewrite" data-period="4000"
-                          data-type='[ "Too Bad! Please try again", "Too Bad! Please try again" ]'>
+                    data-type='[ "Too Bad! Please try again", "Too Bad! Please try again" ]'>
                     <span class="wrap"></span>
                   </strong>
                 {% endif %}
@@ -58,9 +58,9 @@
                     </a>
                   </span>
                   <span>
-                      <a id="downvote" href="{% url 'quizer_game:upvote-downvote' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty code=0 %}">
-                        Downvote
-                      </a>
+                    <a id="downvote" href="{% url 'quizer_game:upvote-downvote' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty code=0 %}">
+                      Downvote
+                    </a>
                   </span>
                 </h5>
                 
@@ -69,7 +69,7 @@
               {% if player.is_achieved %}
               <p1>
                 <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}"
-                   class="btn btny js-scroll-trigger px-4 py-3">
+                  class="btn btny js-scroll-trigger px-4 py-3">
                   <span class="ion-ios-play mr-2"></span>
                   Leaderboard
                 </a>
@@ -88,11 +88,6 @@
       </div>
     </section>
     <!-- END slider -->
-    
-    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  <!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-  
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
@@ -109,7 +104,7 @@
   <script src="{% static 'quizer_game/scripts/js/main.js' %}"></script>
 
   <script>
-			sessionStorage.clear();
+		sessionStorage.clear();
   </script>
   
   </body>

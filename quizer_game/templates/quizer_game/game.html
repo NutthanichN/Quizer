@@ -10,14 +10,6 @@
     
   </head>
   <body>
-<!--    <div id="time-up" class="overlay" style="display: none">-->
-<!--      <div class="overlay-content">-->
-<!--        <a class="navbar" href="">Back to home page</a>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <a onclick="closeOverlay()">Close</a>-->
-<!--    <a onclick="openOverlay()">Open</a>-->
-    
     <h2 class="top-text">Player's name
       <span id="quiz-name">Quiz topic : {{ quiz.topic }}</span>
       <span>Time: <span id="time"></span></span>
@@ -25,7 +17,7 @@
     <p class="top-text" id="player-name">{{ player.name }}</p>
     <span class="navbar">
       <a id="quit"
-         href="{% url 'quizer_game:quit-game' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}">
+        href="{% url 'quizer_game:quit-game' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}">
         Quit
       </a>
     </span>
