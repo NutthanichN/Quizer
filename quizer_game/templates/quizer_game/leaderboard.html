@@ -38,12 +38,12 @@
   	  </thead>
   	  <tbody>
 	      {% for player in players %}
-	        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ player.name }}</td>
-            <td>{{ player.time }}</td>
-            <td>{{ player.total_answer }}</td>
-	        {% endfor %}
+	      <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ player.name }}</td>
+          <td>{{ player.time }}</td>
+          <td>{{ player.total_answer }}</td>
+	      {% endfor %}
         </tr>
 	    </tbody>
     </table>
