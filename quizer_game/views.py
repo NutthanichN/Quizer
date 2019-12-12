@@ -87,7 +87,7 @@ def logout_user(request):
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
 
-  
+
 def leaderboard_index(request):
     quiz = Quiz.objects.all()
     context = {'quizzes': quiz}
@@ -368,12 +368,52 @@ def edit_data(request,quiz_id):
     # if user already save it will display successful saving
     messages.success(request, 'Successful saving')
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
-
+  
   
 def quiz_index(request):
     quizzes = Quiz.objects.all()
     context = {'quizzes': quizzes}
-    return render(request, 'quizer_game/quiz-index.html', context)
+    return render(request, 'quizer_game/quiz-index.html', context)  
+
+
+def login_result(request):
+    return render(request, 'quizer_game/login_result.html')
+
+  
+def user_profile(request):
+    template_name = 'quizer_game/user-profile.html'
+    quizzes = Quiz.objects.filter(user_id=request.user.id)
+    context = {'quizzes': quizzes}
+
+    if request.user.is_authenticated:
+        return render(request, template_name, context)
+    else:
+        return render(request, 'quizer_game/login_result.html')
+
+
+def update_user_profile(request):
+    # template_name = 'quizer_game/user-profile.html'
+    quizzes = Quiz.objects.filter(user_id=request.user.id)
+
+    count_quiz = 0
+    for i in quizzes:
+        count_quiz = count_quiz + 1
+        delete = request.POST.get(f'd')
+        edit = request.POST.get(f'e')
+        if delete == f'delete_{count_quiz}':
+            i.delete()
+        if edit == f'edit_{i.id}':
+            return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': i.id}))
+
+
+    return redirect(reverse('quizer_game:user_profile'))
+
+
+# display when normal player try to access the page og register user
+def login_result(request):
+    return render(request, 'quizer_game/login_result.html')
+
+  
 
 
 def user_profile(request):

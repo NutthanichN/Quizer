@@ -35,3 +35,4 @@ class EditQuizTest(TestCase):
         self.assertTemplateUsed(response, 'quizer_game/login_result.html')
 
 
+
