@@ -4,11 +4,14 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.contrib.auth import logout
 
-
-from .models import Quiz, Player, Question, Choice, Timer
+from .models import Quiz, Choice, Timer
 
 from datetime import timedelta
 import time
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
