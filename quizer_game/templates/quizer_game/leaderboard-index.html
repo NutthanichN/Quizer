@@ -9,55 +9,55 @@
   </head>
   <body>
 
-  <header id="masthead">
-    <div class="top">
-      {% if user.is_authenticated %}
-        <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
-        <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
-        <a href="{% url 'quizer_game:create-question-set' %}" class="create" href="">Create quiz</a>
-        <a href="{% url 'quizer_game:index' %}" class="homepage">Home</a>
-      {% else %}
-        <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
-        <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
-      {% endif %}
-	  </div>
-  </header>
+    <header id="masthead">
+      <div class="top">
+        {% if user.is_authenticated %}
+          <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
+          <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
+          <a href="{% url 'quizer_game:create-question-set' %}" class="create" href="">Create quiz</a>
+          <a href="{% url 'quizer_game:index' %}" class="homepage">Home</a>
+        {% else %}
+          <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
+          <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
+        {% endif %}
+	    </div>
+    </header>
 
-  <div class="container">
-    <h1>Leaderboard</h1>
-    <h2></h2>
-    <h2></h2>
+    <div class="container">
+      <h1>Leaderboard</h1>
+      <h2></h2>
+      <h2></h2>
 
-    <table class="fixed_header">
-      <thead>
-      <tr>
-        <th>Quiz</th>
-        <th></th>
-        <th>Difficulty</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      {% for quiz in quizzes %}
-      <tr>
-        <td>{{ quiz.topic }}</td>
-        <td>
-          <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=0%}">Easy</a>
-        </td>
-        <td>
-          <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=1%}">Medium</a>
-        </td>
-        <td>
-          <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=2%}">Hard</a>
-        </td>
-      </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  </div>
+      <table class="fixed_header">
+        <thead>
+          <tr>
+            <th>Quiz</th>
+            <th></th>
+            <th>Difficulty</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for quiz in quizzes %}
+        <tr>
+          <td>{{ quiz.topic }}</td>
+          <td>
+            <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=0%}">Easy</a>
+          </td>
+          <td>
+            <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=1%}">Medium</a>
+          </td>
+          <td>
+            <a href="{% url 'quizer_game:leaderboard' quiz_id=quiz.id selected_difficulty=2%}">Hard</a>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
-  <div id="back">
-    <a href="{% url 'quizer_game:index' %}">Back</a>
-  </div>
+    <div id="back">
+      <a href="{% url 'quizer_game:index' %}">Back</a>
+    </div>
   </body>
 </html>
