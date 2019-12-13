@@ -62,11 +62,11 @@
 	        Choose the right choice
 	        <select name="{{ forloop.counter }}_choice_value" >
 	          {% for k in i.choice_set.all %}
-		          {% if k.value == 1%}
-		            <option value="{{ forloop.counter }}" selected>{{ forloop.counter }}</option>
-		          {% else %}
-		            <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-		          {% endif %}
+                {% if k.value == 1%}
+                  <option value="{{ forloop.counter }}" selected>{{ forloop.counter }}</option>
+                {% else %}
+                  <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                {% endif %}
 	          {% endfor %}
             </select>
 	      </article>
