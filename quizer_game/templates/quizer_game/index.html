@@ -14,7 +14,7 @@
   </head>
   <body id="page-top">
    <header id="masthead">
-	  <div class="top">
+     <div class="top">
       {% if user.is_authenticated %}
         <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
         <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
@@ -22,7 +22,7 @@
       {% else %}
         <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
       {% endif %}
-	  </div>
+    </div>
   </header>
   <!-- END nav -->
     
