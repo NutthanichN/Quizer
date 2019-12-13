@@ -258,7 +258,7 @@ class UpdateGameTest(TestCase):
                               'selected_difficulty': self.player.selected_difficulty
                               }
                       )
-
+        
         self.client.post(url, data={'choice_id': self.wrong_choice1.id})
         self.player.refresh_from_db()
 

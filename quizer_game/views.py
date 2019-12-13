@@ -3,12 +3,17 @@ from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.contrib.auth import logout
+from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
+from django.dispatch import receiver
 
-
-from .models import Quiz, Player, Question, Choice, Timer
+from .models import Quiz, Choice, Timer
 
 from datetime import timedelta
 import time
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 DIFFICULTY = {'easy': 0, 'medium': 1, 'hard': 2}
@@ -69,6 +74,35 @@ def is_player_for_testing(player_name):
         if name == player_name:
             return True
     return False
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        return x_forwarded_for.split(',')[0]
+    else:
+        return request.META.get('REMOTE_ADDR')
+
+
+@receiver(user_logged_in)
+def user_login_callback(sender, request, user, **kwargs):
+    """Log when user logged in"""
+    user_ip = get_client_ip(request)
+    logger.info(f"{user_ip} {user.username} logged in")
+
+
+@receiver(user_login_failed)
+def user_login_failed_callback(sender, request, user, **kwargs):
+    """Log when user failed login"""
+    user_ip = get_client_ip(request)
+    logger.info(f"{user_ip} {user.username} failed login")
+
+
+@receiver(user_logged_out)
+def user_logout_callback(sender, request, user, **kwargs):
+    """Log when user logged out"""
+    user_ip = get_client_ip(request)
+    logger.info(f"{user_ip} {user.username} logged out")
 
 
 def index(request):
@@ -280,11 +314,7 @@ def create_quiz(request):
 # /quizer/create-quiz/update/
 def update_create_quiz(request):
     quiz_topic = request.POST.get('quiz_topic')
-    if request.user.is_authenticated:
-        quiz = Quiz(topic=quiz_topic, user_id=request.user.id)
-    else:
-        quiz = Quiz(topic=quiz_topic)
-
+    quiz = Quiz(topic=quiz_topic, user_id=request.user.id)
     quiz.save()
     count_question = 0
     count_choice = 0
@@ -316,6 +346,9 @@ def update_create_quiz(request):
     # check that user set 20 questions and 80 choices
     if count_question == 20 and count_choice == 80:
         messages.success(request, 'Successful saving')
+        user_ip = get_client_ip(request)
+        username = request.user.username
+        logger.info(f"{user_ip} {username} successfully created quiz")
         return redirect(reverse('quizer_game:create-question-set'))
     else:
         messages.error(request, 'Unsuccessful saving!! You must set 20 questions and 4 choices')
@@ -335,9 +368,8 @@ def edit_quiz(request, quiz_id):
 
       
 # /quizer/edit-quiz/quiz_id/update/
-def edit_data(request,quiz_id):
-
-    quiz = get_object_or_404(Quiz, pk =quiz_id)
+def edit_data(request, quiz_id):
+    quiz = get_object_or_404(Quiz, pk=quiz_id)
     quiz.topic = request.POST.get('quiz_topic')
     quiz.save()
 
@@ -367,6 +399,9 @@ def edit_data(request,quiz_id):
 
     # if user already save it will display successful saving
     messages.success(request, 'Successful saving')
+    user_ip = get_client_ip(request)
+    username = request.user.username
+    logger.info(f"{user_ip} {username} successfully edited quiz")
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
   
   
@@ -374,7 +409,7 @@ def quiz_index(request):
     quizzes = Quiz.objects.all()
     context = {'quizzes': quizzes}
     return render(request, 'quizer_game/quiz-index.html', context)  
-
+  
 
 def user_profile(request):
     template_name = 'quizer_game/user-profile.html'
@@ -398,6 +433,9 @@ def update_user_profile(request):
         edit = request.POST.get(f'e')
         if delete == f'delete_{count_quiz}':
             i.delete()
+            user_ip = get_client_ip(request)
+            username = request.user.username
+            logger.info(f"{user_ip} {username} successfully deleted quiz")
         if edit == f'edit_{i.id}':
             return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': i.id}))
           
@@ -407,3 +445,4 @@ def update_user_profile(request):
 # display when normal player try to access the page og register user
 def login_result(request):
     return render(request, 'quizer_game/login_result.html')
+
