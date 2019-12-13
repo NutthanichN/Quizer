@@ -14,7 +14,7 @@
       <div class="top">
         {% if user.is_authenticated %}
           <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
-          <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
+          <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{ user.username }}</a>
           <a href="{% url 'quizer_game:index' %}" class="homepage">Home</a>
         {% else %}
           <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
@@ -43,34 +43,34 @@
 
         <article class="field">
           <label class = "topic">Topic</label>
-          <input  name="quiz_topic" class="topic_input">
+          <input name="quiz_topic" class="topic_input">
         </article>
 
         {% for i in 20|times %}
           <article class="field">
-            <label class = "question">Question {{forloop.counter}}</label>
-            <input name="question_text_{{forloop.counter}}" class="question_input">
+            <label class = "question">Question {{ forloop.counter }}</label>
+            <input name="question_text_{{ forloop.counter }}" class="question_input">
           </article>
           {% for i in 4|times %}
             <article class="field">
-              <label class = "choice">Choice {{forloop.counter}}</label>
-              <input  name="{{forloop.parentloop.counter}}_choice_text_{{forloop.counter}}" class = "choice_input">
+              <label class = "choice">Choice {{ forloop.counter }}</label>
+              <input name="{{ forloop.parentloop.counter }}_choice_text_{{ forloop.counter }}" class = "choice_input">
             </article>
           {% endfor %}
         
           <article class="choose_choice">
             Choose the right choice
-            <select name="{{forloop.counter}}_choice_value">
+            <select name="{{ forloop.counter }}_choice_value">
               <option value="choice1">Choice 1</option>
               <option value="choice2">Choice 2</option>
-	          <option value="choice3">Choice 3</option>
-	          <option value="choice4">Choice 4</option>
+	            <option value="choice3">Choice 3</option>
+	            <option value="choice4">Choice 4</option>
             </select>
           </article>
         {% endfor %}
 
         <footer class="form__footer">
-          <input  type="submit"  value="Submit" >
+          <input type="submit" value="Submit" >
         </footer>
       </form>
     </div>
