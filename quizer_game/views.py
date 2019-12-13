@@ -188,7 +188,7 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     timer.stop()
 
     # check time for hard level
-    if selected_difficulty == DIFFICULTY['hard']:
+    if player.selected_difficulty == DIFFICULTY['hard']:
         if timer.time_duration >= timer.time_limit:
             player.is_timeout = True
             player.is_playing = False
@@ -234,7 +234,7 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     player.save()
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
-                                    'selected_difficulty': selected_difficulty}
+                                    'selected_difficulty': player.selected_difficulty}
                             )
                     )
 
@@ -246,7 +246,7 @@ def update_player_position(choice, player, difficulty) -> None:
             player.move_forward()
     else:
         player.wrong_answer += 1
-        if difficulty > DIFFICULTY['easy']:
+        if player.selected_difficulty > DIFFICULTY['easy']:
             if player.position > POSITION['min']:
                 player.move_backward()
 
@@ -409,47 +409,7 @@ def quiz_index(request):
     quizzes = Quiz.objects.all()
     context = {'quizzes': quizzes}
     return render(request, 'quizer_game/quiz-index.html', context)  
-
-
-def login_result(request):
-    return render(request, 'quizer_game/login_result.html')
-
   
-def user_profile(request):
-    template_name = 'quizer_game/user-profile.html'
-    quizzes = Quiz.objects.filter(user_id=request.user.id)
-    context = {'quizzes': quizzes}
-
-    if request.user.is_authenticated:
-        return render(request, template_name, context)
-    else:
-        return render(request, 'quizer_game/login_result.html')
-
-
-def update_user_profile(request):
-    # template_name = 'quizer_game/user-profile.html'
-    quizzes = Quiz.objects.filter(user_id=request.user.id)
-
-    count_quiz = 0
-    for i in quizzes:
-        count_quiz = count_quiz + 1
-        delete = request.POST.get(f'd')
-        edit = request.POST.get(f'e')
-        if delete == f'delete_{count_quiz}':
-            i.delete()
-        if edit == f'edit_{i.id}':
-            return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': i.id}))
-
-
-    return redirect(reverse('quizer_game:user_profile'))
-
-
-# display when normal player try to access the page og register user
-def login_result(request):
-    return render(request, 'quizer_game/login_result.html')
-
-  
-
 
 def user_profile(request):
     template_name = 'quizer_game/user-profile.html'
@@ -485,3 +445,4 @@ def update_user_profile(request):
 # display when normal player try to access the page og register user
 def login_result(request):
     return render(request, 'quizer_game/login_result.html')
+
