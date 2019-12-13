@@ -13,7 +13,7 @@
       <div class="top">
         {% if user.is_authenticated %}
           <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
-          <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
+          <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{ user.username }}</a>
           <a href="{% url 'quizer_game:create-question-set' %}" class="create" >Create quiz</a>
           <a href="{% url 'quizer_game:index' %}" class="homepage">Home</a>
         {% else %}
@@ -34,18 +34,18 @@
       	    <th>Name</th>
       	    <th>Time</th>
       	    <th>Number of all answers</th>
-	  </tr>
-  	  </thead>
-  	  <tbody>
-	    {% for player in players %}
-	    <tr>
-              <td>{{ forloop.counter }}</td>
-              <td>{{ player.name }}</td>
-              <td>{{ player.time }}</td>
-              <td>{{ player.total_answer }}</td>
-	    {% endfor %}
+	        </tr>
+  	    </thead>
+  	    <tbody>
+          <tr>
+	        {% for player in players %}
+            <td>{{ forloop.counter }}</td>
+            <td>{{ player.name }}</td>
+            <td>{{ player.time }}</td>
+            <td>{{ player.total_answer }}</td>
+	        {% endfor %}
           </tr>
-	</tbody>
+	      </tbody>
       </table>
     </div>
 
