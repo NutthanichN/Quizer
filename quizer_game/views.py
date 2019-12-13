@@ -154,7 +154,7 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     timer.stop()
 
     # check time for hard level
-    if selected_difficulty == DIFFICULTY['hard']:
+    if player.selected_difficulty == DIFFICULTY['hard']:
         if timer.time_duration >= timer.time_limit:
             player.is_timeout = True
             player.is_playing = False
@@ -200,7 +200,7 @@ def update_game(request, player_id, quiz_id, selected_difficulty):
     player.save()
     return redirect(reverse('quizer_game:game',
                             kwargs={'player_id': player.id, 'quiz_id': quiz.id,
-                                    'selected_difficulty': selected_difficulty}
+                                    'selected_difficulty': player.selected_difficulty}
                             )
                     )
 
@@ -212,7 +212,7 @@ def update_player_position(choice, player, difficulty) -> None:
             player.move_forward()
     else:
         player.wrong_answer += 1
-        if difficulty > DIFFICULTY['easy']:
+        if player.selected_difficulty > DIFFICULTY['easy']:
             if player.position > POSITION['min']:
                 player.move_backward()
 

@@ -15,7 +15,7 @@ class UpdateGameTest(TestCase):
 
         self.player = self.quiz.player_set.create(name='Player1')
         self.player.current_question = self.question1
-        self.player.position = 0
+        # self.player.position = 0
         self.player.save()
 
         self.timer = self.player.timer_set.create()
@@ -90,6 +90,7 @@ class UpdateGameTest(TestCase):
         Test that update_game update player statuses when the time is up (only in hard level)
         """
         self.player.selected_difficulty = 2
+        self.player.position = 0
         self.player.save()
 
         self.timer.start_point = timedelta(seconds=0)
@@ -198,10 +199,16 @@ class UpdateGameTest(TestCase):
         self.assertTrue(self.player.is_failed)
         self.assertFalse(self.player.is_playing)
 
-    def test_player_chooses_correct_answer(self):
+    def test_player_chooses_correct_answer_in_easy_lvl(self):
         """
-        When the player chooses correct answer, player's position will increase by 1
+        When the player chooses correct answer in easy level, player's position will increase by 1
         """
+        self.player.position = 1
+        self.player.selected_difficulty = 0
+        self.player.save()
+
+        old_pos = self.player.position
+
         url = reverse('quizer_game:update',
                       kwargs={'player_id': self.player.id,
                               'quiz_id': self.quiz.id,
@@ -209,14 +216,73 @@ class UpdateGameTest(TestCase):
                               }
                       )
 
-        for i in range(3):
-            with self.subTest(selected_difficulty=i):
-                old_pos = self.player.position
-                self.player.selected_difficulty = i
-                self.player.save()
+        self.client.post(url, data={'choice_id': self.correct_choice1.id})
+        self.player.refresh_from_db()
 
-                self.client.post(url, data={'choice_id': self.correct_choice1.id})
-                self.player.refresh_from_db()
+        self.assertEqual(self.player.position, old_pos + 1)
 
-                self.assertEqual(self.player.position, old_pos + 1)
-    
+    def test_player_chooses_correct_answer_in_medium_lvl(self):
+        """
+        When the player chooses correct answer in medium level, player's position will increase by 1
+        """
+        self.player.position = 1
+        self.player.selected_difficulty = 1
+        self.player.save()
+
+        old_pos = self.player.position
+
+        url = reverse('quizer_game:update',
+                      kwargs={'player_id': self.player.id,
+                              'quiz_id': self.quiz.id,
+                              'selected_difficulty': self.player.selected_difficulty
+                              }
+                      )
+
+        self.client.post(url, data={'choice_id': self.correct_choice1.id})
+        self.player.refresh_from_db()
+
+        self.assertEqual(self.player.position, old_pos + 1)
+
+    def test_player_chooses_wrong_answer_in_easy_lvl(self):
+        """
+        When the player chooses wrong answer in easy level, player's position will not decrease
+        """
+        self.player.position = 5
+        self.player.selected_difficulty = 0
+        self.player.save()
+
+        old_pos = self.player.position
+
+        url = reverse('quizer_game:update',
+                      kwargs={'player_id': self.player.id,
+                              'quiz_id': self.quiz.id,
+                              'selected_difficulty': self.player.selected_difficulty
+                              }
+                      )
+
+        self.client.post(url, data={'choice_id': self.wrong_choice1.id})
+        self.player.refresh_from_db()
+
+        self.assertEqual(self.player.position, old_pos)
+
+    def test_player_chooses_wrong_answer_in_medium_lvl(self):
+        """
+        When the player chooses wrong answer in medium level, player's position will decrease by 1
+        """
+        self.player.position = 5
+        self.player.selected_difficulty = 1
+        self.player.save()
+
+        old_pos = self.player.position
+
+        url = reverse('quizer_game:update',
+                      kwargs={'player_id': self.player.id,
+                              'quiz_id': self.quiz.id,
+                              'selected_difficulty': self.player.selected_difficulty
+                              }
+                      )
+
+        self.client.post(url, data={'choice_id': self.wrong_choice1.id})
+        self.player.refresh_from_db()
+
+        self.assertEqual(self.player.position, old_pos - 1)
