@@ -27,43 +27,46 @@
 
     <div class="container">
       {% if messages %}
-	<ul class="messages" id="message_success">
+	    <ul class="messages" id="message_success">
           {% for message in messages %}
             <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
           {% endfor %}
-	</ul>
+	    </ul>
       {% endif %}
 
       <form id="page-info" action="{% url 'quizer_game:edit_data'  quiz_id=quiz.id %}" method="post">
         {% csrf_token %}
-	<article class="field">
+	    <article class="field">
           <label class = "topic">Topic</label>
-	  <input name="quiz_topic"  value = "{{quiz}}" class="topic_input">
-	</article>
+	      <input name="quiz_topic"  value = "{{quiz}}" class="topic_input">
+	    </article>
+
         {% for i in quiz.question_set.all%}
           <article class="field">
             <label class = "question">Question {{forloop.counter}}</label>
             <input name="question_text_{{forloop.counter}}"  value= "{{i}}" class="question_input">
           </article>
+
           {% for j in i.choice_set.all %}
             <article class="field">
               <label class = "choice">Choice {{forloop.counter}}</label>
               <input  name="{{forloop.parentloop.counter}}_choice_text_{{forloop.counter}}"  value= "{{j}}" class = "choice_input">
             </article>
           {% endfor %}
-	  <article class="choose_choice">
-	    Choose the right choice
-	      <select name="{{forloop.counter}}_choice_value" >
-	        {% for k in i.choice_set.all %}
-		  {% if k.value == 1%}
-		    <option value= {{forloop.counter}} selected>{{forloop.counter}}</option>
-		  {% else %}
-		    <option value= {{forloop.counter}}>{{forloop.counter}}</option>
-		  {% endif %}
-	        {% endfor %}
-              </select>
-	  </article>
-	{% endfor %}
+
+          <article class="choose_choice">
+	        Choose the right choice
+	        <select name="{{forloop.counter}}_choice_value" >
+	          {% for k in i.choice_set.all %}
+		        {% if k.value == 1%}
+		          <option value= {{forloop.counter}} selected>{{forloop.counter}}</option>
+		        {% else %}
+		          <option value= {{forloop.counter}}>{{forloop.counter}}</option>
+		        {% endif %}
+	          {% endfor %}
+            </select>
+	      </article>
+	    {% endfor %}
 
         <footer class="form__footer">
           <input type="submit" value="Save">
