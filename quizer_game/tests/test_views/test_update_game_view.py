@@ -15,7 +15,7 @@ class UpdateGameTest(TestCase):
 
         self.player = self.quiz.player_set.create(name='Player1')
         self.player.current_question = self.question1
-        # self.player.position = 0
+        self.player.position = 0
         self.player.save()
 
         self.timer = self.player.timer_set.create()
@@ -90,7 +90,6 @@ class UpdateGameTest(TestCase):
         Test that update_game update player statuses when the time is up (only in hard level)
         """
         self.player.selected_difficulty = 2
-        self.player.position = 0
         self.player.save()
 
         self.timer.start_point = timedelta(seconds=0)

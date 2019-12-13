@@ -87,7 +87,7 @@ def logout_user(request):
 def player_name(request):
     return render(request, 'quizer_game/player-name.html')
 
-  
+
 def leaderboard_index(request):
     quiz = Quiz.objects.all()
     context = {'quizzes': quiz}
@@ -368,12 +368,12 @@ def edit_data(request,quiz_id):
     # if user already save it will display successful saving
     messages.success(request, 'Successful saving')
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
-
+  
   
 def quiz_index(request):
     quizzes = Quiz.objects.all()
     context = {'quizzes': quizzes}
-    return render(request, 'quizer_game/quiz-index.html', context)
+    return render(request, 'quizer_game/quiz-index.html', context)  
 
 
 def user_profile(request):
