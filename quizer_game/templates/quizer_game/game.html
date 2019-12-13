@@ -32,6 +32,7 @@
       <span>Correct answer: {{ player.correct_answer }} | </span>
       <span>Wrong answer: {{ player.wrong_answer }}</span>
     </div>
+    
     <div class="question-body">
       <form action="{% url 'quizer_game:update' player_id=player.id quiz_id=quiz.id selected_difficulty=player.selected_difficulty %}"
             method="post">
@@ -48,67 +49,66 @@
       </form>
     </div>
     
-  <script>
-    function openOverlay() {
-      document.getElementById("time-up").style.display = "block";
-    }
-    
-    function closeOverlay() {
-      document.getElementById("time-up").style.display = "none";
-    }
-    
-    function convertToTimeFormat(rawSeconds) {
-      rawSeconds = Math.floor(rawSeconds / 1000);
-      var hours = Math.floor(rawSeconds / (60 * 60));
-      var minutes = Math.floor((rawSeconds % (60 * 60)) / 60);
-      var seconds = Math.floor((rawSeconds % (60 * 60)) % 60);
-      var strH = hours.toString();
-      var strM = minutes.toString();
-      var strS = seconds.toString();
-      if(minutes < 10) {
-        strM = "0" + strM;
+    <script>
+      function openOverlay() {
+        document.getElementById("time-up").style.display = "block";
       }
-      if(seconds < 10) {
-        strS = "0" + strS;
-      }
-      return strH + ":" + strM + ":" + strS;
-    }
-    
-    var timeLimitMsec = {{ time_limit }} * 1000;
-    function timer() {
-      var currentTime = new Date().getTime();
-      var timeDuration = currentTime - parseInt(sessionStorage.getItem("initTime"));
-      var timeDurationStr = convertToTimeFormat(timeDuration);
-      sessionStorage.setItem("previousTimeDuration", timeDurationStr);
       
-      {% if player.selected_difficulty == 2 %}
-        if(timeDuration >= timeLimitMsec) {
-          document.getElementById("time").style.color = "red";
+      function closeOverlay() {
+        document.getElementById("time-up").style.display = "none";
+      }
+      
+      function convertToTimeFormat(rawSeconds) {
+        rawSeconds = Math.floor(rawSeconds / 1000);
+        var hours = Math.floor(rawSeconds / (60 * 60));
+        var minutes = Math.floor((rawSeconds % (60 * 60)) / 60);
+        var seconds = Math.floor((rawSeconds % (60 * 60)) % 60);
+        var strH = hours.toString();
+        var strM = minutes.toString();
+        var strS = seconds.toString();
+        if(minutes < 10) {
+          strM = "0" + strM;
         }
+        if(seconds < 10) {
+          strS = "0" + strS;
+        }
+        return strH + ":" + strM + ":" + strS;
+      }
+      
+      var timeLimitMsec = {{ time_limit }} * 1000;
+      function timer() {
+        var currentTime = new Date().getTime();
+        var timeDuration = currentTime - parseInt(sessionStorage.getItem("initTime"));
+        var timeDurationStr = convertToTimeFormat(timeDuration);
+        sessionStorage.setItem("previousTimeDuration", timeDurationStr);
+        
+        {% if player.selected_difficulty == 2 %}
+          if(timeDuration >= timeLimitMsec) {
+            document.getElementById("time").style.color = "red";
+          }
+        {% endif %}
+        document.getElementById("time").innerHTML = timeDurationStr;
+      }
+      
+      var startTimer;
+      {% if player.is_playing %}
+        if(typeof(Storage) !== "undefined") {
+          if(sessionStorage.getItem("initTime") === null) {
+            document.getElementById("time").innerHTML = "0:00:00";
+            var initTime = new Date().getTime();
+            sessionStorage.setItem("initTime", initTime.toString());
+          }
+          else {
+            document.getElementById("time").innerHTML = sessionStorage.getItem("previousTimeDuration");
+          }
+        }
+        startTimer = setInterval(timer, 1000);
+      {% else %}
+        document.getElementById("time").innerHTML = "-:--:--";
+        clearInterval(startTimer);
+        sessionStorage.clear();
       {% endif %}
-      document.getElementById("time").innerHTML = timeDurationStr;
-    }
-    
-    var startTimer;
-    {% if player.is_playing %}
-      if(typeof(Storage) !== "undefined") {
-        if(sessionStorage.getItem("initTime") === null) {
-          document.getElementById("time").innerHTML = "0:00:00";
-          var initTime = new Date().getTime();
-          sessionStorage.setItem("initTime", initTime.toString());
-        }
-        else {
-          document.getElementById("time").innerHTML = sessionStorage.getItem("previousTimeDuration");
-        }
-      }
-      
-      startTimer = setInterval(timer, 1000);
-    {% else %}
-      document.getElementById("time").innerHTML = "-:--:--";
-      clearInterval(startTimer);
-      sessionStorage.clear();
-    {% endif %}
-
-  </script>
+  
+    </script>
   </body>
 </html>
