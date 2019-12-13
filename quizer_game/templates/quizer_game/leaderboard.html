@@ -34,18 +34,18 @@
       	    <th>Name</th>
       	    <th>Time</th>
       	    <th>Number of all answers</th>
-	        </tr>
-  	    </thead>
-  	    <tbody>
-	        {% for player in players %}
-	        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ player.name }}</td>
-            <td>{{ player.time }}</td>
-            <td>{{ player.total_answer }}</td>
-	        {% endfor %}
+	  </tr>
+  	  </thead>
+  	  <tbody>
+	    {% for player in players %}
+	    <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ player.name }}</td>
+              <td>{{ player.time }}</td>
+              <td>{{ player.total_answer }}</td>
+	    {% endfor %}
           </tr>
-	      </tbody>
+	</tbody>
       </table>
     </div>
 
