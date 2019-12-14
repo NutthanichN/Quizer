@@ -28,13 +28,13 @@
 
     <div class="container">
       {% if messages %}
-	    <ul class="messages" id="message_success">
-        {% for message in messages %}
-          {% if message.tags %}
-            <li class="{{ message.tags }}">{{ message }}</li>
-          {% endif %}
-        {% endfor %}
-	    </ul>
+	      <ul class="messages" id="message_success">
+          {% for message in messages %}
+            {% if message.tags %}
+              <li class="{{ message.tags }}">{{ message }}</li>
+            {% endif %}
+          {% endfor %}
+	      </ul>
       {% endif %}
 
       <form id="page-info" action="{% url 'quizer_game:edit_data' quiz_id=quiz.id %}" method="post">
@@ -59,18 +59,18 @@
           {% endfor %}
 
           <article class="choose_choice">
-	        Choose the right choice
-	        <select name="{{ forloop.counter }}_choice_value" >
-	          {% for k in i.choice_set.all %}
-                {% if k.value == 1%}
-                  <option value="{{ forloop.counter }}" selected>{{ forloop.counter }}</option>
-                {% else %}
-                  <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
-                {% endif %}
-	          {% endfor %}
+	          Choose the right choice
+	          <select name="{{ forloop.counter }}_choice_value" >
+	            {% for k in i.choice_set.all %}
+                  {% if k.value == 1%}
+                    <option value="{{ forloop.counter }}" selected>{{ forloop.counter }}</option>
+                  {% else %}
+                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                  {% endif %}
+	            {% endfor %}
             </select>
-	      </article>
-	    {% endfor %}
+	        </article>
+	      {% endfor %}
 
         <footer class="form__footer">
           <input type="submit" value="Save">
@@ -83,6 +83,7 @@
         document.write('<a href="' + document.referrer + '">Back</a>');
       </script>
     </div>
+
 
   </body>
 </html>

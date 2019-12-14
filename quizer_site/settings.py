@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 from decouple import config
+import logging.config
+from django.utils.log import DEFAULT_LOGGING
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -27,13 +30,17 @@ SECRET_KEY = config('SECRET_KEY', default="secret")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
+# Store the extracted extra data
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("OAUTH2_KEY", default="key")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("OAUTH2_SECRET", default="secret")
 
 
-LOGIN_REDIRECT_URL = '/quizer/'
+LOGIN_REDIRECT_URL = '/'
 
+
+ALLOWED_HOSTS = []
 
 ALLOWED_HOSTS = []
 
@@ -134,3 +141,47 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING_CONFIG = None
+logging.config.dictConfig({
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
+        'default': {
+            'format': '[%(asctime)s] %(funcName)s %(levelname)s: %(message)s',
+            'datefmt': '%m/%d/%Y %I:%M:%S %p',
+        },
+    },
+    'handlers': {
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+        'file-info': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/activity.log',
+            'formatter': 'default',
+        },
+        'file-error': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/error.log',
+            'formatter': 'default',
+        },
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'default',
+        },
+    },
+    'loggers': {
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+        'django': {
+            'level': 'ERROR',
+            'handlers': ['file-error'],
+        },
+        'quizer_game.views': {
+            'level': 'INFO',
+            'handlers': ['console', 'file-info'],
+            'propagate': False,
+        },
+    },
+})

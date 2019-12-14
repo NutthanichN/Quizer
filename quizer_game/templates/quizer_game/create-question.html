@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="{% static 'quizer_game/styles/create-question.css' %}">
   </head>
   <body>
-
+    
     <header id="masthead">
       <div class="top">
         {% if user.is_authenticated %}
@@ -74,7 +74,7 @@
         </footer>
       </form>
     </div>
-
+  
     <div id="back">
       <script>
         document.write('<a href="' + document.referrer + '">Back</a>');

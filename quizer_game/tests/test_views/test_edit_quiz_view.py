@@ -21,6 +21,7 @@ class EditQuizTest(TestCase):
         """Test that a user can view edit quiz"""
 
         self.client.force_login(self.user)
+
         url = reverse('quizer_game:edit_quiz', kwargs={'quiz_id': self.quiz.id})
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
@@ -33,5 +34,6 @@ class EditQuizTest(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/login_result.html')
+
 
 
