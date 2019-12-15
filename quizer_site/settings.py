@@ -14,6 +14,7 @@ import os
 from decouple import config
 import logging.config
 from django.utils.log import DEFAULT_LOGGING
+import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -137,7 +138,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 LOGGING_CONFIG = None
 logging.config.dictConfig({
@@ -182,3 +185,5 @@ logging.config.dictConfig({
         },
     },
 })
+
+django_heroku.settings(locals())
