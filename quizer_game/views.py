@@ -6,6 +6,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.signals import user_logged_in, user_logged_out, user_login_failed
 from django.dispatch import receiver
 
+
 from .models import Quiz, Choice, Timer
 
 from datetime import timedelta
@@ -403,13 +404,13 @@ def edit_data(request, quiz_id):
     username = request.user.username
     logger.info(f"{user_ip} {username} successfully edited quiz")
     return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
-  
-  
+    
+    
 def quiz_index(request):
     quizzes = Quiz.objects.all()
     context = {'quizzes': quizzes}
     return render(request, 'quizer_game/quiz-index.html', context)  
-  
+
 
 def user_profile(request):
     template_name = 'quizer_game/user-profile.html'

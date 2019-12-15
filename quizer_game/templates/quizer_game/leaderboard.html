@@ -9,50 +9,50 @@
   </head>
   <body>
 
-  <header id="masthead">
-    <div class="top">
-       {% if user.is_authenticated %}
-         <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
-         <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
-         <a href="{% url 'quizer_game:create-question-set' %}" class="create" >Create quiz</a>
-         <a href="{% url 'quizer_game:index' %}" class="homepage">Home</a>
-       {% else %}
-         <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
-         <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
-       {% endif %}
+    <header id="masthead">
+      <div class="top">
+        {% if user.is_authenticated %}
+          <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
+          <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{ user.username }}</a>
+          <a href="{% url 'quizer_game:create-question-set' %}" class="create" >Create quiz</a>
+          <a href="{% url 'quizer_game:index' %}" class="homepage">Home</a>
+        {% else %}
+          <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
+          <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>Leaderboard</h1>
+      <h2>Quiz name: {{ quiz.topic }}</h2>
+      <h2>Difficulty: {{ difficulty }} </h2>
+      <table class="fixed_header">
+        <thead>
+          <tr>
+            <th>Rank</th>
+      	    <th>Name</th>
+      	    <th>Time</th>
+      	    <th>Number of all answers</th>
+          </tr>
+  	    </thead>
+  	    <tbody>
+          <tr>
+	        {% for player in players %}
+              <td>{{ forloop.counter }}</td>
+              <td>{{ player.name }}</td>
+              <td>{{ player.time }}</td>
+              <td>{{ player.total_answer }}</td>
+	        {% endfor %}
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </header>
 
-  <div class="container">
-    <h1>Leaderboard</h1>
-    <h2>Quiz name: {{ quiz.topic }}</h2>
-    <h2>Difficulty: {{ difficulty }} </h2>
+    <div id="back">
+      <a href="{% url 'quizer_game:leaderboard-index' %}" >Back</a>
+    </div>
 
-    <table class="fixed_header">
-      <thead>
-        <tr>
-          <th>Rank</th>
-      	  <th>Name</th>
-      	  <th>Time</th>
-      	  <th>Number of all answers</th>
-	      </tr>
-  	  </thead>
-  	  <tbody>
-	      {% for player in players %}
-	        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ player.name }}</td>
-            <td>{{ player.time }}</td>
-            <td>{{ player.total_answer }}</td>
-	      {% endfor %}
-         </tr>
-	    </tbody>
-    </table>
-  </div>
-
-  <div id="back">
-    <a href="{% url 'quizer_game:leaderboard-index' %}" >Back</a>
-  </div>
 
   </body>
 </html>

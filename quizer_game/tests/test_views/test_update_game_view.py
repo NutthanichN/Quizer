@@ -198,6 +198,7 @@ class UpdateGameTest(TestCase):
         self.assertTrue(self.player.is_failed)
         self.assertFalse(self.player.is_playing)
 
+
     def test_player_chooses_correct_answer_in_easy_lvl(self):
         """
         When the player chooses correct answer in easy level, player's position will increase by 1
@@ -285,3 +286,4 @@ class UpdateGameTest(TestCase):
         self.player.refresh_from_db()
 
         self.assertEqual(self.player.position, old_pos - 1)
+

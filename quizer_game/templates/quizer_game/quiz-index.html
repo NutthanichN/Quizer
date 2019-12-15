@@ -13,21 +13,19 @@
     <header id="masthead">
       <div class="top">
         {% if user.is_authenticated %}
-           <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
-           <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
-           <a href="{% url 'quizer_game:create-question-set' %}" class="create" >Create quiz</a>
-           <a href="{% url 'quizer_game:index' %}" class="homepage">Home</a>
+          <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
+          <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
+          <a href="{% url 'quizer_game:create-question-set' %}" class="create" >Create quiz</a>
+          <a href="{% url 'quizer_game:index' %}" class="homepage">Home</a>
         {% else %}
-            <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
-            <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
+          <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
+          <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
         {% endif %}
-	    </div>
-
+      </div>
     </header>
   
     <div class="container">
       <h1>Quiz</h1>
-  
       <table class="fixed_header">
         <thead>
           <tr>

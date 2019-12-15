@@ -21,6 +21,7 @@ class CreateQuizTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'quizer_game/create-question.html')
 
+
     def test_can_view_create_quiz_player(self):
         """
         Test that a player can not view edit quiz

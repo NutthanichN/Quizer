@@ -9,81 +9,77 @@
 	<link rel="stylesheet" href="{% static 'quizer_game/styles/create-question.css' %}">
   </head>
   <body>
-
-  <header id="masthead">
+    
+    <header id="masthead">
       <div class="top">
-
         {% if user.is_authenticated %}
-           <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
-           <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{user.username}}</a>
-           <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
+          <a href="{% url 'quizer_game:logout' %}" class="logout">Logout</a>
+          <a href="{% url 'quizer_game:user_profile' %}" class="email">Email: {{ user.username }}</a>
+          <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
         {% else %}
-            <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
-            <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
+          <a href="{% url 'social:begin' 'google-oauth2' %}" class="signup">Login with google</a>
+          <a href="{% url 'quizer_game:index' %}" class="homepage_logout">Home</a>
         {% endif %}
-	  </div>
-  </header>
+	    </div>
+    </header>
 
-  <h1>Create Quiz</h1>
+    <h1>Create Quiz</h1>
 
-  <div class="container">
-	  {% if messages %}
-	    <ul class="messages" id="message">
-        {% for message in messages %}
-    	    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-			      <ul class="success-message" id="message_success">{{ message }}</ul>
-		      {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-            <ul class="error-message" id="message_error">{{ message }}</ul>
-          {% endif %}
-        {% endfor %}
-	    </ul>
-	  {% endif %}
+    <div class="container">
+      {% if messages %}
+        <ul class="messages" id="message">
+          {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+              <ul class="success-message" id="message_success">{{ message }}</ul>
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+              <ul class="error-message" id="message_error">{{ message }}</ul>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
 
-    <form id="page-info" action="{% url 'quizer_game:update_create_quiz'%}" method="post">
-		  {% csrf_token %}
+      <form id="page-info" action="{% url 'quizer_game:update_create_quiz'%}" method="post">
+        {% csrf_token %}
 
-	    <article class="field">
-        <label class = "topic">Topic</label>
-        <input  name="quiz_topic" class="topic_input">
-	    </article>
+        <article class="field">
+          <label class = "topic">Topic</label>
+          <input name="quiz_topic" class="topic_input">
+        </article>
 
-      {% for i in 20|times %}
-	      <article class="field">
-          <label class = "question">Question {{forloop.counter}}</label>
-          <input name="question_text_{{forloop.counter}}" class="question_input">
-	      </article>
-        {% for i in 4|times %}
+        {% for i in 20|times %}
           <article class="field">
-            <label class = "choice">Choice {{forloop.counter}}</label>
-	          <input  name="{{forloop.parentloop.counter}}_choice_text_{{forloop.counter}}" class = "choice_input">
-	        </article>
-	      {% endfor %}
+            <label class = "question">Question {{ forloop.counter }}</label>
+            <input name="question_text_{{ forloop.counter }}" class="question_input">
+          </article>
+          {% for i in 4|times %}
+            <article class="field">
+              <label class = "choice">Choice {{ forloop.counter }}</label>
+              <input name="{{ forloop.parentloop.counter }}_choice_text_{{ forloop.counter }}" class = "choice_input">
+            </article>
+          {% endfor %}
+        
+          <article class="choose_choice">
+            Choose the right choice
+            <select name="{{ forloop.counter }}_choice_value">
+              <option value="choice1">Choice 1</option>
+              <option value="choice2">Choice 2</option>
+              <option value="choice3">Choice 3</option>
+              <option value="choice4">Choice 4</option>
+            </select>
+          </article>
+        {% endfor %}
 
-	      <article class="choose_choice">
-		      Choose the right choice
-	        <select name="{{forloop.counter}}_choice_value" >
-			      <option value="choice1">Choice 1</option>
-			      <option value="choice2">Choice 2</option>
-			      <option value="choice3">Choice 3</option>
-			      <option value="choice4">Choice 4</option>
-		      </select>
-	      </article>
-	    {% endfor %}
+        <footer class="form__footer">
+          <input type="submit" value="Submit" >
+        </footer>
+      </form>
+    </div>
+  
+    <div id="back">
+      <script>
+        document.write('<a href="' + document.referrer + '">Back</a>');
+      </script>
+    </div>
 
-	    <footer  class="form__footer">
-        <input  type="submit"  value="Submit" >
-	   </footer>
-
-   </form>
-
- </div>
-
- <div id="back">
-    <script>
-      document.write('<a href="' + document.referrer + '">Back</a>');
-    </script>
- </div>
-
- </body>
+  </body>
 </html>
-

@@ -16,6 +16,7 @@ import logging.config
 from django.utils.log import DEFAULT_LOGGING
 
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -38,6 +39,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("OAUTH2_SECRET", default="secret")
 
 LOGIN_REDIRECT_URL = '/'
 
+
+ALLOWED_HOSTS = []
 
 ALLOWED_HOSTS = []
 
