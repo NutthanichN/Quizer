@@ -14,12 +14,18 @@ import os
 from decouple import config
 import logging.config
 from django.utils.log import DEFAULT_LOGGING
+import django_heroku
+import dj_database_url
+import dotenv
 
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -70,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'quizer_site.urls'
@@ -96,12 +103,12 @@ WSGI_APPLICATION = 'quizer_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 
 # Password validation
@@ -140,7 +147,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 
 LOGGING_CONFIG = None
 logging.config.dictConfig({
@@ -185,3 +198,12 @@ logging.config.dictConfig({
         },
     },
 })
+
+
+if 'HEROKU' in os.environ:
+    DATABASES = {}
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+    django_heroku.settings(locals())
+    del DATABASES['default']['OPTIONS']['sslmode']
+else:
+    DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3')}

@@ -1,0 +1,109 @@
+
+
+h1 {
+  position: absolute;
+  top:80px;
+  left:50%;
+  color: black;
+  text-align: center;
+  font-size: 30px;
+  top: 100 px;
+}
+
+td {
+  text-align: center;
+  padding:0 200px 0 15px;
+  color: black; 
+  word-wrap: break-word;
+  max-width: 300px;
+  font-size: 20px;
+  left:25%;
+}
+
+.top a{
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: white;
+  background-color: #25274d;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
+  border-radius: 19px;
+  border: solid white;
+}
+
+.top a:hover{
+  background: #eaece5;
+  color: black;
+  border: solid white;
+  border-radius: 19px;
+}
+
+.navbar button {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: black;
+  background-color: #eaece5;
+  text-align: center;
+  padding: 18px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  border: solid black;
+  border-radius: 19px;
+}
+
+.navbar button:hover {
+  background: #25274d;
+  color: white;
+  border: solid black;
+  border-radius: 19px;
+}
+
+#num {
+  position: absolute;
+  margin-top:4px;
+  margin-left: -120px;
+  font-size: 24px;
+}
+
+#question {
+  position: absolute;
+  margin-top:4px;
+  margin-left: -60px;
+  font-size: 24px;
+}
+
+#information {
+  position: absolute;
+  margin-top:38px;
+  margin-left: -70px;
+  font-size: 16px;
+}
+
+#edit {
+  position: relative;
+  margin-left: 650px;
+}
+
+#delete {
+  position: relative;
+  margin-left: 50px;
+}
+
+#yes {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 19px;
+}
+
+#no {
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 19px;
+}
+
+

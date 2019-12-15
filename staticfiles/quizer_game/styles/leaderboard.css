@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #eaece5;
+  font-family: 'Nunito', serif;
+  font-weight: 100;
+}
+
+.container {
+  position: absolute;
+  top:70px;
+  margin-right:-50px;
+  margin-left:-50px;
+  left:25%;
+}
+
+h1 {
+  color: black;
+  text-align: center;
+  font-size: 30px;
+  margin-left: -100px;
+}
+
+h2 {
+  color: black;
+  text-align: center;
+  font-size: 17px;
+  margin-left: -100px;
+}
+
+.fixed_header{
+  width: 920px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-left: 70px;
+}
+
+.fixed_header tbody{
+  display:block;
+  width: 78.5%;
+  overflow: auto;
+  height: 390px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.fixed_header thead tr {
+   display: block;
+}
+
+.fixed_header th{
+  padding: 15px;
+  text-align: center;
+  width: 200px;
+}
+
+.fixed_header td {
+  padding: 25px;
+  text-align: center;
+  width: 200px;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 18px;
+  color: black;
+  word-wrap: break-word;
+  max-width: 150px;
+}
+
+th {
+  text-align: center;
+}
+
+thead th {
+  background-color: #25274d;
+  color: white;
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+tbody td {
+  position: relative;
+}
+
+
+
