@@ -403,7 +403,7 @@ def edit_data(request, quiz_id):
     user_ip = get_client_ip(request)
     username = request.user.username
     logger.info(f"{user_ip} {username} successfully edited quiz")
-    return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id})
+    return redirect(reverse('quizer_game:edit_quiz', kwargs={'quiz_id': quiz.id}))
     
     
 def quiz_index(request):
