@@ -108,8 +108,8 @@ WSGI_APPLICATION = 'quizer_site.wsgi.application'
 # }
 
 
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -147,10 +147,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 
 LOGGING_CONFIG = None
 logging.config.dictConfig({
@@ -196,6 +199,11 @@ logging.config.dictConfig({
     },
 })
 
-django_heroku.settings(locals())
 
-del DATABASES['default']['OPTIONS']['sslmode']
+if 'HEROKU' in os.environ:
+    DATABASES = {}
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+    django_heroku.settings(locals())
+    del DATABASES['default']['OPTIONS']['sslmode']
+else:
+    DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3')}
