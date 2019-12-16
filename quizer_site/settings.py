@@ -199,7 +199,7 @@ logging.config.dictConfig({
 })
 
 
-if 'HEROKU' in os.environ:
+if 'IS_HEROKU' in os.environ:
     DATABASES = {}
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
     django_heroku.settings(locals())
