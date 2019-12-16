@@ -37,15 +37,15 @@
           </tr>
   	    </thead>
   	    <tbody>
-          <tr>
 	        {% for player in players %}
+            <tr>
               <td>{{ forloop.counter }}</td>
               <td>{{ player.name }}</td>
               <td>{{ player.time }}</td>
               <td>{{ player.total_answer }}</td>
-              <br>
+            </tr>
 	        {% endfor %}
-          </tr>
+         
         </tbody>
       </table>
     </div>
