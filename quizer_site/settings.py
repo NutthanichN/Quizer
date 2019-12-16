@@ -153,6 +153,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'quizer_game', 'static'),
 )
 
+STATICFILES_STORAGE = 'whilenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 LOGGING_CONFIG = None
 logging.config.dictConfig({
