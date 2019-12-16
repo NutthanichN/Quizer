@@ -293,7 +293,7 @@ def leaderboard(request, quiz_id, selected_difficulty):
     quiz = get_object_or_404(Quiz, pk=quiz_id)
     players = quiz.player_set.filter(selected_difficulty=selected_difficulty,
                                      is_achieved=True)
-    players.order_by('time')
+    players = players.order_by('time')
     # number = range(1, player.id+1)
     context = {'quiz': quiz,
                'players': players,
