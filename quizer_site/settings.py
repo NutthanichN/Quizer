@@ -34,7 +34,8 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = config('SECRET_KEY', default="secret")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+# DEBUG = config('DEBUG', cast=bool)
+DEBUG = True
 
 # Store the extracted extra data
 SOCIAL_AUTH_POSTGRES_JSONFIELD = True
